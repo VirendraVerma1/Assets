@@ -12,12 +12,13 @@ public class PlayerStats : MonoBehaviour
     public GameObject FullDamageBloodUI;
     public Animator anim;
     public GameObject ControlUI;
-    public Transform StartingPosition;
+    Transform StartingPosition;
     public GameObject GameOverPannel;
     public Image HealthBar;
 
     void Start()
     {
+        StartingPosition = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
         HealthBar.fillAmount = (float)Health / (float)MaxHealth;
         DamageBloodUI.SetActive(false);
         FullDamageBloodUI.SetActive(false);

@@ -277,7 +277,8 @@ public class GaurdController : MonoBehaviour
         //rotate to the player
         for (int i = 0; i < (gaurdObjects.Length/3); i++)
         {
-            gaurdObjects[i].GetComponent<GaurdController>().buttlerTargetPosition = player.transform.position;
+            //gaurdObjects[i].GetComponent<GaurdController>().buttlerTargetPosition = player.transform.position;
+            gaurdObjects[i].transform.LookAt(player.transform);
         }
         
     }
@@ -321,6 +322,8 @@ public class GaurdController : MonoBehaviour
         if (Physics.Raycast(gaurdWeapon.BulletHolder.transform.position, fwd, out hit, 200.0f))
         {
             Debug.DrawLine(gaurdWeapon.BulletHolder.transform.position, hit.point);
+            GameObject go = Instantiate(gaurdWeapon.FiringEffect, gaurdWeapon.BulletHolder.transform.position, gaurdWeapon.BulletHolder.transform.rotation);
+            Destroy(go, 0.1f);
             if (hit.collider.gameObject.tag == "Player")
             {
                 hit.collider.gameObject.GetComponent<PlayerStats>().TakeDamage(gaurdWeapon.bulletDamage, gaurdWeapon.forceImpactOnPlayer, ranDeathAnimForPlayer);

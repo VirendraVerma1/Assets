@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class GameController : MonoBehaviour
 {
     bool isTimeFreeze = false;
+    public GameObject GaurdAI;
 
 
     void Start()
