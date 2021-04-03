@@ -12,14 +12,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class saveload : MonoBehaviour
 {
 
-    
-
     public static string accountID = " ";
     public static string playerName = " ";
 
     public static float senstivity = 0.5f;
     public static float aimSenstivity = 1f;
-    
+
+    public static int currentLevel = 1;
+    public static int money = 50;
+
 
     public static string current_filename = "info.dat";
 
@@ -34,6 +35,8 @@ public class saveload : MonoBehaviour
         data.PlayerName = Encrypt(playerName);
         data.Senstivity = senstivity;
         data.AimSenstivity = aimSenstivity;
+        data.CurrentLevel = currentLevel;
+        data.Money = money;
 
         bf.Serialize(file, data);
         file.Close();
@@ -52,6 +55,9 @@ public class saveload : MonoBehaviour
             playerName=Decrypt(data.PlayerName);
             senstivity = data.Senstivity;
             aimSenstivity = data.AimSenstivity;
+            money = data.Money;
+            currentLevel = data.CurrentLevel;
+
             file.Close();
 
         }
@@ -107,5 +113,7 @@ class Notebook_Data
     public  string PlayerName;
     public float Senstivity;
     public float AimSenstivity;
+    public int CurrentLevel;
+    public int Money;
     
 }

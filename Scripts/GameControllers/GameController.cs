@@ -8,16 +8,17 @@ public class GameController : MonoBehaviour
 {
     bool isTimeFreeze = false;
     public GameObject GaurdAI;
+    public GameObject[] MissionTerrain;
 
+    void Awake()
+    {
+        saveload.Load();
+        SetMission();
+    }
 
     void Start()
     {
         isTimeFreeze = false;
-    }
-
-    private void Update() {
-
-        
     }
 
     #region Radar Ability
@@ -123,6 +124,29 @@ public class GameController : MonoBehaviour
     public void OnCloseSettingsButtonPressed()
     {
         SettingPannel.SetActive(false);
+    }
+
+    #endregion
+
+    #region LoadLevel
+
+    GameObject CurrentMissionTerrain;
+    void SetMission()
+    {
+        int missionTerrainLength = MissionTerrain.Length;
+        if (missionTerrainLength > saveload.currentLevel)
+        {
+            //load random level
+            int randomLevel = Random.Range(0, missionTerrainLength);
+            MissionTerrain[randomLevel].SetActive(true);
+            CurrentMissionTerrain = MissionTerrain[randomLevel];
+        }
+        else
+        {
+            MissionTerrain[saveload.currentLevel - 1].SetActive(true);
+            CurrentMissionTerrain = MissionTerrain[saveload.currentLevel - 1];
+        }
+
     }
 
     #endregion

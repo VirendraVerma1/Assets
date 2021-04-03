@@ -13,6 +13,7 @@ public class GaurdSpawner : MonoBehaviour
 
     IEnumerator SpawnGaurdOnDuty()
     {
+        yield return new WaitForSeconds(3);
         GameObject go;
         foreach (Transform t in gameObject.transform)
         {

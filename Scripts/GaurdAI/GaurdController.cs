@@ -122,7 +122,7 @@ public class GaurdController : MonoBehaviour
         //print(Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) + "|" + gameObject.GetComponent<FieldOfView>().isPlayer);
         if (gameObject.GetComponent<FieldOfView>().isPlayer == false || player.tag == "Untagged")
         {
-            if (Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) > 0.7f)
+            if (Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) > 1f)
             {
                 //walk
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
@@ -141,6 +141,7 @@ public class GaurdController : MonoBehaviour
             {
                 //idle
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                gameObject.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
                 //anim.applyRootMotion = true;
                 //ButtlerModel.transform.localPosition = new Vector3(0, 0, 0);
                 //ButtlerModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
