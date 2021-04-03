@@ -18,6 +18,7 @@ public class saveload : MonoBehaviour
     public static string playerName = " ";
 
     public static float senstivity = 0.5f;
+    public static float aimSenstivity = 1f;
     
 
     public static string current_filename = "info.dat";
@@ -32,6 +33,7 @@ public class saveload : MonoBehaviour
         data.AccountID = accountID;
         data.PlayerName = Encrypt(playerName);
         data.Senstivity = senstivity;
+        data.AimSenstivity = aimSenstivity;
 
         bf.Serialize(file, data);
         file.Close();
@@ -49,7 +51,7 @@ public class saveload : MonoBehaviour
             accountID=data.AccountID;
             playerName=Decrypt(data.PlayerName);
             senstivity = data.Senstivity;
-
+            aimSenstivity = data.AimSenstivity;
             file.Close();
 
         }
@@ -104,5 +106,6 @@ class Notebook_Data
     public  string AccountID;
     public  string PlayerName;
     public float Senstivity;
+    public float AimSenstivity;
     
 }

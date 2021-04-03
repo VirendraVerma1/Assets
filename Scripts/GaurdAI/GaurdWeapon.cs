@@ -9,7 +9,7 @@ public class GaurdWeapon : MonoBehaviour
     public float forceImpactOnPlayer=10;
     public GameObject ParticleEffectOnPlayer;
     public GameObject FiringEffect;
-    public float bulletDamage=1;
+    public int bulletDamage=1;
     public float fireRate=0.5f;
 
 }

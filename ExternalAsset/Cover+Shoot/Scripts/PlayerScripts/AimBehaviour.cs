@@ -19,10 +19,21 @@ public class AimBehaviour : GenericBehaviour
 	private Vector3 initialHipsRotation;                                  // Initial hips rotation related to the root bone.
 	private Vector3 initialSpineRotation;                                 // Initial spine rotation related to the root bone.
 
+
+    [Header("FOV")]
+    public GameObject ScopeImage;
+    ThirdPersonOrbitCam mainCam;
+    ShootBehaviour shootscript;
+    public bool isSniper = false;
+    public bool isAimMode = false;
 	// Start is always called after any Awake functions.
 	void Start ()
 	{
+        isAimMode = false;
 		// Set up the references.
+        ScopeImage.SetActive(false);
+        mainCam = gameObject.GetComponent<BasicBehaviour>().playerCamera.GetComponent<ThirdPersonOrbitCam>();
+        shootscript = gameObject.GetComponent<ShootBehaviour>();
 		aimBool = Animator.StringToHash("Aim");
 
 		cornerBool = Animator.StringToHash("Corner");
@@ -126,6 +137,7 @@ public class AimBehaviour : GenericBehaviour
 		else
 		{
 			aim = true;
+            isAimMode = true;
 			//isAndroidAim=false;
 			int signal = 1;
 			if (peekCorner)
@@ -134,10 +146,26 @@ public class AimBehaviour : GenericBehaviour
 			}
 			aimCamOffset.x = Mathf.Abs(aimCamOffset.x) * signal;
 			aimPivotOffset.x = Mathf.Abs(aimPivotOffset.x) * signal;
+
+            if (shootscript.CurrentGunLabel == "Sniper")
+            {
+                mainCam.SetFOV(20f);
+                
+            }
+            else
+            {
+                mainCam.SetFOV(50f);
+            }
+
+            //mainCam.fieldOfView = 30;
 			yield return new WaitForSeconds(0.1f);
 			behaviourManager.GetAnim.SetFloat(speedFloat, 0);
 			// This state overrides the active one.
 			behaviourManager.OverrideWithBehaviour(this);
+            if (shootscript.CurrentGunLabel == "Sniper")
+            {
+                ScopeImage.SetActive(true);
+            }
 		}
 	}
 
@@ -145,11 +173,16 @@ public class AimBehaviour : GenericBehaviour
 	private IEnumerator ToggleAimOff()
 	{
 		aim = false;
+        isAimMode = false;
+        ScopeImage.SetActive(false);
+        mainCam.ResetFOV();
 		yield return new WaitForSeconds(0.3f);
 		behaviourManager.GetCamScript.ResetTargetOffsets();
 		behaviourManager.GetCamScript.ResetMaxVerticalAngle();
 		yield return new WaitForSeconds(0.05f);
 		behaviourManager.RevokeOverridingBehaviour(this);
+        
+        
 	}
 
 	// LocalFixedUpdate overrides the virtual function of the base class.

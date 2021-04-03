@@ -8,6 +8,7 @@ public class ShootBehaviour : GenericBehaviour
 {
 
 	public bool isAndroid=false;
+    public string CurrentGunLabel = "";
 
 	public string shootButton = "Fire1",                           // Default shoot weapon button.
 		pickButton = "Interact",                                   // Default pick weapon button.
@@ -462,6 +463,8 @@ public class ShootBehaviour : GenericBehaviour
 		// Call change weapon action.
 		this.weapons[slotMap[newWeapon.type]] = newWeapon;
 		ChangeWeapon(activeWeapon, slotMap[newWeapon.type]);
+        CurrentGunLabel=weapons[activeWeapon].label;
+        
 	}
 
 	// Handle reload weapon end (called by animation).

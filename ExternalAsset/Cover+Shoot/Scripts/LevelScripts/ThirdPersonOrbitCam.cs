@@ -38,12 +38,12 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 
 	// Get the camera horizontal angle.
 	public float GetH { get { return angleH; } }
-
+    AimBehaviour aimScript;
 	void Awake()
 	{
 		// Reference to the camera transform.
 		cam = transform;
-
+        aimScript = player.GetComponent<AimBehaviour>();
 		// Set camera default position.
 		cam.position = player.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;
 		cam.rotation = Quaternion.identity;
@@ -71,8 +71,16 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 		// Mouse:
 		if(isAndroid==true){
 			//print(TouchField.TouchDist);
-			angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, saveload.senstivity) * horizontalAimingSpeed;
-			angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, saveload.senstivity) * verticalAimingSpeed;
+            if (aimScript.isAimMode)
+            {
+                angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.aimSenstivity;
+                angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.aimSenstivity;
+            }
+            else
+            {
+                angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.senstivity;
+                angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.senstivity;
+            }
 		}else{
 		angleH += Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1) * horizontalAimingSpeed;
 		angleV += Mathf.Clamp(Input.GetAxis("Mouse Y"), -1, 1) * verticalAimingSpeed;

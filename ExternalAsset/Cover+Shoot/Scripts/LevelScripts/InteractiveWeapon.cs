@@ -60,7 +60,8 @@ public class InteractiveWeapon : MonoBehaviour
 		pickupHUD = gameController.transform.Find("PickupHUD");
 
 		// Create physics components and radius of interaction.
-		col = this.transform.GetChild(0).gameObject.AddComponent<BoxCollider>();
+        this.transform.GetChild(0).gameObject.GetComponent<BoxCollider>().enabled=true;
+        col = this.transform.GetChild(0).gameObject.GetComponent<BoxCollider>();
 		CreateInteractiveRadius(col.center);
 		this.rbody = this.gameObject.AddComponent<Rigidbody>();
 
@@ -102,8 +103,43 @@ public class InteractiveWeapon : MonoBehaviour
 	void Update()
 	{
 		// Handle player pick weapon action.
-		if (this.pickable && (Input.GetButtonDown(playerInventory.pickButton)||OnAndroidPick))
+        if (this.pickable && OnAndroidPick)
+        {
+            OnAndroidPick = false;
+            GameObject[] wea = GameObject.FindGameObjectsWithTag("Weapons");
+            foreach (GameObject g in wea)
+            {
+                if (g.GetComponent<InteractiveWeapon>())
+                {
+                    g.GetComponent<InteractiveWeapon>().OnAndroidPick = false;
+                }
+            }
+            // Disable weapon physics.
+            rbody.isKinematic = true;
+            this.col.enabled = false;
+
+            // Setup weapon and add in player inventory.
+            playerInventory.AddWeapon(this);
+            Destroy(interactiveRadius);
+            this.Toggle(true);
+            this.pickable = false;
+
+            // Change active weapon HUD.
+            TooglePickupHUD(false);
+            
+            
+        }
+        else if (this.pickable && (Input.GetButtonDown(playerInventory.pickButton)))
 		{
+            OnAndroidPick = false;
+            GameObject[] wea = GameObject.FindGameObjectsWithTag("Weapons");
+            foreach (GameObject g in wea)
+            {
+                if (g.GetComponent<InteractiveWeapon>())
+                {
+                    g.GetComponent<InteractiveWeapon>().OnAndroidPick = false;
+                }
+            }
 			// Disable weapon physics.
 			rbody.isKinematic = true;
 			this.col.enabled = false;
@@ -116,7 +152,7 @@ public class InteractiveWeapon : MonoBehaviour
 
 			// Change active weapon HUD.
 			TooglePickupHUD(false);
-			OnAndroidPick=false;
+			
 		}
 	}
 

@@ -39,7 +39,7 @@ public class AndroidController : MonoBehaviour
 
     IEnumerator DisableAllPickEvents(GameObject[] go)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         foreach(GameObject g in go)
         {
             g.GetComponent<InteractiveWeapon>().OnAndroidPick=false;

@@ -100,6 +100,7 @@ public class GameController : MonoBehaviour
     [Header("Settings")]
     public GameObject SettingPannel;
     public Slider SensitiveSlider;
+    public Slider AimSensitiveSlider;
 
     public void OnSettingButtonPressed()
     {
@@ -109,7 +110,13 @@ public class GameController : MonoBehaviour
     public void OnSliderValueChanged()
     {
         float sens = SensitiveSlider.GetComponent<Slider>().value;
-        saveload.senstivity = 1 - sens;
+        saveload.senstivity = sens;
+    }
+
+    public void OnAimSliderValueChanged()
+    {
+        float sens = AimSensitiveSlider.GetComponent<Slider>().value;
+        saveload.aimSenstivity = sens;
     }
 
     public void OnCloseSettingsButtonPressed()

@@ -122,7 +122,7 @@ public class GaurdController : MonoBehaviour
         //print(Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) + "|" + gameObject.GetComponent<FieldOfView>().isPlayer);
         if (gameObject.GetComponent<FieldOfView>().isPlayer == false || player.tag == "Untagged")
         {
-            if (Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) > 0.5f)
+            if (Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) > 0.7f)
             {
                 //walk
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
@@ -160,7 +160,7 @@ public class GaurdController : MonoBehaviour
         {
             float dis = Vector3.Distance(gameObject.transform.position, buttlerTargetPosition);
             //print(dis);
-            if (dis > 10f)//run
+            if (dis > 7f)//run
             {
 
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
@@ -221,6 +221,7 @@ public class GaurdController : MonoBehaviour
         {
             buttlerTargetPosition = positionPlayer;
             gameObject.GetComponent<NavMeshMovementOnClick>().SettargetPosition(buttlerTargetPosition);
+            CalculateBotsDistanceFromMe();
         }
     }
 
@@ -233,6 +234,54 @@ public class GaurdController : MonoBehaviour
         }
     }
 
+    float[] gaurdDistanceFromMe;
+    GameObject[] gaurdObjects;
+    void CalculateBotsDistanceFromMe()
+    {
+        gaurdObjects = GameObject.FindGameObjectsWithTag("Gaurd");
+
+        //initialize GreaterValueTODistance;
+        gaurdDistanceFromMe = new float[gaurdObjects.Length];
+        for (int i = 0; i < gaurdObjects.Length; i++)
+        {
+            gaurdDistanceFromMe[i] = 9999;
+        }
+
+        //updating all the distance
+        for (int i = 0; i < gaurdObjects.Length; i++)
+        {
+            if (gaurdObjects[i] != null&&gaurdObjects[i]!=gameObject)
+            {
+                gaurdDistanceFromMe[i] = Vector3.Distance(gameObject.transform.position, gaurdObjects[i].transform.position);
+            }
+        }
+
+        //sorting all the distance
+        for (int i = 0; i < gaurdObjects.Length; i++)
+        {
+            for (int j = 1; j < gaurdObjects.Length-1; j++)
+            {
+                if (gaurdDistanceFromMe[j] > gaurdDistanceFromMe[j + 1])
+                {
+                    float tempdis = gaurdDistanceFromMe[j];
+                    gaurdDistanceFromMe[j] = gaurdDistanceFromMe[j + 1];
+                    gaurdDistanceFromMe[j + 1] = tempdis;
+
+                    GameObject tempgo = gaurdObjects[j];
+                    gaurdObjects[j] = gaurdObjects[j + 1];
+                    gaurdObjects[j + 1] = tempgo;
+                }
+            }
+        }
+
+        //rotate to the player
+        for (int i = 0; i < (gaurdObjects.Length/3); i++)
+        {
+            gaurdObjects[i].GetComponent<GaurdController>().buttlerTargetPosition = player.transform.position;
+        }
+        
+    }
+
     #endregion
 
     #region Firing Mechanism
@@ -242,11 +291,14 @@ public class GaurdController : MonoBehaviour
     public GameObject Weapon;
     public float tempFireRate = 0.5f;
     public float tempTimeFire = 0.5f;
+    string ranDeathAnimForPlayer;
 
     void InitializeWeaponSettings()
     {
         gaurdWeapon = Weapon.GetComponent<GaurdWeapon>();
         tempFireRate = gaurdWeapon.fireRate;
+        int ran = Random.Range(0, DeathAnimationsNames.Length);
+        ranDeathAnimForPlayer = DeathAnimationsNames[ran];
     }
 
     void CheckAndFire()// called from CheckButtlerTarget Attack
@@ -261,8 +313,22 @@ public class GaurdController : MonoBehaviour
 
     void FireBullet()
     {
-        GameObject tempBullet = Instantiate(gaurdWeapon.Bullet, gaurdWeapon.BulletHolder.transform.position, gaurdWeapon.BulletHolder.transform.rotation);
-        tempBullet.transform.LookAt(player.transform);
+
+        //Raycast from the bullet holder
+        RaycastHit hit;
+        gaurdWeapon.BulletHolder.transform.LookAt(player.transform);
+        Vector3 fwd = gaurdWeapon.BulletHolder.transform.TransformDirection(Vector3.forward);
+        if (Physics.Raycast(gaurdWeapon.BulletHolder.transform.position, fwd, out hit, 200.0f))
+        {
+            Debug.DrawLine(gaurdWeapon.BulletHolder.transform.position, hit.point);
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                hit.collider.gameObject.GetComponent<PlayerStats>().TakeDamage(gaurdWeapon.bulletDamage, gaurdWeapon.forceImpactOnPlayer, ranDeathAnimForPlayer);
+            }
+        }
+
+        //GameObject tempBullet = Instantiate(gaurdWeapon.Bullet, gaurdWeapon.BulletHolder.transform.position, gaurdWeapon.BulletHolder.transform.rotation);
+        //tempBullet.transform.LookAt(player.transform);
     }
 
     #endregion
