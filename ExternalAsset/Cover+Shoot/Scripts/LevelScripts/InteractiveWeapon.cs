@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections;
+using System.Collections.Generic;
 // This class corresponds to any in-game weapon interactions.
 public class InteractiveWeapon : MonoBehaviour
 {
@@ -39,50 +40,70 @@ public class InteractiveWeapon : MonoBehaviour
 	private bool pickable;                                    // Boolean to store whether or not the weapon is pickable (player within radius).
 	private Transform pickupHUD;                              // Reference to the weapon pickup in-game label.
 
-	void Awake()
+    public void SetBulletNu(int n)
+    {
+        totalBullets = n;
+    }
+
+	public void InitializeWeapon()
 	{
-		// Set up the references.
-		this.gameObject.name = this.label;
-		this.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-		foreach (Transform t in this.transform)
-		{
-			t.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-		}
-		player = GameObject.FindGameObjectWithTag("Player");
-		playerInventory = player.GetComponent<ShootBehaviour>();
-		gameController = GameObject.FindGameObjectWithTag("GameController");
-		// Assert that exists a on-screen HUD.
-		if (GameObject.Find("ScreenHUD") == null)
-		{
-			Debug.LogError("No ScreenHUD canvas found. Create ScreenHUD inside the GameController");
-		}
-		weaponHud = GameObject.Find("ScreenHUD").GetComponent<WeaponUIManager>();
-		pickupHUD = gameController.transform.Find("PickupHUD");
-
-		// Create physics components and radius of interaction.
-        this.transform.GetChild(0).gameObject.GetComponent<BoxCollider>().enabled=true;
-        col = this.transform.GetChild(0).gameObject.GetComponent<BoxCollider>();
-		CreateInteractiveRadius(col.center);
-		this.rbody = this.gameObject.AddComponent<Rigidbody>();
-
-		// Assert that an weapon slot is set up.
-		if (this.type == WeaponType.NONE)
-		{
-			Debug.LogWarning("Set correct weapon slot ( 1 - small/ 2- big)");
-			type = WeaponType.SHORT;
-		}
-
-		// Assert that the gun muzzle is exists.
-		if(!this.transform.Find("muzzle"))
-		{
-			Debug.LogError(this.name+" muzzle is not present. Create a game object named 'muzzle' as a child of this game object");
-		}
-
-		// Set default values.
-		fullMag = mag;
-		maxBullets = totalBullets;
-		pickupHUD.gameObject.SetActive(false);
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+        StartCoroutine(WaitAndInitalizeEveryThing());
 	}
+
+    IEnumerator WaitAndInitalizeEveryThing()
+    {
+        yield return new WaitForSeconds(0);
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        Initialize();
+
+    }
+
+    void Initialize()
+    {
+        // Set up the references.
+        this.gameObject.name = this.label;
+        this.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        foreach (Transform t in this.transform)
+        {
+            t.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        }
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerInventory = player.GetComponent<ShootBehaviour>();
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+        // Assert that exists a on-screen HUD.
+        if (GameObject.Find("ScreenHUD") == null)
+        {
+            Debug.LogError("No ScreenHUD canvas found. Create ScreenHUD inside the GameController");
+        }
+        weaponHud = GameObject.Find("ScreenHUD").GetComponent<WeaponUIManager>();
+        pickupHUD = gameController.transform.Find("PickupHUD");
+
+        // Create physics components and radius of interaction.
+        this.transform.GetChild(0).gameObject.GetComponent<BoxCollider>().enabled = true;
+        col = this.transform.GetChild(0).gameObject.GetComponent<BoxCollider>();
+        CreateInteractiveRadius(col.center);
+        this.rbody = this.gameObject.AddComponent<Rigidbody>();
+
+        // Assert that an weapon slot is set up.
+        if (this.type == WeaponType.NONE)
+        {
+            Debug.LogWarning("Set correct weapon slot ( 1 - small/ 2- big)");
+            type = WeaponType.SHORT;
+        }
+
+        // Assert that the gun muzzle is exists.
+        if (!this.transform.Find("muzzle"))
+        {
+            Debug.LogError(this.name + " muzzle is not present. Create a game object named 'muzzle' as a child of this game object");
+        }
+
+        // Set default values.
+        fullMag = mag;
+        maxBullets = totalBullets;
+        pickupHUD.gameObject.SetActive(false);
+    }
+    
 
 	// Create the sphere of interaction with player.
 	private void CreateInteractiveRadius(Vector3 center)

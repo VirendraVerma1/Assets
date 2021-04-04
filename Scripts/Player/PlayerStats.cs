@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     Transform StartingPosition;
     public GameObject GameOverPannel;
     public Image HealthBar;
-
+    public ControlsTutorial ct;
     void Start()
     {
         StartingPosition = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
@@ -42,7 +42,10 @@ public class PlayerStats : MonoBehaviour
             ControlUI.SetActive(false);
             gameObject.tag = "Untagged";
             anim.Play(ranDeathAnim);
+            Cursor.visible = true;
+            ct.isUIOn = true;
             GameOverPannel.SetActive(true);
+
         }
         
     }
@@ -100,6 +103,6 @@ public class PlayerStats : MonoBehaviour
 
     public void OnRestartButtonPressed()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("HuntGame");
     }
 }

@@ -31,22 +31,26 @@ public class ControlsTutorial : MonoBehaviour
 		gamepadCommands = this.transform.Find("ScreenHUD/Gamepad").gameObject;
 	}
 
+    public bool isUIOn = false;
+
 	void Update()
 	{
 		if(isAndroid){
 
 		}else{
-			if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-			{
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-			}
-			if (Input.GetKeyDown("escape"))
-			{
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = true;
-			}
-
+            if (isUIOn == false)
+            {
+                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                }
+                if (Input.GetKeyDown("escape"))
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = true;
+                }
+            }
 		}
 		
 		KeyboardCommands.SetActive(Input.GetKey(KeyCode.F2));

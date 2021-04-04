@@ -9,7 +9,7 @@ public class GaurdController : MonoBehaviour
     public Animator anim;
     Vector3 buttlerTargetPosition;
     public GameObject GaurdModel;
-    GameObject player;
+    public GameObject player;
     public float botSpeed=1.2f;
     public float botAcceleration=1;
     public float botOnRunSpeed=2;
@@ -22,6 +22,7 @@ public class GaurdController : MonoBehaviour
 
     void Initialization()
     {
+        isDead = false;
         player = GameObject.FindGameObjectWithTag("Player");
         //timer initialization
         buttlerTargetPosition = gameObject.GetComponent<NavMeshMovementOnClick>().TargetPoint;
@@ -339,23 +340,39 @@ public class GaurdController : MonoBehaviour
 
 
     public string[] DeathAnimationsNames;
+    public bool isDead = false;
     public void SetDead()
     {
+        isDead = true;
         int random = Random.Range(0, DeathAnimationsNames.Length);
         string currentAnim = DeathAnimationsNames[random];
         anim.Play(currentAnim);
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         gameObject.GetComponent<GaurdController>().enabled = false;
         gameObject.GetComponent<FieldOfView>().enabled = false;
+        gameObject.GetComponent<NavMeshMovementOnClick>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.transform.Find("Sphere").gameObject.SetActive(false);
+        /*
+        GameObject MeshThings = gameObject.transform.Find("enemy 1").gameObject;
+        MeshThings.transform.parent = null;
+        foreach (Transform t in MeshThings.transform)
+        {
+            if (t.GetComponent<SkinnedMeshRenderer>())
+            {
+                t.gameObject.AddComponent<MeshCollider>();
+                t.gameObject.AddComponent<Rigidbody>();
+            }
+        }*/
+
         StartCoroutine(DisableBot());
     }
 
     IEnumerator DisableBot()
     {
-        yield return new WaitForSeconds(200);
+        yield return new WaitForSeconds(25);
         Destroy(gameObject);
+        
     }
 
 

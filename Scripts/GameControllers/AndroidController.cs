@@ -34,7 +34,7 @@ public class AndroidController : MonoBehaviour
             if (g.GetComponent<InteractiveWeapon>())
             g.GetComponent<InteractiveWeapon>().OnAndroidPick=true;
         }
-        StartCoroutine(DisableAllPickEvents(go));
+        //StartCoroutine(DisableAllPickEvents(go));
     }
 
     IEnumerator DisableAllPickEvents(GameObject[] go)

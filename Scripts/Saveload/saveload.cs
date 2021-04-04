@@ -11,6 +11,52 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class saveload : MonoBehaviour
 {
+    //Things for ------------------------ ShopMenu
+    //need no save
+    public static int pistolBuyPrice = 50;
+    public static int rifleBuyPrice = 1000;
+    public static int akbuyPrice = 3000;
+    public static int shotgunBuyPrice = 5000;
+    public static int sniperBuyPrice = 10000;
+
+    public static int pistolammobuyPrice = 5;
+    public static int rifleammobuyPrice = 10;
+    public static int akammobuyPrice = 50;
+    public static int shotgunammobuyPrice = 100;
+    public static int sniperammobuyPrice = 200;
+
+    public static int pistolAmmoBuySet = 20;
+    public static int rifleAmmoBuySet = 50;
+    public static int akAmmoBuySet = 50;
+    public static int shotgunAmmoBuySet = 20;
+    public static int sniperAmmoBuySet = 20;
+
+
+    //need save
+    public static bool ispistolBuyed = true;
+    public static bool isrifleBuyed = false;
+    public static bool isakBuyed = false;
+    public static bool isshotgunBuyed = false;
+    public static bool issniperBuyed = false;
+
+    public static int pistolAmmo = 100;
+    public static int rifleAmmo = 200;
+    public static int akAmmo = 200;
+    public static int shotgunAmmo = 50;
+    public static int sniperAmmo = 50;
+
+    //----------------end shop things
+
+
+    //-----------------ability things 
+    //save the data
+    public static int radarWorkingTime = 15;
+    public static int radarCooldownTime = 15;
+    public static int freezeWorkingTime = 10;
+    public static int freezeCooldownTime = 15;
+
+    //end ability things
+
 
     public static string accountID = " ";
     public static string playerName = " ";
@@ -19,8 +65,7 @@ public class saveload : MonoBehaviour
     public static float aimSenstivity = 1f;
 
     public static int currentLevel = 1;
-    public static int money = 50;
-
+    public static int money = 1000000;
 
     public static string current_filename = "info.dat";
 
@@ -37,6 +82,25 @@ public class saveload : MonoBehaviour
         data.AimSenstivity = aimSenstivity;
         data.CurrentLevel = currentLevel;
         data.Money = money;
+
+        //shop things
+        data.IspistolBuyed = ispistolBuyed;
+        data.IsakBuyed = isakBuyed;
+        data.IsrifleBuyed = isrifleBuyed;
+        data.IsshotgunBuyed = isshotgunBuyed;
+        data.IssniperBuyed = issniperBuyed;
+
+        data.PistolAmmo = pistolAmmo;
+        data.RifleAmmo = rifleAmmo;
+        data.AkAmmo = akAmmo;
+        data.ShotgunAmmo = shotgunAmmo;
+        data.SniperAmmo = sniperAmmo;
+
+        //ability
+        data.RadarWorkingTime=radarWorkingTime;
+        data.RadarCooldownTime=radarCooldownTime;
+         data.FreezeWorkingTime=freezeWorkingTime;
+         data.FreezeCooldownTime=freezeCooldownTime;
 
         bf.Serialize(file, data);
         file.Close();
@@ -57,6 +121,25 @@ public class saveload : MonoBehaviour
             aimSenstivity = data.AimSenstivity;
             money = data.Money;
             currentLevel = data.CurrentLevel;
+
+            //shopthings
+            issniperBuyed=data.IssniperBuyed;
+            isshotgunBuyed=data.IsshotgunBuyed;
+            isrifleBuyed = data.IsrifleBuyed;
+            isakBuyed = data.IsakBuyed;
+            ispistolBuyed = data.IspistolBuyed;
+
+            pistolAmmo=data.PistolAmmo;
+            rifleAmmo=data.RifleAmmo;
+            akAmmo=data.AkAmmo;
+            shotgunAmmo=data.ShotgunAmmo;
+            sniperAmmo=data.SniperAmmo;
+
+            //ability
+            radarWorkingTime = data.RadarWorkingTime;
+            radarCooldownTime = data.RadarCooldownTime;
+            freezeWorkingTime = data.FreezeWorkingTime;
+            freezeCooldownTime = data.FreezeCooldownTime;
 
             file.Close();
 
@@ -115,5 +198,24 @@ class Notebook_Data
     public float AimSenstivity;
     public int CurrentLevel;
     public int Money;
+
+    //shop things
+    public  bool IspistolBuyed  ;
+    public  bool IsrifleBuyed  ;
+    public  bool IsakBuyed  ;
+    public  bool IsshotgunBuyed  ;
+    public  bool IssniperBuyed  ;
+
+    public  int PistolAmmo;
+    public  int RifleAmmo;
+    public  int AkAmmo;
+    public  int ShotgunAmmo;
+    public  int SniperAmmo ;
+
+    //ability
+    public  int RadarWorkingTime;
+    public  int RadarCooldownTime;
+    public  int FreezeWorkingTime;
+    public  int FreezeCooldownTime;
     
 }
