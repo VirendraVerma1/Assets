@@ -59192,9 +59192,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: GaurdAI
       objectReference: {fileID: 0}
-    - target: {fileID: 1498338669535832090, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 4070138229079698895, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
