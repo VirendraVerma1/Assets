@@ -23,7 +23,9 @@ public class GaurdController : MonoBehaviour
     void Initialization()
     {
         isDead = false;
-        player = GameObject.FindGameObjectWithTag("Player");
+        GameObject g = GameObject.FindGameObjectWithTag("Player");
+        if (g != null)
+            player = g;
         //timer initialization
         buttlerTargetPosition = gameObject.GetComponent<NavMeshMovementOnClick>().TargetPoint;
         

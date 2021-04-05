@@ -65,7 +65,7 @@ public class saveload : MonoBehaviour
     public static float aimSenstivity = 1f;
 
     public static int currentLevel = 1;
-    public static int money = 1000000;
+    public static int money = 1000;
 
     public static string current_filename = "info.dat";
 

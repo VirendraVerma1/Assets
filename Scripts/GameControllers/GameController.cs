@@ -193,6 +193,7 @@ public class GameController : MonoBehaviour
     public void OnCloseSettingsButtonPressed()
     {
         SettingPannel.SetActive(false);
+        saveload.Save();
     }
 
     #endregion
@@ -379,7 +380,7 @@ public class GameController : MonoBehaviour
         MainMenuPannel.SetActive(false);
         BotCountGO.SetActive(true);
 
-        UpdatePlayerToAllGaurds();
+        StartCoroutine( UpdatePlayerToAllGaurds());
         ActiveOnlyBuyedWeapon();
         SetWeaponsStat();
         UpdateAndInitialzeWeapon();
@@ -387,14 +388,16 @@ public class GameController : MonoBehaviour
         
     }
 
-    void UpdatePlayerToAllGaurds()
+    IEnumerator UpdatePlayerToAllGaurds()
     {
+        yield return new WaitForSeconds(10);
         GameObject PlayerObject=GameObject.FindGameObjectWithTag("Player");
         foreach (GameObject g in AllBots)
         {
             g.GetComponent<GaurdController>().player = PlayerObject;
         }
     }
+    
 
     #region Initializing Weapon Things
 
