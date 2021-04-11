@@ -33,6 +33,16 @@ public class TargetHealth : HealthManager
 
 	public bool IsDead { get { return dead; } }
 
+    public void TakeDamageMy(float nu)
+    {
+        health -= nu;
+        
+        if (health <= 0)
+        {
+            Kill();
+        }
+    }
+
 	public override void TakeDamage(Vector3 location, Vector3 direction, float damage, Collider bodyPart=null, GameObject origin=null)
 	{
         

@@ -78,7 +78,7 @@ public class GaurdController : MonoBehaviour
         if (serialinversePatrol)
         {
             tempIndex = length - gaurdpatrolindex-1;
-            print(tempIndex);
+            
         }
         
         foreach (Transform item in AssignedGaurdPoints)

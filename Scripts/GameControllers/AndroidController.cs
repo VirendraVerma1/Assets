@@ -34,7 +34,15 @@ public class AndroidController : MonoBehaviour
             if (g.GetComponent<InteractiveWeapon>())
             g.GetComponent<InteractiveWeapon>().OnAndroidPick=true;
         }
+        StartCoroutine(HidePickUpButton());
         //StartCoroutine(DisableAllPickEvents(go));
+    }
+
+    IEnumerator HidePickUpButton()
+    {
+        
+        yield return new WaitForSeconds(0.3f);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().ShopPickDownButton();
     }
 
     IEnumerator DisableAllPickEvents(GameObject[] go)

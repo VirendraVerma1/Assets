@@ -5,6 +5,7 @@ using System.Collections.Generic;
 // This class corresponds to any in-game weapon interactions.
 public class InteractiveWeapon : MonoBehaviour
 {
+	public PlayerStats playerStat;
 	public string label;                                      // The weapon name. Same name will treat weapons as same regardless game object's name.
 	public AudioClip shotSound, reloadSound,                  // Audio clips for shoot and reload.
 		pickSound, dropSound, noBulletSound;                  // Audio clips for pickweapon , drop weapon, and no bullet shot try.
@@ -194,6 +195,7 @@ public class InteractiveWeapon : MonoBehaviour
 			pickable = false;
 			TooglePickupHUD(false);
 		}
+		playerStat.ShopPickDownButton();
 	}
 
 	// Handle player within radius of interaction.
@@ -209,6 +211,7 @@ public class InteractiveWeapon : MonoBehaviour
 	// Draw in-game weapon pickup label.
 	private void TooglePickupHUD(bool toogle)
 	{
+		playerStat.ShopPickUpButton();
 		pickupHUD.gameObject.SetActive(toogle);
 		if (toogle)
 		{

@@ -63,6 +63,9 @@ public class ShootBehaviour : GenericBehaviour
 	// Start is always called after any Awake functions.
 	void Start()
 	{
+		
+		saveload.isAutoFire=true;
+		print(saveload.isAutoFire);
 		// Set up the references.
 		weaponTypeInt = Animator.StringToHash("Weapon");
 		aimBool = Animator.StringToHash("Aim");
@@ -137,12 +140,33 @@ public class ShootBehaviour : GenericBehaviour
 		}
 	}
 
+	void CheckFromEnemy()
+	{
+		Vector3 imprecision = Random.Range(-shotErrorRate, shotErrorRate) * behaviourManager.playerCamera.right;
+		Ray ray = new Ray(behaviourManager.playerCamera.position, behaviourManager.playerCamera.forward + imprecision);
+		RaycastHit hit = default(RaycastHit);
+		// Target was hit.
+		if (Physics.Raycast(ray, out hit, 500f, shotMask))
+		{
+			if(hit.collider.tag=="Gaurd")
+			{
+				isAndroidFireon=true;
+			}
+		}
+	}
+
+
+
 //-----------------------------------------end
 
 	private void Update()
 	{
 		if(isAndroid)
 		{
+			if(saveload.isAutoFire)
+			{
+				CheckFromEnemy();
+			}
 			// Handle shoot weapon action.
 			if ((isAndroidFireon) && !isShooting && activeWeapon > 0 && burstShotCount == 0)
 			{
@@ -259,18 +283,20 @@ public class ShootBehaviour : GenericBehaviour
 			// Target was hit.
 			if (Physics.Raycast(ray, out hit, 500f, shotMask))
 			{
-				if (hit.collider.transform != this.transform)
-				{
-					// Is the target organic?
-					bool isOrganic = (organicMask == (organicMask | (1 << hit.transform.root.gameObject.layer)));
-					// Handle shot effects on target.
-					DrawShoot(weapons[weapon].gameObject, hit.point, hit.normal, hit.collider.transform, !isOrganic, !isOrganic);
+				
+					if (hit.collider.transform != this.transform)
+					{
+						// Is the target organic?
+						bool isOrganic = (organicMask == (organicMask | (1 << hit.transform.root.gameObject.layer)));
+						// Handle shot effects on target.
+						DrawShoot(weapons[weapon].gameObject, hit.point, hit.normal, hit.collider.transform, !isOrganic, !isOrganic);
 
-					// Call the damage behaviour of target if exists.
-					if(hit.collider)
-						hit.collider.SendMessageUpwards("HitCallback", new HealthManager.DamageInfo(
-							hit.point, ray.direction, weapons[weapon].bulletDamage, hit.collider), SendMessageOptions.DontRequireReceiver);
-				}
+						// Call the damage behaviour of target if exists.
+						if(hit.collider)
+							hit.collider.SendMessageUpwards("HitCallback", new HealthManager.DamageInfo(
+								hit.point, ray.direction, weapons[weapon].bulletDamage, hit.collider), SendMessageOptions.DontRequireReceiver);
+					}
+				
 			}
 			// No target was hit.
 			else

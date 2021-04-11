@@ -59,8 +59,15 @@ public class AimBehaviour : GenericBehaviour
 	public bool isAndroidShoulderAim=false;
 	public void OnAndroidAimButtonPressed()
 	{
-		if(isAndroidAim)isAndroidAim=false;
-		else isAndroidAim=true;
+		if(isAndroidAim)
+		{
+			isAndroidAim=false;
+			gameObject.GetComponent<PlayerStats>().OnAimOff();
+		}
+		else{
+			isAndroidAim=true;
+			gameObject.GetComponent<PlayerStats>().OnAimHappen();
+		} 
 	}
 
 	public void OnAndroidShoulderAimButtonPressed()

@@ -23,6 +23,8 @@ public class PlayerStats : MonoBehaviour
         DamageBloodUI.SetActive(false);
         FullDamageBloodUI.SetActive(false);
         OnContinueButtonPressed();
+        OnAimOff();
+        ShopPickDownButton();
     }
    
     public void TakeDamage(int dam,float impact, string ranDeathAnim)
@@ -103,6 +105,43 @@ public class PlayerStats : MonoBehaviour
 
     public void OnRestartButtonPressed()
     {
-        SceneManager.LoadScene("HuntGame");
+        saveload.isrestartMission = true;
+        saveload.Save();
+        GameObject.FindGameObjectWithTag("MainController").GetComponent<GameController>().StartLoadingScreen("HuntGame");
     }
+
+    #region CustomiZe android UI
+
+    [Header("Customize android UI")]
+    public GameObject PickUpButton;
+    public GameObject ReloadButton;
+    public GameObject FireButton;
+    public GameObject SholderAimButton;
+
+    public void ShopPickUpButton()
+    {
+        PickUpButton.SetActive(true);
+    }
+
+    public void ShopPickDownButton()
+    {
+        PickUpButton.SetActive(false);
+    }
+
+    
+    public void OnAimHappen()
+    {
+        ReloadButton.SetActive(true);
+        FireButton.SetActive(true);
+        SholderAimButton.SetActive(true);
+    }
+
+    public void OnAimOff()
+    {
+        ReloadButton.SetActive(false);
+        FireButton.SetActive(false);
+        SholderAimButton.SetActive(false);
+    }
+
+    #endregion
 }

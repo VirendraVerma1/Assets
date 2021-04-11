@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
         isTimeFreeze = false;
         InitializeRadarIcon();
         InitializeFreezeIcon();
+        InitializeSettings();
     }
 
     #region Radar Ability
@@ -92,6 +93,7 @@ public class GameController : MonoBehaviour
     public Image FillRateForFrezze;
 
     bool isFreezeActiveForClick = false;
+
     //system
     //when tap on radar then change the radar icon to working and after certain time startrefilling it
 
@@ -125,6 +127,7 @@ public class GameController : MonoBehaviour
         
         yield return new WaitForSeconds(saveload.freezeWorkingTime);
         RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
+        FreezeTimeButton.GetComponent<Image>().sprite = NormalFreezeSprite;
         UnFreezeEveryThing();
         FillRateForFrezze.fillAmount = 1;
         int time = saveload.freezeCooldownTime;
@@ -169,9 +172,27 @@ public class GameController : MonoBehaviour
     #region Settings
 
     [Header("Settings")]
+    public Sprite TickSprite;
+    public Sprite UntickSprite;
     public GameObject SettingPannel;
     public Slider SensitiveSlider;
     public Slider AimSensitiveSlider;
+    public GameObject AimAssistButton;
+    public GameObject AutoFireButton;
+    
+    void InitializeSettings()
+    {
+        
+        if(saveload.isAimAssist)
+        AimAssistButton.GetComponent<Image>().sprite=TickSprite;
+        else
+        AimAssistButton.GetComponent<Image>().sprite=UntickSprite;
+
+        if(saveload.isAutoFire)
+        AutoFireButton.GetComponent<Image>().sprite=TickSprite;
+        else
+        AutoFireButton.GetComponent<Image>().sprite=UntickSprite;
+    }
 
     public void OnSettingButtonPressed()
     {
@@ -196,32 +217,101 @@ public class GameController : MonoBehaviour
         saveload.Save();
     }
 
+    //------aim assist
+    public void OnAutoAssistButtonPressed()
+    {
+        if(saveload.isAimAssist)
+        {
+            saveload.isAimAssist=false;
+        }
+        else
+        {
+            saveload.isAimAssist=true;
+        }
+        InitializeSettings();
+    }
+
+    //------autofire
+    public void OnAutoFireButtonPressed()
+    {
+        if(saveload.isAutoFire)
+        {
+            saveload.isAutoFire=false;
+        }
+        else
+        {
+            saveload.isAutoFire=true;
+        }
+        InitializeSettings();
+    }
+
     #endregion
 
     #region LoadLevel/Bot Count / Won Mechanism
 
-    
     GameObject CurrentMissionTerrain;
 
     void SetMission()
     {
         print(saveload.currentLevel + "|" + MissionTerrain.Length);
         int missionTerrainLength = MissionTerrain.Length;
-        if (missionTerrainLength < saveload.currentLevel)
+
+        //check for restart mission else continue our method for serial then random
+        if (saveload.isrestartMission)
         {
-            //load random level
-            int randomLevel = Random.Range(0, missionTerrainLength);
-            MissionTerrain[randomLevel].SetActive(true);
-            CurrentMissionTerrain = MissionTerrain[randomLevel];
-            terrainLoadNu = randomLevel;
+            MissionTerrain[saveload.currentterrainIndex].SetActive(true);
+            CurrentMissionTerrain = MissionTerrain[saveload.currentterrainIndex];
+            terrainLoadNu = saveload.currentterrainIndex;
+            saveload.isrestartMission = false;
+            saveload.Save();
         }
         else
         {
-            MissionTerrain[saveload.currentLevel - 1].SetActive(true);
-            CurrentMissionTerrain = MissionTerrain[saveload.currentLevel - 1];
-            terrainLoadNu = saveload.currentLevel - 1;
+            if (missionTerrainLength < saveload.currentLevel)//random level
+            {
+                // if restart mission is false then dont load the same scene
+                if (saveload.isrestartMission == false)
+                {
+                    int randomLevel = ArrangeUniqueTerrainNumberForMe(saveload.currentterrainIndex,missionTerrainLength);
+                    MissionTerrain[randomLevel].SetActive(true);
+                    CurrentMissionTerrain = MissionTerrain[randomLevel];
+                    terrainLoadNu = randomLevel;
+                    saveload.currentterrainIndex = randomLevel;
+                }
+                else
+                {
+                    //load random level
+                    int randomLevel = Random.Range(0, missionTerrainLength);
+                    MissionTerrain[randomLevel].SetActive(true);
+                    CurrentMissionTerrain = MissionTerrain[randomLevel];
+                    terrainLoadNu = randomLevel;
+                    saveload.currentterrainIndex = randomLevel;
+                }
+            }
+            else
+            {
+                MissionTerrain[saveload.currentLevel - 1].SetActive(true);
+                CurrentMissionTerrain = MissionTerrain[saveload.currentLevel - 1];
+                terrainLoadNu = saveload.currentLevel - 1;
+                saveload.currentterrainIndex = terrainLoadNu;
+            }
         }
         StartCoroutine(InitializeBotThings());
+    }
+
+    int ArrangeUniqueTerrainNumberForMe(int currentTerrain,int lenght)
+    {
+        int n=1;
+        int newIndex=0;
+        while (n > 0)
+        {
+            int nu = Random.Range(0, lenght);
+            if (nu != currentTerrain){
+                n = 0;
+                newIndex=nu;
+            }
+        }
+        return newIndex;
     }
 
     bool isGameOver = false;
@@ -253,7 +343,6 @@ public class GameController : MonoBehaviour
             }
         }
         botCount = counter;
-        print(counter);
         UpdateBotKilledUI();
         if (counter > 0)
         {
@@ -313,25 +402,51 @@ public class GameController : MonoBehaviour
         NextMissionButtonGO.SetActive(false);
         CashEarnPannelGO.SetActive(false);
         DoubleYourCashRewardAdButton.SetActive(false);
+        CheckForVideoAdLoaded();
+    }
+
+    void CheckForVideoAdLoaded()
+    {
+        if( FindObjectOfType<AdScript>().isAdLoaded())
+        {
+            DoubleYourCashRewardAdButton.SetActive(true);
+        }
+    }
+
+    void OnRewardButtonPressed()
+    {
+        FindObjectOfType<AdScript>().ShowRewardVideoAdsSwitch();
+        StartCoroutine(CheackAndGiveReward());
+    }
+
+    IEnumerator CheackAndGiveReward()
+    {
+        while(!FindObjectOfType<AdScript>().GiveRewardAfterCompletion())
+        {
+            yield return new WaitForSeconds(2);
+            
+        }
+        InitializeTreaSurePannel();
     }
 
     public void OnRestartMissionButtonPressed()
     {
-        SceneManager.LoadScene("HuntGame");
+        saveload.isrestartMission = true;
+        StartLoadingScreen("HuntGame");
     }
 
     public void OnNextMissionButtonPressed()
     {
+        saveload.isrestartMission = false;
         saveload.currentLevel++;
         saveload.Save();
-        SceneManager.LoadScene("HuntGame");
+        StartLoadingScreen("HuntGame");
     }
 
     public void OnDoubleCashButtonPressed()
     {
         //Show Ads
-        saveload.money += (maxBotCount * 100);
-        saveload.Save();
+        OnRewardButtonPressed();
     }
 
     #endregion
@@ -347,6 +462,7 @@ public class GameController : MonoBehaviour
     string cameraanimationName = "";
     public GameObject StartMissionButton;
     public ControlsTutorial ct;
+    public GameObject MyPlayer;
 
     void Initialize()//this dosent means game has started
     {
@@ -380,6 +496,7 @@ public class GameController : MonoBehaviour
         MainMenuPannel.SetActive(false);
         BotCountGO.SetActive(true);
 
+        MyPlayer=GameObject.FindGameObjectWithTag("Player");
         StartCoroutine( UpdatePlayerToAllGaurds());
         ActiveOnlyBuyedWeapon();
         SetWeaponsStat();
@@ -417,6 +534,7 @@ public class GameController : MonoBehaviour
                         if (weapons[i].GetComponent<InteractiveWeapon>().label == shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().label)
                         {
                             weapons[i].GetComponent<InteractiveWeapon>().SetBulletNu(GetAmmoNu(j));
+                            weapons[i].GetComponent<InteractiveWeapon>().playerStat=MyPlayer.GetComponent<PlayerStats>();
                         }
                     }
                 }
@@ -557,8 +675,7 @@ public class GameController : MonoBehaviour
 
     public void OnYesButtonPressed()
     {
-        SceneManager.LoadScene("HuntGame");
-        
+        StartLoadingScreen("HuntGame");
     }
 
     public void OnNoButtonPressed()
@@ -574,4 +691,75 @@ public class GameController : MonoBehaviour
     //restart button is on player stat 
 
     #endregion
+
+    #region Common Loading Screen
+
+    [Header("Loading Screen")]
+    public GameObject LoadingPannel;
+    public Sprite[] LoadingImages;
+    public Image LoadingBar;
+    public Image LoadingBackground;
+
+    public void StartLoadingScreen(string sceneName)
+    {
+        SetrandomBackground();
+        StartCoroutine(WaitForFlashDelay(sceneName));
+    }
+
+    IEnumerator WaitForFlashDelay(string sceneName)
+    {
+        LoadingPannel.SetActive(true);
+        AsyncOperation game = SceneManager.LoadSceneAsync(sceneName);
+
+        while (game.progress < 1)
+        {
+            LoadingBar.fillAmount=game.progress;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    void SetrandomBackground()
+    {
+        int nu = Random.Range(0, LoadingImages.Length);
+        LoadingBackground.sprite = LoadingImages[nu];
+    }
+
+    #endregion
+
+    #region On2x Reward
+
+    [Header("Reward Pannel")]
+    public GameObject RewardPannel;
+    public GameObject TreasureButton;
+
+    void InitializeTreaSurePannel()
+    {
+        RewardPannel.SetActive(true);
+        //normal treasure scale up animation start
+    }
+
+    public void OnTreasureButtonPressed()
+    {
+        //animation change to treasure open and give money
+        //money increment animation start
+        RemoveTreasurePannel();
+    }
+
+    void RemoveTreasurePannel()
+    {
+        RewardPannel.SetActive(false);
+        saveload.money += (maxBotCount * 100);
+        saveload.Save();
+    }
+
+    #endregion
+
+    public void KillAllButton()
+    {
+        GameObject[] go = GameObject.FindGameObjectsWithTag("Gaurd");
+        foreach (GameObject g in go)
+        {
+            g.GetComponent<TargetHealth>().TakeDamageMy(200f);
+        }
+    }
 }

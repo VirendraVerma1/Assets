@@ -66,6 +66,10 @@ public class saveload : MonoBehaviour
 
     public static int currentLevel = 1;
     public static int money = 1000;
+    public static bool isrestartMission = false;
+    public static int currentterrainIndex = 0;
+    public static bool isAimAssist=true;
+    public static bool isAutoFire=true;
 
     public static string current_filename = "info.dat";
 
@@ -82,6 +86,10 @@ public class saveload : MonoBehaviour
         data.AimSenstivity = aimSenstivity;
         data.CurrentLevel = currentLevel;
         data.Money = money;
+        data.IsRestartMission = isrestartMission;
+        data.CurrentTerrainIndex = currentterrainIndex;
+        data.IsAutoFire=isAutoFire;
+        data.IsAimAssist=isAimAssist;
 
         //shop things
         data.IspistolBuyed = ispistolBuyed;
@@ -121,6 +129,10 @@ public class saveload : MonoBehaviour
             aimSenstivity = data.AimSenstivity;
             money = data.Money;
             currentLevel = data.CurrentLevel;
+            currentterrainIndex = data.CurrentTerrainIndex;
+            isrestartMission = data.IsRestartMission;
+            isAimAssist=data.IsAimAssist;
+            isAutoFire=data.IsAutoFire;
 
             //shopthings
             issniperBuyed=data.IssniperBuyed;
@@ -198,6 +210,10 @@ class Notebook_Data
     public float AimSenstivity;
     public int CurrentLevel;
     public int Money;
+    public bool IsRestartMission;
+    public int CurrentTerrainIndex;
+    public bool IsAutoFire;
+    public bool IsAimAssist;
 
     //shop things
     public  bool IspistolBuyed  ;
