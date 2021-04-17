@@ -11,6 +11,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class saveload : MonoBehaviour
 {
+    //Server files
+    public static string serverLocation = "http://kreasaard.atwebpages.com/OneManArmy/";
+    public static string serverCreateAccount = "createaccount.php";
+    public static string serverUpdateRepeat = "updaterepeat.php";
+    public static string serverUpdateStats = "updatestats.php";
+    public static string servergetRank = "getrank.php";
+    public static string serveradnet = "adnet.php";
+    public static string serverinitialize = "initialize.php";
+
     //Things for ------------------------ ShopMenu
     //need no save
     public static int pistolBuyPrice = 50;
@@ -70,6 +79,10 @@ public class saveload : MonoBehaviour
     public static int currentterrainIndex = 0;
     public static bool isAimAssist=true;
     public static bool isAutoFire=true;
+    public static int appOpen=0;
+    public static int adsWatched=0;
+
+    public static int timePlayed=0;
 
     public static string current_filename = "info.dat";
 
@@ -90,6 +103,9 @@ public class saveload : MonoBehaviour
         data.CurrentTerrainIndex = currentterrainIndex;
         data.IsAutoFire=isAutoFire;
         data.IsAimAssist=isAimAssist;
+        data.AppOpen=appOpen;
+        data.TimePlayed=timePlayed;
+        data.AdsWatched=adsWatched;
 
         //shop things
         data.IspistolBuyed = ispistolBuyed;
@@ -128,11 +144,14 @@ public class saveload : MonoBehaviour
             senstivity = data.Senstivity;
             aimSenstivity = data.AimSenstivity;
             money = data.Money;
+            adsWatched=data.AdsWatched;
             currentLevel = data.CurrentLevel;
             currentterrainIndex = data.CurrentTerrainIndex;
             isrestartMission = data.IsRestartMission;
             isAimAssist=data.IsAimAssist;
             isAutoFire=data.IsAutoFire;
+            appOpen=data.AppOpen;
+            timePlayed=data.TimePlayed;
 
             //shopthings
             issniperBuyed=data.IssniperBuyed;
@@ -214,6 +233,9 @@ class Notebook_Data
     public int CurrentTerrainIndex;
     public bool IsAutoFire;
     public bool IsAimAssist;
+    public int TimePlayed;
+    public int AppOpen;
+    public int AdsWatched;
 
     //shop things
     public  bool IspistolBuyed  ;

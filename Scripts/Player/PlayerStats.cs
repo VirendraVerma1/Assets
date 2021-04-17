@@ -25,7 +25,102 @@ public class PlayerStats : MonoBehaviour
         OnContinueButtonPressed();
         OnAimOff();
         ShopPickDownButton();
+        StartCoroutine(WaitToLoadAllGaurds());
     }
+
+    #region stealth System
+
+    [Header("Stealth")]
+    public GameObject KillFromKnifeButton;
+    public float NearestGaurdDistance=1f;
+    GameObject nearestGaurd;
+    IEnumerator WaitToLoadAllGaurds()
+    {
+        yield return new WaitForSeconds(10);
+        InitializeGaurds();
+        StartCoroutine(waitforstealth());
+    }
+
+    IEnumerator waitforstealth()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(1); 
+            UpdateGaurdDistance();
+            nearestGaurd=MyNearstGaurd();
+            if(nearestGaurd!=null)
+            {
+                KillFromKnifeButton.SetActive(true);
+            }
+            else
+            {
+                KillFromKnifeButton.SetActive(false);
+            }
+        }
+    }
+
+    public void OnButtonKillFromMyKnife()
+    {
+        for(int i=0;i<gaurdDistance.Count;i++)
+        {
+            if(gaurdDistance[i].Gaurd==nearestGaurd)
+            {
+                gaurdDistance[i].Gaurd=null;
+            }
+        }
+        nearestGaurd.GetComponent<TargetHealth>().TakeDamageMy(200);
+        KillFromKnifeButton.SetActive(false);
+    }
+
+
+    //-----------------common function
+    List<GaurdDisance> gaurdDistance=new List<GaurdDisance>();
+    GameObject[] Gaurds;
+    void InitializeGaurds()
+    {
+        Gaurds=GameObject.FindGameObjectsWithTag("Gaurd");
+        for(int i=0;i<Gaurds.Length;i++)
+        {
+            gaurdDistance.Add(new GaurdDisance(Gaurds[i],99999));
+        }
+    }
+
+    void UpdateGaurdDistance()
+    {
+        for(int i=0;i<gaurdDistance.Count;i++)
+        {
+            if(gaurdDistance[i].Gaurd!=null)
+            gaurdDistance[i].Distance=Vector3.Distance(gameObject.transform.position,gaurdDistance[i].Gaurd.transform.position);
+        }
+    }
+
+    GameObject MyNearstGaurd()
+    {
+        float min=999999;
+        GameObject g=null;
+        for(int i=0;i<gaurdDistance.Count;i++)
+        {
+            if(gaurdDistance[i].Gaurd!=null)
+            {
+                if(min>gaurdDistance[i].Distance)
+                {
+                    min=gaurdDistance[i].Distance;
+                    g=gaurdDistance[i].Gaurd;
+                }
+            }
+        }
+        if(min<=NearestGaurdDistance)
+        {
+            return g;
+        }
+        else
+        {
+            return null;
+        }
+        
+    }
+
+    #endregion
    
     public void TakeDamage(int dam,float impact, string ranDeathAnim)
     {

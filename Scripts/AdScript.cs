@@ -8,7 +8,7 @@ using System;
 public class AdScript : MonoBehaviour, IUnityAdsListener 
 {
     //server values
-    private string serverurl = "http://kreasaard.atwebpages.com/PaperInTrash/adnet.php";
+    private string serverurl = "http://kreasaard.atwebpages.com/OneManArmy/adnet.php";
     string adnetValue = "0";
     //0 for google ads
     //1 for unity ads

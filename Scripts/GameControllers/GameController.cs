@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    [Header("Testing")]
+    public bool LoadSpecificLevelMy=false;
+    public int terrainNu=0;
+
     [Header("CommonThings")]
     bool isTimeFreeze = false;
     public GameObject GaurdAI;
@@ -256,6 +260,18 @@ public class GameController : MonoBehaviour
         print(saveload.currentLevel + "|" + MissionTerrain.Length);
         int missionTerrainLength = MissionTerrain.Length;
 
+        //------------testing
+        if(LoadSpecificLevelMy==true)
+        {
+            MissionTerrain[terrainNu].SetActive(true);
+            CurrentMissionTerrain = MissionTerrain[terrainNu];
+            terrainLoadNu = terrainNu;
+            saveload.isrestartMission = false;
+            saveload.Save();
+        }else{
+
+        
+
         //check for restart mission else continue our method for serial then random
         if (saveload.isrestartMission)
         {
@@ -296,6 +312,7 @@ public class GameController : MonoBehaviour
                 saveload.currentterrainIndex = terrainLoadNu;
             }
         }
+        }//tesing else
         StartCoroutine(InitializeBotThings());
     }
 
