@@ -16,8 +16,10 @@ public class PlayerStats : MonoBehaviour
     public GameObject GameOverPannel;
     public Image HealthBar;
     public ControlsTutorial ct;
+    public GameController gameController;
     void Start()
     {
+        gameController=GameObject.FindGameObjectWithTag("MainController").GetComponent<GameController>();
         StartingPosition = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
         HealthBar.fillAmount = (float)Health / (float)MaxHealth;
         DamageBloodUI.SetActive(false);
@@ -124,27 +126,28 @@ public class PlayerStats : MonoBehaviour
    
     public void TakeDamage(int dam,float impact, string ranDeathAnim)
     {
-        Health -= dam;
-        HealthBar.fillAmount = (float)Health / (float)MaxHealth;
-        var rb = GetComponent<Rigidbody>();
-        rb.AddForce(0, 0, impact, ForceMode.Impulse);
-        StartCoroutine(DamageImpact());
-        if (Health < 0)
+        if(gameController.isShieldActivateforclick)
         {
-            //Dead
-            FullDamageBloodUI.SetActive(true);
-            //gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            DisableAllComponents();
-            anim.enabled = true;
-            ControlUI.SetActive(false);
-            gameObject.tag = "Untagged";
-            anim.Play(ranDeathAnim);
-            Cursor.visible = true;
-            ct.isUIOn = true;
-            GameOverPannel.SetActive(true);
-
-        }
-        
+            Health -= dam;
+            HealthBar.fillAmount = (float)Health / (float)MaxHealth;
+            var rb = GetComponent<Rigidbody>();
+            rb.AddForce(0, 0, impact, ForceMode.Impulse);
+            StartCoroutine(DamageImpact());
+            if (Health < 0)
+            {
+                //Dead
+                FullDamageBloodUI.SetActive(true);
+                //gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                DisableAllComponents();
+                anim.enabled = true;
+                ControlUI.SetActive(false);
+                gameObject.tag = "Untagged";
+                anim.Play(ranDeathAnim);
+                Cursor.visible = true;
+                ct.isUIOn = true;
+                GameOverPannel.SetActive(true);
+            }
+        }  
     }
 
     IEnumerator DamageImpact()

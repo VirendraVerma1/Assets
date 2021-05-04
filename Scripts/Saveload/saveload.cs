@@ -58,11 +58,35 @@ public class saveload : MonoBehaviour
 
 
     //-----------------ability things 
+    //no need to save
+    public static int freezebuyprice=100;
+    public static int radarbuyprice=2000;
+    public static int shieldbuyprice=5000;
+
+    public static int freezeupgradeWorkingprice=100;
+    public static int freezeupgradeCooldownprice=100;
+    public static int radarupgradeWorkingprice=200;
+    public static int radarupgradeCooldownprice=200;
+    public static int shieldupgradeWorkingprice=300;
+    public static int shieldupgradeCooldownprice=300;
+
     //save the data
     public static int radarWorkingTime = 15;
     public static int radarCooldownTime = 15;
     public static int freezeWorkingTime = 10;
     public static int freezeCooldownTime = 15;
+    public static int shieldWorkingTime=15;
+    public static int shieldCooldownTime=15;
+    public static int doubleSprintWorkingTime=15;
+    public static int doubleSprintCooldownTime=15;
+
+    public static bool isfreezebuyed=true;
+    public static bool isradarbuyed=false;
+    public static bool isshieldbuyed=false;
+
+    public static int freezelevel=1;
+    public static int radarlevel=1;
+    public static int shieldlevel=1;
 
     //end ability things
 
@@ -123,8 +147,21 @@ public class saveload : MonoBehaviour
         //ability
         data.RadarWorkingTime=radarWorkingTime;
         data.RadarCooldownTime=radarCooldownTime;
-         data.FreezeWorkingTime=freezeWorkingTime;
-         data.FreezeCooldownTime=freezeCooldownTime;
+        data.FreezeWorkingTime=freezeWorkingTime;
+        data.FreezeCooldownTime=freezeCooldownTime;
+        data.ShieldWorkingTime=shieldWorkingTime;
+        data.ShieldCooldownTime=shieldCooldownTime;
+        data.DoubleSprintCooldownTime=doubleSprintCooldownTime;
+        data.DoubleSprintWorkingTime=doubleSprintWorkingTime;
+
+        data.IsFreezeBuyed=isfreezebuyed;
+        data.IsRadarBuyed=isradarbuyed;
+        data.IsShieldBuyed=isshieldbuyed;
+
+        data.FreezeLevel=freezelevel;
+        data.ShieldLevel=shieldlevel;
+        data.RadarLevel=radarlevel;
+
 
         bf.Serialize(file, data);
         file.Close();
@@ -171,7 +208,19 @@ public class saveload : MonoBehaviour
             radarCooldownTime = data.RadarCooldownTime;
             freezeWorkingTime = data.FreezeWorkingTime;
             freezeCooldownTime = data.FreezeCooldownTime;
+            shieldCooldownTime=data.ShieldCooldownTime;
+            shieldWorkingTime=data.ShieldWorkingTime;
+            doubleSprintWorkingTime=data.DoubleSprintWorkingTime;
+            doubleSprintCooldownTime=data.DoubleSprintCooldownTime;
 
+            isfreezebuyed=data.IsFreezeBuyed;
+            isradarbuyed=data.IsRadarBuyed;
+            isshieldbuyed=data.IsShieldBuyed;
+
+            freezelevel=data.FreezeLevel;
+            radarlevel=data.RadarLevel;
+            shieldlevel=data.ShieldLevel;
+            
             file.Close();
 
         }
@@ -251,9 +300,21 @@ class Notebook_Data
     public  int SniperAmmo ;
 
     //ability
-    public  int RadarWorkingTime;
-    public  int RadarCooldownTime;
-    public  int FreezeWorkingTime;
-    public  int FreezeCooldownTime;
+    public int RadarWorkingTime;
+    public int RadarCooldownTime;
+    public int FreezeWorkingTime;
+    public int FreezeCooldownTime;
+    public int ShieldWorkingTime;
+    public int ShieldCooldownTime;
+    public int DoubleSprintWorkingTime;
+    public int DoubleSprintCooldownTime;
+
+    public bool IsFreezeBuyed;
+    public bool IsRadarBuyed;
+    public bool IsShieldBuyed;
+
+    public int FreezeLevel;
+    public int RadarLevel;
+    public int ShieldLevel;
     
 }

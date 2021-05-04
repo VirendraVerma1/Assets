@@ -5,33 +5,67 @@ using UnityEngine.UI;
 
 public class ShopController : MonoBehaviour
 {
-
+    [Header("Common")]
     public GameObject ShopPannel;
-    public Transform ShopPannelWeaponContainer;
     public GameObject WeaponCard;
-    public GameObject[] WeaponsGO;
+
     public Text MoneyText;
 
     public void OnShopButtonPressed()
     {
         ShopPannel.SetActive(true);
-        GameObject[] shopContents=GameObject.FindGameObjectsWithTag("ShopContent");
+        MoneyText.text = saveload.money.ToString();
+        InitializeGuns();
+        InitializeSkills();
+        GunsSectionButtonPressed();
+    }
+
+    public void OnShopCloseButtonPressed()
+    {
+        ShopPannel.SetActive(false);
+    }
+
+    [Header("ShopPannel")]
+    public GameObject GunsPannel;
+    public GameObject SkillPannel;
+
+    public void GunsSectionButtonPressed()
+    {
+        GunsPannel.SetActive(true);
+        SkillPannel.SetActive(false);
+    }
+
+    public void SkillsSectionButtonPressed()
+    {
+        GunsPannel.SetActive(false);
+        SkillPannel.SetActive(true);
+    }
+
+    #region Guns
+
+    [Header("Guns")]
+    public Transform ShopPannelWeaponContainer;
+    public GameObject[] WeaponsGO;
+
+    void InitializeGuns()
+    {
+        GameObject[] shopContents = GameObject.FindGameObjectsWithTag("ShopContent");
         foreach (GameObject g in shopContents)
         {
             Destroy(g);
         }
-        MoneyText.text = saveload.money.ToString();
+        
         for (int i = 0; i < WeaponsGO.Length; i++)
         {
             GameObject go = Instantiate(WeaponCard);
             go.transform.SetParent(ShopPannelWeaponContainer);
             go.transform.localScale = Vector3.one;
-            
+
             InteractiveWeapon tempWeaponScript = WeaponsGO[i].GetComponent<InteractiveWeapon>();
             go.transform.Find("WeaponStats").transform.Find("WeaponName").GetComponent<Text>().text = tempWeaponScript.label;
             go.transform.Find("WeaponIcon").GetComponent<Image>().sprite = tempWeaponScript.sprite;
             if (GetWeaponBuyedOrNot(i))
-                go.transform.Find("WeaponStats").transform.Find("WeaponAmmo").GetComponent<Text>().text ="Ammo:"+ GetAmmoNu(i).ToString();
+                go.transform.Find("WeaponStats").transform.Find("WeaponAmmo").GetComponent<Text>().text = "Ammo:" + GetAmmoNu(i).ToString();
 
             if (GetWeaponBuyedOrNot(i))
                 go.transform.Find("WeaponStats").transform.Find("WeaponCost").GetComponent<Text>().text = GetAmmoBuyPrice(i).ToString();
@@ -43,7 +77,6 @@ public class ShopController : MonoBehaviour
             {
                 go.transform.Find("BuyAmmoButton").gameObject.SetActive(true);
                 go.transform.Find("BuyGunButton").gameObject.SetActive(false);
-                
                 go.transform.Find("BuyAmmoButton").GetComponent<Button>().onClick.AddListener(() => OnBuyAmmoButtonPressed(n));
             }
             else
@@ -51,16 +84,8 @@ public class ShopController : MonoBehaviour
                 go.transform.Find("BuyAmmoButton").gameObject.SetActive(false);
                 go.transform.Find("BuyGunButton").gameObject.SetActive(true);
                 go.transform.Find("BuyGunButton").GetComponent<Button>().onClick.AddListener(() => OnBuyWeaponButtonPressed(n));
-
             }
-
         }
-        
-    }
-
-    public void OnShopCloseButtonPressed()
-    {
-        ShopPannel.SetActive(false);
     }
 
     void OnBuyAmmoButtonPressed(int n)
@@ -245,6 +270,136 @@ public class ShopController : MonoBehaviour
         {
             saveload.ispistolBuyed=true;
         }
-        
+
     }
+
+    #endregion
+
+    #region Skills
+
+    [Header("Skills")]
+    public Transform ShopPannelSkillContainer;
+    public string[] SkillsString;
+    public Sprite[] SkillsSprite;
+    
+
+    
+    void InitializeSkills()
+    {
+        GameObject[] shopContents = GameObject.FindGameObjectsWithTag("ShopContent");
+        foreach (GameObject g in shopContents)
+        {
+            Destroy(g);
+        }
+        int i=0;
+        foreach (var skillname in SkillsString)
+        {
+            GameObject go = Instantiate(WeaponCard);
+            go.transform.SetParent(ShopPannelSkillContainer);
+            go.transform.localScale = Vector3.one;
+
+            go.transform.Find("WeaponStats").transform.Find("WeaponName").GetComponent<Text>().text = skillname;
+            go.transform.Find("WeaponIcon").GetComponent<Image>().sprite = SkillsSprite[i];
+            if (GetSkillBuyedOrNot(i))
+                go.transform.Find("WeaponStats").transform.Find("WeaponAmmo").GetComponent<Text>().text = "Ammo:" + GetAmmoNu(i).ToString();
+
+            if (GetSkillBuyedOrNot(i))
+                go.transform.Find("WeaponStats").transform.Find("WeaponCost").GetComponent<Text>().text = GetAmmoBuyPrice(i).ToString();
+            else
+                go.transform.Find("WeaponStats").transform.Find("WeaponCost").GetComponent<Text>().text = GetWeaponBuyPrice(i).ToString();
+
+            int n = i;
+            if (GetSkillBuyedOrNot(i))
+            {
+                go.transform.Find("BuyAmmoButton").gameObject.SetActive(true);
+                go.transform.Find("BuyGunButton").gameObject.SetActive(false);
+                go.transform.Find("BuyAmmoButton").GetComponent<Button>().onClick.AddListener(() => OnBuyAmmoButtonPressed(n));
+            }
+            else
+            {
+                go.transform.Find("BuyAmmoButton").gameObject.SetActive(false);
+                go.transform.Find("BuyGunButton").gameObject.SetActive(true);
+                go.transform.Find("BuyGunButton").GetComponent<Button>().onClick.AddListener(() => OnBuyWeaponButtonPressed(n));
+            }
+            i++;
+        }
+    }
+
+    bool GetSkillBuyedOrNot(int n)
+    {
+        bool flag=false;
+        if(n==0)
+        flag=saveload.isfreezebuyed;
+        else if(n==1)
+        flag=saveload.isradarbuyed;
+        else if(n==2)
+        flag=saveload.isshieldbuyed;
+
+        return flag;
+    }
+
+    int GetSkillBuyPrice(int n)
+    {
+        int flag=0;
+        if(n==0)
+        flag=saveload.freezebuyprice;
+        else if(n==1)
+        flag=saveload.radarbuyprice;
+        else if(n==2)
+        flag=saveload.shieldbuyprice;
+
+        return flag;
+    }
+
+    int GetSkillLevel(int n)
+    {
+        int flag=0;
+        if(n==0)
+        flag=saveload.freezelevel;
+        else if(n==1)
+        flag=saveload.radarlevel;
+        else if(n==2)
+        flag=saveload.shieldlevel;
+
+        return flag;
+    }
+
+    int GetSkillUpgradeCooldownPrice(int n)
+    {
+        int flag=0;
+        if(n==0)
+        {
+            flag=saveload.freezelevel*saveload.freezeupgradeCooldownprice;
+        }else if(n==1)
+        {
+            flag=saveload.radarlevel*saveload.radarupgradeCooldownprice;
+        }
+        else if(n==2)
+        {
+            flag=saveload.shieldlevel*saveload.shieldupgradeCooldownprice;
+        }
+
+        return flag;
+    }
+
+    int GetSkillUpgradeWorkingPrice(int n)
+    {
+        int flag=0;
+        if(n==0)
+        {
+            flag=saveload.freezelevel*saveload.freezeupgradeWorkingprice;
+        }else if(n==1)
+        {
+            flag=saveload.radarlevel*saveload.radarupgradeWorkingprice;
+        }
+        else if(n==2)
+        {
+            flag=saveload.shieldlevel*saveload.shieldupgradeWorkingprice;
+        }
+
+        return flag;
+    }
+
+
+    #endregion
 }

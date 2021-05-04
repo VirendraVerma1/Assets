@@ -31,7 +31,27 @@ public class GaurdController : MonoBehaviour
         
         PatrolInitialize();
         InitializeWeaponSettings();
+        InitializeGaurdType();
     }
+
+    #region GaurdType
+
+    [Header("Gaurd Type")]
+    public string gaurdType="Patroller";
+    public AnimatorOverrideController animcontroller;
+
+    void InitializeGaurdType()
+    {
+        //the concept is
+        //there are 3 controllers
+        //1st one will be patroller have its own controller
+        //2nd one will be susice bomber have its own controller
+        //3rd one will be grenadier have its own controller
+        
+
+    }
+
+    #endregion
 
     #region Gaurd Patrolling
 
@@ -86,7 +106,7 @@ public class GaurdController : MonoBehaviour
             if (i == tempIndex)
             {
                 gaurdpatrolindex++;
-                buttlerTargetPosition=item.position;
+                buttlerTargetPosition=item.transform.position;
                 break;
             }
             i++;
@@ -103,7 +123,7 @@ public class GaurdController : MonoBehaviour
             if(i==random)
             {
                 gaurdpatrolindex++;
-                buttlerTargetPosition=item.position;
+                buttlerTargetPosition=item.transform.position;
                 break;
             }
             i++;

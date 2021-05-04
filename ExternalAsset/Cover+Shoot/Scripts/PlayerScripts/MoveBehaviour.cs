@@ -3,6 +3,8 @@
 // MoveBehaviour inherits from GenericBehaviour. This class corresponds to basic walk and run behaviour, it is the default behaviour.
 public class MoveBehaviour : GenericBehaviour
 {
+	GameController gameController;
+
 	public bool isAndroid=false;
 
 	public float walkSpeed = 0.15f;                 // Default walk speed.
@@ -18,10 +20,12 @@ public class MoveBehaviour : GenericBehaviour
 	private int groundedBool;                       // Animator variable related to whether or not the player is on ground.
 	private bool jump;                              // Boolean to determine whether or not the player started a jump.
 	private bool isColliding;                       // Boolean to determine if the player has collided with an obstacle.
-
+	private float tempRun;
 	// Start is always called after any Awake functions.
 	void Start()
 	{
+		gameController=GameObject.FindGameObjectWithTag("MainController").GetComponent<GameController>();
+
 		// Set up the references.
 		jumpBool = Animator.StringToHash("Jump");
 		groundedBool = Animator.StringToHash("Grounded");
@@ -31,6 +35,17 @@ public class MoveBehaviour : GenericBehaviour
 		behaviourManager.SubscribeBehaviour(this);
 		behaviourManager.RegisterDefaultBehaviour(this.behaviourCode);
 		speedSeeker = runSpeed;
+		tempRun=runSpeed;
+	}
+
+	public void UseDoubleSpeedAbility()
+	{
+		runSpeed*=2;
+	}
+
+	public void DisableDoubleSpeedAbility()
+	{
+		runSpeed=tempRun;
 	}
 
 	bool isjumping=false;

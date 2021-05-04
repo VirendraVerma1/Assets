@@ -37,8 +37,113 @@ public class GameController : MonoBehaviour
         isTimeFreeze = false;
         InitializeRadarIcon();
         InitializeFreezeIcon();
+        InitializeShieldAbility();
+        InitializeDoubleSpeedAbility();
         InitializeSettings();
+        
     }
+
+    #region DoubleSpeed Ability  //dont forget to initize this on the start
+
+    [Header("Double Ability")]
+    public MoveBehaviour moveBehaviourScript;
+    public GameObject DoubleSpeedEffect;
+    public Image DoubleSprintEffect;
+    public GameObject DoubleSprintButton;
+    public Sprite NormalDoubleSprintIcon;
+    public Sprite WorkingDoubleSprintSprite;
+    public Image FillRateForDoubleSprint;
+    public bool isDoubleSprintActivateforclick = false;
+    float doubleSprintTimer;
+
+    void InitializeDoubleSpeedAbility()
+    {
+        DoubleSprintButton.GetComponent<Image>().sprite = NormalDoubleSprintIcon;
+        FillRateForDoubleSprint.fillAmount = 0;
+        isDoubleSprintActivateforclick = true;
+    }
+
+    public void OnDoubleSpeedAbilityButtonPressed()
+    {
+        if (isDoubleSprintActivateforclick)
+        {
+            isDoubleSprintActivateforclick = false;
+            DoubleSprintButton.GetComponent<Image>().sprite = WorkingDoubleSprintSprite;
+            //remove the sheild effect
+            moveBehaviourScript.UseDoubleSpeedAbility();
+            StartCoroutine(DoubleSpeedDisable());
+        }
+    }
+
+    IEnumerator DoubleSpeedDisable()
+    {
+        yield return new WaitForSeconds(saveload.doubleSprintWorkingTime);
+        DoubleSprintButton.GetComponent<Image>().sprite = NormalDoubleSprintIcon;
+        FillRateForDoubleSprint.fillAmount = 1;
+        float time=saveload.doubleSprintCooldownTime;
+        while (time > 0)
+        {
+            yield return new WaitForSeconds(1);
+            time -= 1;
+            FillRateForDoubleSprint.fillAmount = (float)time / (float)saveload.doubleSprintCooldownTime;
+        }
+        moveBehaviourScript.DisableDoubleSpeedAbility();
+        isDoubleSprintActivateforclick = true;
+    }
+    
+    #endregion
+
+
+    #region Shield Ability  //dont forget to initize this on the start
+
+    [Header("Shield Ability")]
+    public GameObject ShieldEffect;
+    Transform PlayerPosition;
+    public GameObject ShieldButton;
+    public Sprite NormalShieldIcon;
+    public Sprite WorkingShieldSprite;
+    public Image FillRateForShield;
+    public bool isShieldActivateforclick = false;
+    public bool isShieldActivateforclickTemp=false;
+    float shieldTimer;
+
+    void InitializeShieldAbility()
+    {
+        ShieldButton.GetComponent<Image>().sprite = NormalShieldIcon;
+        FillRateForShield.fillAmount = 0;
+        isShieldActivateforclickTemp = true;
+        isShieldActivateforclick=true;
+    }
+
+    public void OnShieldAbilityButtonPressed()
+    {
+        if (isShieldActivateforclickTemp)
+        {
+            isShieldActivateforclickTemp = false;
+            isShieldActivateforclick=false;
+            ShieldButton.GetComponent<Image>().sprite = WorkingShieldSprite;
+            //remove the sheild effect
+            StartCoroutine(ShieldDisable());
+        }
+    }
+
+    IEnumerator ShieldDisable()
+    {
+        yield return new WaitForSeconds(saveload.shieldWorkingTime);
+        isShieldActivateforclick=true;
+        ShieldButton.GetComponent<Image>().sprite = NormalShieldIcon;
+        FillRateForShield.fillAmount = 1;
+        int time=saveload.shieldCooldownTime;
+        while (time > 0)
+        {
+            yield return new WaitForSeconds(1);
+            time -= 1;
+            FillRateForShield.fillAmount = (float)time / (float)saveload.shieldCooldownTime;
+        }
+        isShieldActivateforclickTemp = true;
+    }
+    
+    #endregion
 
     #region Radar Ability
     [Header("Radar Ability")]
