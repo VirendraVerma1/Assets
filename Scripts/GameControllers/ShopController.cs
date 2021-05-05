@@ -8,16 +8,29 @@ public class ShopController : MonoBehaviour
     [Header("Common")]
     public GameObject ShopPannel;
     public GameObject WeaponCard;
+    public int switchPannel=0;//0 means gun menu 1 means skills
 
     public Text MoneyText;
 
+    public Text ResultText;
+
     public void OnShopButtonPressed()
     {
+        saveload.money=10000;
+        InitializeResult();
         ShopPannel.SetActive(true);
         MoneyText.text = saveload.money.ToString();
+        GameObject[] shopContents = GameObject.FindGameObjectsWithTag("ShopContent");
+        foreach (GameObject g in shopContents)
+        {
+            Destroy(g);
+        }
         InitializeGuns();
         InitializeSkills();
-        GunsSectionButtonPressed();
+        if (switchPannel == 0)
+            GunsSectionButtonPressed();
+        else
+            SkillsSectionButtonPressed();
     }
 
     public void OnShopCloseButtonPressed()
@@ -29,16 +42,25 @@ public class ShopController : MonoBehaviour
     public GameObject GunsPannel;
     public GameObject SkillPannel;
 
+    public GameObject GunButton;
+    public GameObject SkillBbutton;
+
     public void GunsSectionButtonPressed()
     {
+        GunButton.GetComponent<Image>().color = Color.white;
+        SkillBbutton.GetComponent<Image>().color = Color.grey;
         GunsPannel.SetActive(true);
         SkillPannel.SetActive(false);
+        switchPannel = 0;
     }
 
     public void SkillsSectionButtonPressed()
     {
+        GunButton.GetComponent<Image>().color = Color.grey;
+        SkillBbutton.GetComponent<Image>().color = Color.white;
         GunsPannel.SetActive(false);
         SkillPannel.SetActive(true);
+        switchPannel = 1;
     }
 
     #region Guns
@@ -49,11 +71,6 @@ public class ShopController : MonoBehaviour
 
     void InitializeGuns()
     {
-        GameObject[] shopContents = GameObject.FindGameObjectsWithTag("ShopContent");
-        foreach (GameObject g in shopContents)
-        {
-            Destroy(g);
-        }
         
         for (int i = 0; i < WeaponsGO.Length; i++)
         {
@@ -96,6 +113,9 @@ public class ShopController : MonoBehaviour
             SetUpdateAmmo(n);
             saveload.Save();
             OnShopButtonPressed();
+        }else{
+            
+            StartCoroutine(ShowMsg("Not enough money"));
         }
     }
 
@@ -107,6 +127,9 @@ public class ShopController : MonoBehaviour
             SetBuyedWeapon(n);
             saveload.Save();
             OnShopButtonPressed();
+        }else{
+            
+            StartCoroutine(ShowMsg("Not enough money"));
         }
     }
 
@@ -278,6 +301,7 @@ public class ShopController : MonoBehaviour
     #region Skills
 
     [Header("Skills")]
+    public GameObject SkillCard;
     public Transform ShopPannelSkillContainer;
     public string[] SkillsString;
     public Sprite[] SkillsSprite;
@@ -286,44 +310,181 @@ public class ShopController : MonoBehaviour
     
     void InitializeSkills()
     {
-        GameObject[] shopContents = GameObject.FindGameObjectsWithTag("ShopContent");
-        foreach (GameObject g in shopContents)
-        {
-            Destroy(g);
-        }
+        
         int i=0;
         foreach (var skillname in SkillsString)
         {
-            GameObject go = Instantiate(WeaponCard);
-            go.transform.SetParent(ShopPannelSkillContainer);
-            go.transform.localScale = Vector3.one;
+            
+                GameObject go = Instantiate(SkillCard);
+                go.transform.SetParent(ShopPannelSkillContainer);
+                go.transform.localScale = Vector3.one;
 
-            go.transform.Find("WeaponStats").transform.Find("WeaponName").GetComponent<Text>().text = skillname;
-            go.transform.Find("WeaponIcon").GetComponent<Image>().sprite = SkillsSprite[i];
-            if (GetSkillBuyedOrNot(i))
-                go.transform.Find("WeaponStats").transform.Find("WeaponAmmo").GetComponent<Text>().text = "Ammo:" + GetAmmoNu(i).ToString();
+                go.transform.Find("SkillStats").transform.Find("SkillName").GetComponent<Text>().text = skillname;
+                go.transform.Find("SkillIcon").GetComponent<Image>().sprite = SkillsSprite[i];
+                if (GetSkillBuyedOrNot(i))
+                    go.transform.Find("LevelNuImage").transform.Find("Text").GetComponent<Text>().text = GetSkillLevel(i).ToString();
 
-            if (GetSkillBuyedOrNot(i))
-                go.transform.Find("WeaponStats").transform.Find("WeaponCost").GetComponent<Text>().text = GetAmmoBuyPrice(i).ToString();
-            else
-                go.transform.Find("WeaponStats").transform.Find("WeaponCost").GetComponent<Text>().text = GetWeaponBuyPrice(i).ToString();
 
-            int n = i;
-            if (GetSkillBuyedOrNot(i))
-            {
-                go.transform.Find("BuyAmmoButton").gameObject.SetActive(true);
-                go.transform.Find("BuyGunButton").gameObject.SetActive(false);
-                go.transform.Find("BuyAmmoButton").GetComponent<Button>().onClick.AddListener(() => OnBuyAmmoButtonPressed(n));
-            }
-            else
-            {
-                go.transform.Find("BuyAmmoButton").gameObject.SetActive(false);
-                go.transform.Find("BuyGunButton").gameObject.SetActive(true);
-                go.transform.Find("BuyGunButton").GetComponent<Button>().onClick.AddListener(() => OnBuyWeaponButtonPressed(n));
-            }
+                if (GetSkillLevel(i) < 20)
+                {
+                    //pricing
+                    if (GetSkillBuyedOrNot(i))
+                    {
+                        go.transform.Find("SkillStats").transform.Find("SkillCost").transform.GetComponent<Text>().text = GetSkillUpgradeCooldownPrice(i).ToString();
+                        go.transform.Find("SkillStats").transform.Find("skillcooldown").gameObject.GetComponent<Text>().text=GetSkillCooldownTime(i).ToString();
+                        go.transform.Find("SkillStats").transform.Find("skillduration").gameObject.GetComponent<Text>().text=GetSkillWorkingTime(i).ToString();
+                    }
+                    else
+                    {
+                        go.transform.Find("SkillStats").transform.Find("SkillCost").transform.GetComponent<Text>().text = GetSkillBuyPrice(i).ToString();
+                    }
+
+                    int n = i;
+                    //buy and upgrade button
+                    if (GetSkillBuyedOrNot(i))//it means i had already buy this skill
+                    {
+                        go.transform.Find("UpgradeCooldownButton").gameObject.SetActive(true);
+                        go.transform.Find("UpgradeWorkingButton").gameObject.SetActive(true);
+                        go.transform.Find("BuySkillButton").gameObject.SetActive(false);
+                        go.transform.Find("UpgradeWorkingButton").GetComponent<Button>().onClick.AddListener(() => OnUpgradeSkillWorkingButtonPressed(n));
+                        go.transform.Find("UpgradeCooldownButton").GetComponent<Button>().onClick.AddListener(() => OnUpgradeSkillCooldownButtonPressed(n));
+                        go.transform.Find("UpgradeWorkingButton").transform.Find("Image").gameObject.SetActive(false);
+                        go.transform.Find("UpgradeCooldownButton").transform.Find("Image").gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        go.transform.Find("BuySkillButton").gameObject.SetActive(true);
+                        go.transform.Find("UpgradeWorkingButton").gameObject.SetActive(false);
+                        go.transform.Find("UpgradeCooldownButton").gameObject.SetActive(false);
+                        go.transform.Find("BuySkillButton").GetComponent<Button>().onClick.AddListener(() => OnBuySkillButtonPressed(n));
+
+                    }
+                }
+                else
+                {
+                    go.transform.Find("BuySkillButton").gameObject.SetActive(false);
+                    go.transform.Find("SkillStats").transform.Find("SkillCost").gameObject.SetActive(false);
+                    go.transform.Find("SkillStats").transform.Find("skillcooldown").gameObject.GetComponent<Text>().text=GetSkillCooldownTime(i).ToString();
+                    go.transform.Find("SkillStats").transform.Find("skillduration").gameObject.GetComponent<Text>().text=GetSkillWorkingTime(i).ToString();
+                }
+            
             i++;
         }
     }
+
+    public void OnBuySkillButtonPressed(int n)
+    {
+        if (saveload.money >= GetSkillBuyPrice(n))
+        {
+            saveload.money -= GetSkillBuyPrice(n);
+            SetBuySkill(n);
+            saveload.Save();
+            OnShopButtonPressed();
+        }else{
+            
+            StartCoroutine(ShowMsg("Not enough money"));
+        }
+    }
+
+    public void OnUpgradeSkillCooldownButtonPressed(int n)
+    {
+        if (saveload.money >= GetSkillUpgradeCooldownPrice(n))
+        {
+            saveload.money -= GetSkillUpgradeCooldownPrice(n);
+            SetUpgradeCooldownSkill(n);
+            SetAbilityLevel(n);
+            saveload.Save();
+            OnShopButtonPressed();
+        }else{
+            
+            StartCoroutine(ShowMsg("Not enough money"));
+        }
+    }
+
+    public void OnUpgradeSkillWorkingButtonPressed(int n)
+    {
+        if (saveload.money >= GetSkillUpgradeWorkingPrice(n))
+        {
+            saveload.money -= GetSkillUpgradeWorkingPrice(n);
+            SetUpgradeWorkingSkill(n);
+            SetAbilityLevel(n);
+            saveload.Save();
+            OnShopButtonPressed();
+        }else{
+            
+            StartCoroutine(ShowMsg("Not enough money"));
+        }
+    }
+
+    void SetBuySkill(int n)
+    {
+        if (n == 0)
+        {
+            saveload.isfreezebuyed = true;
+            
+        }
+        else if (n == 1)
+        {
+            saveload.isradarbuyed = true;
+            
+        }
+        else if (n == 2)
+        {
+            saveload.isshieldbuyed = true;
+        }
+        
+    }
+
+    void SetUpgradeCooldownSkill(int n)
+    {
+        if (n == 0)
+        {
+            saveload.freezeCooldownTime -= 1;
+        }
+        else if (n == 1)
+        {
+            saveload.radarCooldownTime -= 1;
+        }
+        else if (n == 2)
+        {
+            saveload.shieldCooldownTime -=1;
+        }
+        
+    }
+
+    void SetUpgradeWorkingSkill(int n)
+    {
+        if (n == 0)
+        {
+            saveload.freezeWorkingTime += 1;
+        }
+        else if (n == 1)
+        {
+            saveload.radarWorkingTime += 1;
+        }
+        else if (n == 2)
+        {
+            saveload.shieldWorkingTime += 1;
+        }
+        
+    }
+
+    void SetAbilityLevel(int n)
+    {
+        if (n == 0)
+        {
+            saveload.freezelevel++;
+        }
+        else if (n == 1)
+        {
+            saveload.radarlevel++;
+        }
+        else if (n == 2)
+        {
+            saveload.shieldlevel++;
+        }
+    }
+
 
     bool GetSkillBuyedOrNot(int n)
     {
@@ -360,6 +521,44 @@ public class ShopController : MonoBehaviour
         flag=saveload.radarlevel;
         else if(n==2)
         flag=saveload.shieldlevel;
+
+        return flag;
+    }
+
+    int GetSkillCooldownTime(int n)
+    {
+        int flag=0;
+        if(n==0)
+        {
+            flag=saveload.freezeCooldownTime;
+        }
+        else if(n==1)
+        {
+            flag=saveload.radarCooldownTime;
+        }
+        else if(n==2)
+        {
+            flag=saveload.shieldCooldownTime;
+        }
+
+        return flag;
+    }
+
+    int GetSkillWorkingTime(int n)
+    {
+        int flag=0;
+        if(n==0)
+        {
+            flag=saveload.freezeWorkingTime;
+        }
+        else if(n==1)
+        {
+            flag=saveload.radarWorkingTime;
+        }
+        else if(n==2)
+        {
+            flag=saveload.shieldWorkingTime;
+        }
 
         return flag;
     }
@@ -402,4 +601,21 @@ public class ShopController : MonoBehaviour
 
 
     #endregion
+
+    #region Result
+
+    void InitializeResult()
+    {
+        ResultText.text="";
+    }
+
+    IEnumerator ShowMsg(string msg)
+    {
+        ResultText.text=msg;
+        yield return new WaitForSeconds(3);
+        ResultText.text="";
+    }
+
+    #endregion
+
 }
