@@ -8537,7 +8537,7 @@ MonoBehaviour:
   controlsTutorial: {fileID: 2172013059290787336}
   aimBehaviour: {fileID: 2172013060282489009}
   moveBehaviour: {fileID: 2172013060282489008}
-  isAndroid: 1
+  isAndroid: 0
 --- !u!114 &478210677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15156,6 +15156,71 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &800129728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_Name
+      value: grenade man
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a617704db314db3439d25eb2ec1c7805, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66eb531bfdc232c41b2afdae13752b19, type: 3}
 --- !u!1 &800963362
 GameObject:
   m_ObjectHideFlags: 0
@@ -25991,12 +26056,12 @@ MonoBehaviour:
     slopeRange: {x: 0, y: 60}
     curvatureRange: {x: 0, y: 1}
     layerMasks: []
-    instanceCount: 226
+    instanceCount: 43
     prefabs:
     - index: 0
       probability: 100
       prefab: {fileID: 100000, guid: d7ebb2b5789a2be45b7bd26b3b9d50aa, type: 3}
-    distance: 5
+    distance: 10
     scaleRange: {x: 0.8, y: 1.2}
     sinkAmount: 0
   - enabled: 1
@@ -26009,12 +26074,12 @@ MonoBehaviour:
     slopeRange: {x: 0, y: 60}
     curvatureRange: {x: 0, y: 1}
     layerMasks: []
-    instanceCount: 203
+    instanceCount: 61
     prefabs:
     - index: 1
       probability: 100
       prefab: {fileID: 100000, guid: 23062208c1e1ace4d9e5270be8b68dcb, type: 3}
-    distance: 5
+    distance: 10
     scaleRange: {x: 0.8, y: 1.2}
     sinkAmount: 0
   - enabled: 1
@@ -26027,12 +26092,12 @@ MonoBehaviour:
     slopeRange: {x: 0, y: 60}
     curvatureRange: {x: 0, y: 1}
     layerMasks: []
-    instanceCount: 222
+    instanceCount: 46
     prefabs:
     - index: 2
       probability: 100
       prefab: {fileID: 100000, guid: 78fdf95c4c2d7384a8957ee310d2b067, type: 3}
-    distance: 5
+    distance: 10
     scaleRange: {x: 0.8, y: 1.2}
     sinkAmount: 0
   grassPrefabs:
@@ -29782,13 +29847,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576729261}
-  m_LocalRotation: {x: -0.06720161, y: -0.011711336, z: -0.9325644, w: 0.3545004}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.1579915, y: -0.07870152, z: 0.36334854, w: 0.91478014}
+  m_LocalPosition: {x: 0.184, y: 0.061, z: 0.073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -259.622, y: -128.067, z: 134.206}
+  m_LocalEulerAnglesHint: {x: -166.593, y: 164.571, z: -134.85}
 --- !u!1 &1577807918
 GameObject:
   m_ObjectHideFlags: 0
@@ -65122,10 +65187,6 @@ PrefabInstance:
     - target: {fileID: 1498338669535832090, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
       propertyPath: m_Name
       value: GaurdAI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1498338669535832090, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}

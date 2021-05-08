@@ -26,6 +26,12 @@ public class TargetHealth : HealthManager
         Revive();
 	}
 
+    public void SetHealth(float temphealth)
+    {
+        totalHealth=temphealth;
+        health = totalHealth;
+    }
+
 	void Update ()
 	{
 		//this.transform.localRotation = Quaternion.Slerp(this.transform.localRotation, Quaternion.Euler(targetRotation), 10 * Time.deltaTime);
