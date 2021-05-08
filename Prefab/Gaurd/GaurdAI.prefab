@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &507296901
 Transform:
   m_ObjectHideFlags: 0
@@ -765,7 +765,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 8a781a311b0c3c74f92550f7944ad38b, type: 2}
   GaurdsminDistanceOnAttack:
   - 7
-  - 1.1
+  - 1.2
   - 5
   - 1.2
   GaurdswalkSpeed:
@@ -779,15 +779,15 @@ MonoBehaviour:
   - 2
   - 2
   GaurdsFireRate:
-  - 1.5
-  - 3
-  - 50
+  - 0.5
+  - 1
+  - 10
   - 1
   GaurdsDamage:
   - 0
-  - 0
-  - 0
-  - 0
+  - 50
+  - 10
+  - 20
   GaurdsHealth:
   - 200
   - 50
@@ -3508,7 +3508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2043772146324185485, guid: ba100c551800a5d428d4ed59d2b8e30e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba100c551800a5d428d4ed59d2b8e30e, type: 3}

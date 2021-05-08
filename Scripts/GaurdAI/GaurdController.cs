@@ -78,7 +78,7 @@ public class GaurdController : MonoBehaviour
     {
         
         int randomness = Random.Range(1, 10);
-        if (randomness < 1)
+        if (randomness < 5)
         {
             //spawn normal
             GaurdFBX[0].SetActive(true);
@@ -93,7 +93,7 @@ public class GaurdController : MonoBehaviour
             gdamage = GaurdsDamage[0];
             ghealth = GaurdsHealth[0];
         }
-        else if (randomness < 10)
+        else if (randomness < 7)
         {
             //spawn bomber
             GaurdFBX[1].SetActive(true);
@@ -123,7 +123,7 @@ public class GaurdController : MonoBehaviour
             gdamage = GaurdsDamage[2];
             ghealth = GaurdsHealth[2];
         }
-        else if (randomness < 1)
+        else if (randomness < 10)
         {
             //spawn melee
             GaurdFBX[3].SetActive(true);
@@ -449,7 +449,6 @@ public class GaurdController : MonoBehaviour
         {
             InitializeSword();
         }
-        
     }
 
     #region Normal Shoot
@@ -515,7 +514,7 @@ public class GaurdController : MonoBehaviour
 
     IEnumerator WaitAndShowEffectsOfBomb()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
         float distancefromplayer = Vector3.Distance(gameObject.transform.position, player.transform.position);
         if(distancefromplayer<2)
         player.GetComponent<PlayerStats>().TakeDamage((int)gdamage, gaurdWeapon.forceImpactOnPlayer, ranDeathAnimForPlayer);
