@@ -78,7 +78,7 @@ public class GaurdController : MonoBehaviour
     {
         
         int randomness = Random.Range(1, 10);
-        if (randomness < 5)
+        if (randomness < 10)
         {
             //spawn normal
             GaurdFBX[0].SetActive(true);
@@ -93,7 +93,7 @@ public class GaurdController : MonoBehaviour
             gdamage = GaurdsDamage[0];
             ghealth = GaurdsHealth[0];
         }
-        else if (randomness < 7)
+        else if (randomness < 1)
         {
             //spawn bomber
             GaurdFBX[1].SetActive(true);
@@ -123,7 +123,7 @@ public class GaurdController : MonoBehaviour
             gdamage = GaurdsDamage[2];
             ghealth = GaurdsHealth[2];
         }
-        else if (randomness < 10)
+        else if (randomness < 1)
         {
             //spawn melee
             GaurdFBX[3].SetActive(true);
@@ -247,9 +247,9 @@ public class GaurdController : MonoBehaviour
             if (Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) > 1f)
             {
                 //walk
-                gameObject.GetComponent<NavMeshAgent>().enabled = true;
-                gameObject.GetComponent<NavMeshAgent>().speed = botSpeed;
-                gameObject.GetComponent<NavMeshAgent>().acceleration = botAcceleration;
+                //gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                //gameObject.GetComponent<NavMeshAgent>().speed = botSpeed;
+                //gameObject.GetComponent<NavMeshAgent>().acceleration = botAcceleration;
                 //anim.applyRootMotion = false;
                 //GaurdModel.transform.localPosition = new Vector3(0, 0.035f, 0);
                // GaurdModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -258,12 +258,17 @@ public class GaurdController : MonoBehaviour
                 anim.SetBool("isRunning", false);
                 anim.SetBool("isAttacking", false);
                 //WalkSound(0.8f);
+                if (gaurdType == GaurTypeAll[0])
+                {
+                    SetAkforWalk();
+                }
             }
             else
             {
                 //idle
-                gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                //gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 gameObject.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
+
                 //anim.applyRootMotion = true;
                 //ButtlerModel.transform.localPosition = new Vector3(0, 0, 0);
                 //ButtlerModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -276,6 +281,10 @@ public class GaurdController : MonoBehaviour
                 {
                     setNewTarget = true;
                     StartCoroutine(SetNewWaypoints());
+                }
+                if (gaurdType == GaurTypeAll[0])
+                {
+                    SetAkforIdle();
                 }
             }
             if (gaurdType == GaurTypeAll[3])
@@ -292,9 +301,10 @@ public class GaurdController : MonoBehaviour
             if (dis > minDistanceAttack)//run
             {
 
-                gameObject.GetComponent<NavMeshAgent>().enabled = true;
-                gameObject.GetComponent<NavMeshAgent>().speed = botOnRunSpeed;
-                gameObject.GetComponent<NavMeshAgent>().acceleration = botOnRunAcceleration;
+                //gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                //gameObject.GetComponent<NavMeshAgent>().speed = botOnRunSpeed;
+                //gameObject.GetComponent<NavMeshAgent>().acceleration = botOnRunAcceleration;
+
                 //WalkSound(0.2f);
                 gameObject.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
                 //gameObject.transform.LookAt(player.transform.position);
@@ -310,10 +320,15 @@ public class GaurdController : MonoBehaviour
                 direaction.y = 0;
                 this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direaction), 0.1f);
                 //ran
+                if (gaurdType == GaurTypeAll[0])
+                {
+                    SetAkforRun();
+                }
             }
             else //attack
             {
-                gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                //gameObject.GetComponent<NavMeshAgent>().enabled = false;
+
                 Vector3 direaction = player.transform.position - this.transform.position;
                 direaction.y = 0;
                 this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direaction), 0.1f);
@@ -326,7 +341,10 @@ public class GaurdController : MonoBehaviour
                 anim.SetBool("isRunning", false);
                 anim.SetBool("isAttacking", true);
                 if (gaurdType == GaurTypeAll[0])
-                CheckAndFire();
+                {
+                    CheckAndFire();
+                    SetAkforAttack();
+                }
                 else if (gaurdType == GaurTypeAll[1])
                     CheckandBomb();
                 else if (gaurdType == GaurTypeAll[3])
@@ -453,6 +471,41 @@ public class GaurdController : MonoBehaviour
 
     #region Normal Shoot
     //----------normal AI attact shooting
+
+    //set weapon
+    public GameObject IdleAK;
+    public GameObject WalkAK;
+    public GameObject RunAK;
+    public GameObject AttackAK;
+
+    void SetAkforIdle()
+    {
+        IdleAK.SetActive(true);
+        WalkAK.SetActive(false);
+        RunAK.SetActive(false);
+        AttackAK.SetActive(false);
+    }
+    void SetAkforWalk()
+    {
+        WalkAK.SetActive(true);
+        RunAK.SetActive(false);
+        IdleAK.SetActive(false);
+        AttackAK.SetActive(false);
+    }
+    void SetAkforRun()
+    {
+        RunAK.SetActive(true);
+        WalkAK.SetActive(false);
+        IdleAK.SetActive(false);
+        AttackAK.SetActive(false);
+    }
+    void SetAkforAttack()
+    {
+        AttackAK.SetActive(true);
+        WalkAK.SetActive(false);
+        RunAK.SetActive(false);
+        IdleAK.SetActive(false);
+    }
 
     void CheckAndFire()// called from CheckButtlerTarget Attack
     {

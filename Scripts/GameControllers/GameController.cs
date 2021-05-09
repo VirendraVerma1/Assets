@@ -43,6 +43,52 @@ public class GameController : MonoBehaviour
         
     }
 
+    #region Ability
+
+    [Header("Ability")]
+    string[] abilityName = { "Freeze", "Radar", "Shield" };
+    string currentAbilityName = "";
+    public Material BlueTransparent;
+    public Material RedTransparent;
+    public Material GreenTransparent;
+    public Material FreezeMatrerial;
+
+    List<Material> tempOtherMaterials = new List<Material>();
+    List<GameObject> tempOtherGameObject = new List<GameObject>();
+    Material TerrainDefault;
+
+    void OffOtherEffects()
+    {
+        ShieldButton.SetActive(false);
+        RadarButton.SetActive(false);
+        FreezeTimeButton.SetActive(false);
+        if (currentAbilityName == abilityName[0])
+        {
+            FreezeTimeButton.SetActive(true);
+        }
+        else if (currentAbilityName == abilityName[1])
+        {
+            RadarButton.SetActive(true);
+        }
+        else if (currentAbilityName == abilityName[2])
+        {
+            ShieldButton.SetActive(true);
+        }
+        else
+        {
+            ShieldButton.SetActive(true);
+            RadarButton.SetActive(true);
+            FreezeTimeButton.SetActive(true);
+        }
+    }
+
+    void OnAllTheEffects()
+    {
+        ShieldButton.SetActive(true);
+        RadarButton.SetActive(true);
+        FreezeTimeButton.SetActive(true);
+    }
+
     #region DoubleSpeed Ability  //dont forget to initize this on the start
 
     [Header("Double Ability")]
@@ -93,7 +139,6 @@ public class GameController : MonoBehaviour
     
     #endregion
 
-
     #region Shield Ability  //dont forget to initize this on the start
 
     [Header("Shield Ability")]
@@ -119,10 +164,12 @@ public class GameController : MonoBehaviour
     {
         if (isShieldActivateforclickTemp)
         {
+            currentAbilityName = abilityName[2];
             isShieldActivateforclickTemp = false;
             isShieldActivateforclick=false;
             ShieldButton.GetComponent<Image>().sprite = WorkingShieldSprite;
             //remove the sheild effect
+            OffOtherEffects();
             StartCoroutine(ShieldDisable());
         }
     }
@@ -131,6 +178,7 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(saveload.shieldWorkingTime);
         isShieldActivateforclick=true;
+        OnAllTheEffects();
         ShieldButton.GetComponent<Image>().sprite = NormalShieldIcon;
         FillRateForShield.fillAmount = 1;
         int time=saveload.shieldCooldownTime;
@@ -167,10 +215,13 @@ public class GameController : MonoBehaviour
     {
         if (isRadarActiveForClick)
         {
+            currentAbilityName=abilityName[1];
             isRadarActiveForClick = false;
             RadarButton.GetComponent<Image>().sprite = WorkingRadarSprite;
-            RadarSystemPannel.SetActive(true);
+            //RadarSystemPannel.SetActive(true);
+            ChangeEnemyMaterials();
             StartCoroutine(RadarDisable());
+            OffOtherEffects();
         }
     }
 
@@ -178,6 +229,8 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(saveload.radarWorkingTime);
         RadarSystemPannel.SetActive(false);
+        RevertAllEnemyMaterial();
+        OnAllTheEffects();
         RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
         FillRateForRadar.fillAmount = 1;
         int time=saveload.radarCooldownTime;
@@ -188,6 +241,52 @@ public class GameController : MonoBehaviour
             FillRateForRadar.fillAmount = (float)time / (float)saveload.radarCooldownTime;
         }
         isRadarActiveForClick = true;
+    }
+
+    void ChangeEnemyMaterials()
+    {
+        tempOtherMaterials.Clear();
+        tempOtherGameObject.Clear();
+        GameObject[] go = GameObject.FindGameObjectsWithTag("EnemyObject");
+        foreach (GameObject g in go)
+        {
+            if (g != null)
+            {
+                tempOtherMaterials.Add(g.GetComponent<Renderer>().material);
+                tempOtherGameObject.Add(g);
+                g.GetComponent<Renderer>().material = RedTransparent;
+            }
+        }
+
+        GameObject[] gbo = GameObject.FindGameObjectsWithTag("BuildingObject");
+        foreach (GameObject g in gbo)
+        {
+            if (g != null)
+            {
+
+                tempOtherMaterials.Add(g.GetComponent<Renderer>().material);
+                tempOtherGameObject.Add(g);
+                g.GetComponent<Renderer>().material = BlueTransparent;
+            }
+        }
+
+        //TerrainDefault = GameObject.FindGameObjectWithTag("TerrainObject").GetComponent<Terrain>().materialTemplate;
+        //GameObject.FindGameObjectWithTag("TerrainObject").GetComponent<Terrain>().materialTemplate = GreenTransparent;
+
+    }
+
+    void RevertAllEnemyMaterial()
+    {
+        for (int i = 0; i < tempOtherGameObject.Count;i++ )
+        {
+            if (tempOtherGameObject[i] != null)
+            {
+                tempOtherGameObject[i].GetComponent<Renderer>().material = tempOtherMaterials[i];
+            }
+        }
+        //GameObject.FindGameObjectWithTag("TerrainObject").GetComponent<Terrain>().materialTemplate = TerrainDefault;
+        tempOtherGameObject.Clear();
+        tempOtherMaterials.Clear();
     }
     
 
@@ -218,12 +317,14 @@ public class GameController : MonoBehaviour
     {
         if (isFreezeActiveForClick)
         {
+            currentAbilityName = abilityName[0];
             isFreezeActiveForClick = false;
             FreezeTimeButton.GetComponent<Image>().sprite = WorkingFreezeSprite;
             isTimeFreeze = true;
-            
+            ChangeEnemyMaterialsOnFreeze();
             StartCoroutine(ShowFreezeTimeButton());
             FreezeEveryThing();
+            OffOtherEffects();
         }
         
             //isTimeFreeze = false;
@@ -238,6 +339,8 @@ public class GameController : MonoBehaviour
         RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
         FreezeTimeButton.GetComponent<Image>().sprite = NormalFreezeSprite;
         UnFreezeEveryThing();
+        OnAllTheEffects();
+        RevertAllEnemyMaterialOnFreeze();
         FillRateForFrezze.fillAmount = 1;
         int time = saveload.freezeCooldownTime;
         while (time > 0)
@@ -275,6 +378,38 @@ public class GameController : MonoBehaviour
            // g.GetComponent<GaurdController>().enabled = true;
         }
     }
+
+    void ChangeEnemyMaterialsOnFreeze()
+    {
+        tempOtherMaterials.Clear();
+        tempOtherGameObject.Clear();
+        GameObject[] go = GameObject.FindGameObjectsWithTag("EnemyObject");
+        foreach (GameObject g in go)
+        {
+            if (g != null)
+            {
+                tempOtherMaterials.Add(g.GetComponent<Renderer>().material);
+                tempOtherGameObject.Add(g);
+                g.GetComponent<Renderer>().material = FreezeMatrerial;
+            }
+        }
+    }
+
+    void RevertAllEnemyMaterialOnFreeze()
+    {
+        for (int i = 0; i < tempOtherGameObject.Count; i++)
+        {
+            if (tempOtherGameObject[i] != null)
+            {
+                tempOtherGameObject[i].GetComponent<Renderer>().material = tempOtherMaterials[i];
+            }
+        }
+        //GameObject.FindGameObjectWithTag("TerrainObject").GetComponent<Terrain>().materialTemplate = TerrainDefault;
+        tempOtherGameObject.Clear();
+        tempOtherMaterials.Clear();
+    }
+
+    #endregion
 
     #endregion
 
