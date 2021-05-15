@@ -126,6 +126,30 @@ public class ShootBehaviour : GenericBehaviour
 	public void OnAndroidFireButtonPressed()
 	{
 		isAndroidFireon=true;
+		gameObject.GetComponent<AimBehaviour>().OnAndroidAimFromFireOnButtonPressed();
+	}
+
+	float counterisOnTime=5;
+	bool isOnFireAim=false;
+	void StartFireCounter()
+	{
+		counterisOnTime=5;
+		if(isOnFireAim==false)
+		{
+			isOnFireAim=true;
+		}
+
+	}
+
+	IEnumerator StartTimerForDisableFireAim()
+	{
+		while(counterisOnTime>0)
+		{
+			yield return new WaitForSeconds(1);
+			counterisOnTime-=1;
+		}
+		yield return new WaitForSeconds(1);
+
 	}
 
 	public void OnAndroidReloadButtonPressed()

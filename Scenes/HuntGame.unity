@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4921654, g: 0.5779509, b: 0.6858105, a: 1}
+  m_IndirectSpecularColor: {r: 0.49009633, g: 0.5782511, b: 0.68289965, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -62791,8 +62791,8 @@ MonoBehaviour:
   shoulderButton: Aim Shoulder
   crosshair: {fileID: 2800000, guid: fdd205b7cd4f9bc49a0acb651bafaa41, type: 3}
   aimTurnSmoothing: 0.25
-  aimPivotOffset: {x: 0.5, y: 1.2, z: 0}
-  aimCamOffset: {x: 0, y: 0.4, z: -0.7}
+  aimPivotOffset: {x: -0.15, y: 1.38, z: 0}
+  aimCamOffset: {x: 0, y: 0.4, z: 0.34}
   ScopeImage: {fileID: 1140853890}
   isSniper: 0
   isAimMode: 0
@@ -63300,9 +63300,9 @@ GameObject:
   - component: {fileID: 2172013060282489012}
   - component: {fileID: 2172013060282489010}
   - component: {fileID: 2172013060282489011}
-  - component: {fileID: 2172013060282489008}
   - component: {fileID: 2172013060282489009}
   - component: {fileID: 2172013060549991590}
+  - component: {fileID: 2172013060282489008}
   m_Layer: 11
   m_Name: char_shadow
   m_TagString: Player

@@ -247,7 +247,7 @@ public class GaurdController : MonoBehaviour
             if (Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) > 1f)
             {
                 //walk
-                //gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 //gameObject.GetComponent<NavMeshAgent>().speed = botSpeed;
                 //gameObject.GetComponent<NavMeshAgent>().acceleration = botAcceleration;
                 //anim.applyRootMotion = false;
@@ -266,7 +266,7 @@ public class GaurdController : MonoBehaviour
             else
             {
                 //idle
-                //gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 gameObject.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
 
                 //anim.applyRootMotion = true;
@@ -301,7 +301,7 @@ public class GaurdController : MonoBehaviour
             if (dis > minDistanceAttack)//run
             {
 
-                //gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 //gameObject.GetComponent<NavMeshAgent>().speed = botOnRunSpeed;
                 //gameObject.GetComponent<NavMeshAgent>().acceleration = botOnRunAcceleration;
 
@@ -327,7 +327,7 @@ public class GaurdController : MonoBehaviour
             }
             else //attack
             {
-                //gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;
 
                 Vector3 direaction = player.transform.position - this.transform.position;
                 direaction.y = 0;

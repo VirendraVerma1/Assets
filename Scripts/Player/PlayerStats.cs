@@ -229,16 +229,16 @@ public class PlayerStats : MonoBehaviour
     
     public void OnAimHappen()
     {
-        ReloadButton.SetActive(true);
-        FireButton.SetActive(true);
-        SholderAimButton.SetActive(true);
+        //ReloadButton.SetActive(true);
+        //FireButton.SetActive(true);
+        //SholderAimButton.SetActive(true);
     }
 
     public void OnAimOff()
     {
-        ReloadButton.SetActive(false);
-        FireButton.SetActive(false);
-        SholderAimButton.SetActive(false);
+        //ReloadButton.SetActive(false);
+        //FireButton.SetActive(false);
+        //SholderAimButton.SetActive(false);
     }
 
     #endregion

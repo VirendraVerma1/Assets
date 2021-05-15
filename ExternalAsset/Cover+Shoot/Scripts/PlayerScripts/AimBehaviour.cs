@@ -27,9 +27,13 @@ public class AimBehaviour : GenericBehaviour
     public bool isSniper = false;
     public bool isAimMode = false;
 	// Start is always called after any Awake functions.
+    Vector3 FPSPivotoffset = new Vector3(-0.15f, 1.38f, 0f);
+    Vector3 FPSCamoffset = new Vector3(0f, 0.4f, -0.34f);
+
 	void Start ()
 	{
         isAimMode = false;
+        
 		// Set up the references.
         ScopeImage.SetActive(false);
         mainCam = gameObject.GetComponent<BasicBehaviour>().playerCamera.GetComponent<ThirdPersonOrbitCam>();
@@ -51,6 +55,7 @@ public class AimBehaviour : GenericBehaviour
 		initialRootRotation = (root == transform) ? Vector3.zero : root.localEulerAngles;
 		initialHipsRotation = hips.localEulerAngles;
 		initialSpineRotation = behaviourManager.GetAnim.GetBoneTransform(HumanBodyBones.Spine).localEulerAngles;
+        
 	}
 
 	// Update is used to set features regardless the active behaviour.
@@ -67,8 +72,23 @@ public class AimBehaviour : GenericBehaviour
 		else{
 			isAndroidAim=true;
 			gameObject.GetComponent<PlayerStats>().OnAimHappen();
-		} 
+		}
+        
 	}
+
+	public bool isAndroidAimFromFire=false;
+	public void OnAndroidAimFromFireOnButtonPressed()
+	{
+		if(isAndroidAim==false)
+		isAndroidAimFromFire=true;
+	}
+
+	public void OnAndroidAimFromFireOFFButtonPressed()
+	{
+		isAndroidAimFromFire=false;
+		isAndroidAim=false;
+	}
+
 
 	public void OnAndroidShoulderAimButtonPressed()
 	{
@@ -81,11 +101,11 @@ public class AimBehaviour : GenericBehaviour
 
 		if(isAndroid)
 		{
-			if (isAndroidAim && !aim)
+			if ((isAndroidAim || isAndroidAimFromFire)&& !aim)
 			{
 				StartCoroutine(ToggleAimOn());
 			}
-			else if (aim && !isAndroidAim)
+			else if (aim && (!isAndroidAim && !isAndroidAimFromFire))
 			{
 				StartCoroutine(ToggleAimOff());
 			}
@@ -152,7 +172,7 @@ public class AimBehaviour : GenericBehaviour
 				signal = (int)Mathf.Sign(behaviourManager.GetH);
 			}
 			aimCamOffset.x = Mathf.Abs(aimCamOffset.x) * signal;
-			aimPivotOffset.x = Mathf.Abs(aimPivotOffset.x) * signal;
+			//aimPivotOffset.x = Mathf.Abs(aimPivotOffset.x) * signal;
 
             if (shootscript.CurrentGunLabel == "Sniper")
             {
@@ -196,8 +216,9 @@ public class AimBehaviour : GenericBehaviour
 	public override void LocalFixedUpdate()
 	{
 		// Set camera position and orientation to the aim mode parameters.
-		if(aim)
-			behaviourManager.GetCamScript.SetTargetOffsets (aimPivotOffset, aimCamOffset);
+
+		if(aim&&isAndroidAim)
+			behaviourManager.GetCamScript.SetTargetOffsets (aimPivotOffset, aimCamOffset);//this need to be done
 	}
 
 	// LocalLateUpdate: manager is called here to set player rotation after camera rotates, avoiding flickering.
