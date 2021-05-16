@@ -14,6 +14,11 @@ public class ShopController : MonoBehaviour
 
     public Text ResultText;
 
+    void Start()
+    {
+        GunInitializeFromPannel();
+    }
+
     public void OnShopButtonPressed()
     {
         saveload.money=10000;
@@ -94,12 +99,27 @@ public class ShopController : MonoBehaviour
             {
                 go.transform.Find("BuyAmmoButton").gameObject.SetActive(true);
                 go.transform.Find("BuyGunButton").gameObject.SetActive(false);
+                go.transform.Find("EquipGunButton").gameObject.SetActive(true);
                 go.transform.Find("BuyAmmoButton").GetComponent<Button>().onClick.AddListener(() => OnBuyAmmoButtonPressed(n));
+                go.transform.Find("EquipGunButton").Find("Text").GetComponent<Text>().text = "Equip";
+                go.transform.Find("EquipGunButton").GetComponent<Image>().color = Color.Lerp(Color.green, Color.grey, 0.5f);
+
+
+                if (GetCurrentGunEquiped(i))
+                {
+                    go.transform.Find("EquipGunButton").Find("Text").GetComponent<Text>().text = "Equipped";
+                    go.transform.Find("EquipGunButton").GetComponent<Image>().color = Color.grey;
+                }
+                else
+                {
+                    go.transform.Find("EquipGunButton").GetComponent<Button>().onClick.AddListener(() => OnEquipButtonPressed(n));
+                }
             }
             else
             {
                 go.transform.Find("BuyAmmoButton").gameObject.SetActive(false);
                 go.transform.Find("BuyGunButton").gameObject.SetActive(true);
+                go.transform.Find("EquipGunButton").gameObject.SetActive(false);
                 go.transform.Find("BuyGunButton").GetComponent<Button>().onClick.AddListener(() => OnBuyWeaponButtonPressed(n));
             }
         }
@@ -131,6 +151,34 @@ public class ShopController : MonoBehaviour
             
             StartCoroutine(ShowMsg("Not enough money"));
         }
+    }
+
+    void OnEquipButtonPressed(int n)
+    {
+        if (n == 2)
+        {
+            saveload.currentEquipedWeapon = 2;
+        }
+        else if (n == 1)
+        {
+            saveload.currentEquipedWeapon = 1;
+        }
+        else if (n == 4)
+        {
+            saveload.currentEquipedWeapon = 4;
+        }
+        else if (n == 3)
+        {
+            saveload.currentEquipedWeapon = 3;
+        }
+        else if (n == 0)
+        {
+            saveload.currentEquipedWeapon = 0;
+        }
+        print("Save Equip"+saveload.currentEquipedWeapon);
+        saveload.Save();
+        GunInitializeFromPannel();
+        OnShopButtonPressed();
     }
 
 
@@ -294,6 +342,34 @@ public class ShopController : MonoBehaviour
             saveload.ispistolBuyed=true;
         }
 
+    }
+
+    bool GetCurrentGunEquiped(int nu)
+    {
+        if (nu == 2 && saveload.currentEquipedWeapon==2)
+        {
+            return true;
+        }
+        else if (nu == 1&& saveload.currentEquipedWeapon==1)
+        {
+            return true;
+        }
+        else if (nu == 4 && saveload.currentEquipedWeapon==4)
+        {
+            return true;
+        }
+        else if (nu == 3 && saveload.currentEquipedWeapon==3)
+        {
+            return true;
+        }
+        else if (nu == 0 && saveload.currentEquipedWeapon==0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     #endregion
@@ -614,6 +690,77 @@ public class ShopController : MonoBehaviour
         ResultText.text=msg;
         yield return new WaitForSeconds(3);
         ResultText.text="";
+    }
+
+    #endregion
+
+    #region SelectWeapon
+
+    [Header("Weapons Selector")]
+
+    public InteractiveWeapon MySelectedWeapon;
+    public Image MainMenuSelectedWeaponImage;
+    public Text MainMenuSelectedWeaponAmmoText;
+
+    public void OnWeaponChangeButtonPressed()
+    {
+        switchPannel=0;
+        OnShopButtonPressed();
+    }
+
+    
+
+    void GunInitializeFromPannel()
+    {
+       if (saveload.currentEquipedWeapon == 2)
+        {
+            MySelectedWeapon = WeaponsGO[2].GetComponent<InteractiveWeapon>();
+            MainMenuSelectedWeaponImage.sprite=WeaponsGO[2].GetComponent<InteractiveWeapon>().sprite;
+            MainMenuSelectedWeaponAmmoText.text=GetAmmoNu(2).ToString();
+        }
+        else if (saveload.currentEquipedWeapon == 1)
+        {
+            MySelectedWeapon = WeaponsGO[1].GetComponent<InteractiveWeapon>();
+            MainMenuSelectedWeaponImage.sprite=WeaponsGO[1].GetComponent<InteractiveWeapon>().sprite;
+            MainMenuSelectedWeaponAmmoText.text=GetAmmoNu(1).ToString();
+        }
+        else if (saveload.currentEquipedWeapon == 4)
+        {
+            MySelectedWeapon = WeaponsGO[4].GetComponent<InteractiveWeapon>();
+            MainMenuSelectedWeaponImage.sprite=WeaponsGO[4].GetComponent<InteractiveWeapon>().sprite;
+             MainMenuSelectedWeaponAmmoText.text=GetAmmoNu(4).ToString();
+        }
+        else if (saveload.currentEquipedWeapon == 3)
+        {
+            MySelectedWeapon = WeaponsGO[3].GetComponent<InteractiveWeapon>();
+            MainMenuSelectedWeaponImage.sprite=WeaponsGO[3].GetComponent<InteractiveWeapon>().sprite;
+             MainMenuSelectedWeaponAmmoText.text=GetAmmoNu(3).ToString();
+        }
+        else if (saveload.currentEquipedWeapon == 0)
+        {
+            MySelectedWeapon = WeaponsGO[0].GetComponent<InteractiveWeapon>();
+            MainMenuSelectedWeaponImage.sprite=WeaponsGO[0].GetComponent<InteractiveWeapon>().sprite;
+             MainMenuSelectedWeaponAmmoText.text=GetAmmoNu(0).ToString();
+        }
+    }
+    public void InitializeGun()
+    {
+        StartCoroutine(WaitAndEquipWeapon());
+    }
+
+    IEnumerator WaitAndEquipWeapon()
+    {
+        yield return new WaitForSeconds(1);
+        GameObject[] AllUnlockedWeapons=GameObject.FindGameObjectsWithTag("Weapons");
+
+        foreach(GameObject g in AllUnlockedWeapons)
+        {
+            if(g.GetComponent<InteractiveWeapon>().label==MySelectedWeapon.label)
+            {
+                g.GetComponent<InteractiveWeapon>().PickThisWeapon();
+                print("Initializ Weapon "+g.GetComponent<InteractiveWeapon>().label);
+            }
+        }
     }
 
     #endregion

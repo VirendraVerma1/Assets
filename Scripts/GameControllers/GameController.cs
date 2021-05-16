@@ -758,7 +758,7 @@ public class GameController : MonoBehaviour
         ActiveOnlyBuyedWeapon();
         SetWeaponsStat();
         UpdateAndInitialzeWeapon();
-             
+        gameObject.GetComponent<ShopController>().InitializeGun();  
         
     }
 

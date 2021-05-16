@@ -21,7 +21,7 @@ public class saveload : MonoBehaviour
     public static string serverinitialize = "initialize.php";
 
     //Things for ------------------------ ShopMenu
-    //need no save
+    //no need to save
     public static int pistolBuyPrice = 50;
     public static int rifleBuyPrice = 1000;
     public static int akbuyPrice = 3000;
@@ -54,6 +54,8 @@ public class saveload : MonoBehaviour
     public static int shotgunAmmo = 50;
     public static int sniperAmmo = 50;
 
+    public static int currentEquipedWeapon=0;
+
     //----------------end shop things
 
 
@@ -71,12 +73,12 @@ public class saveload : MonoBehaviour
     public static int shieldupgradeCooldownprice=300;
 
     //save the data
-    public static int radarWorkingTime = 15;
-    public static int radarCooldownTime = 15;
-    public static int freezeWorkingTime = 10;
-    public static int freezeCooldownTime = 15;
-    public static int shieldWorkingTime=15;
-    public static int shieldCooldownTime=15;
+    public static int radarWorkingTime = 10;
+    public static int radarCooldownTime = 30;
+    public static int freezeWorkingTime = 5;
+    public static int freezeCooldownTime = 40;
+    public static int shieldWorkingTime=10;
+    public static int shieldCooldownTime=30;
     public static int doubleSprintWorkingTime=15;
     public static int doubleSprintCooldownTime=15;
 
@@ -144,6 +146,8 @@ public class saveload : MonoBehaviour
         data.ShotgunAmmo = shotgunAmmo;
         data.SniperAmmo = sniperAmmo;
 
+        data.CurrentEquipedWeapon=currentEquipedWeapon;
+
         //ability
         data.RadarWorkingTime=radarWorkingTime;
         data.RadarCooldownTime=radarCooldownTime;
@@ -202,6 +206,8 @@ public class saveload : MonoBehaviour
             akAmmo=data.AkAmmo;
             shotgunAmmo=data.ShotgunAmmo;
             sniperAmmo=data.SniperAmmo;
+
+            currentEquipedWeapon=data.CurrentEquipedWeapon;
 
             //ability
             radarWorkingTime = data.RadarWorkingTime;
@@ -298,6 +304,7 @@ class Notebook_Data
     public  int AkAmmo;
     public  int ShotgunAmmo;
     public  int SniperAmmo ;
+    public int CurrentEquipedWeapon;
 
     //ability
     public int RadarWorkingTime;

@@ -60,6 +60,23 @@ public class InteractiveWeapon : MonoBehaviour
 
     }
 
+	public void PickThisWeapon()
+	{
+        // Disable weapon physics.
+        rbody.isKinematic = true;
+        this.col.enabled = false;
+
+        // Setup weapon and add in player inventory.
+        playerInventory.AddWeapon(this);
+        Destroy(interactiveRadius);
+        this.Toggle(true);
+        this.pickable = false;
+
+        // Change active weapon HUD.
+        TooglePickupHUD(false);
+	}
+
+
     void Initialize()
     {
         // Set up the references.

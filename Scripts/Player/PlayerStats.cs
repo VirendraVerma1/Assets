@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     public GameController gameController;
     void Start()
     {
+       
         gameController=GameObject.FindGameObjectWithTag("MainController").GetComponent<GameController>();
         StartingPosition = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
         HealthBar.fillAmount = (float)Health / (float)MaxHealth;
@@ -170,7 +171,7 @@ public class PlayerStats : MonoBehaviour
         anim.enabled = false;
         ControlUI.SetActive(true);
         gameObject.tag = "Player";
-        Health = 100;
+        Health = MaxHealth;
     }
 
     void DisableAllComponents()

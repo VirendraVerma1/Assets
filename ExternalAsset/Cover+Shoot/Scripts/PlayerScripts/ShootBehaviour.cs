@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 // ShootBehaviour inherits from GenericBehaviour. This class corresponds to shoot/reload/change/add/drop weapons behaviour.
@@ -127,30 +128,35 @@ public class ShootBehaviour : GenericBehaviour
 	{
 		isAndroidFireon=true;
 		gameObject.GetComponent<AimBehaviour>().OnAndroidAimFromFireOnButtonPressed();
+        StartFireCounter();
 	}
 
-	float counterisOnTime=5;
+	float counterisOnTime=2;
 	bool isOnFireAim=false;
 	void StartFireCounter()
 	{
-		counterisOnTime=5;
+		counterisOnTime=2;
 		if(isOnFireAim==false)
 		{
 			isOnFireAim=true;
+            StartCoroutine(DisableFireAimAutoAfterTime());
+            gameObject.GetComponent<BasicBehaviour>().playerCamera.GetComponent<ThirdPersonOrbitCam>().ShowFullScreenTouchPannel();
 		}
 
 	}
 
-	IEnumerator StartTimerForDisableFireAim()
-	{
-		while(counterisOnTime>0)
-		{
-			yield return new WaitForSeconds(1);
-			counterisOnTime-=1;
-		}
-		yield return new WaitForSeconds(1);
+    IEnumerator DisableFireAimAutoAfterTime()
+    {
+        while (counterisOnTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            counterisOnTime -= 1;
+        }
+        gameObject.GetComponent<BasicBehaviour>().playerCamera.GetComponent<ThirdPersonOrbitCam>().ShowLeftTouchPannel();
+        gameObject.GetComponent<AimBehaviour>().OnAndroidAimFromFireOFFButtonPressed();
+        isOnFireAim = false;
+    }
 
-	}
 
 	public void OnAndroidReloadButtonPressed()
 	{
@@ -164,6 +170,10 @@ public class ShootBehaviour : GenericBehaviour
 		}
 	}
 
+
+	//------------auto fire system
+	float autofireWaitCounter=0.4f;
+	bool isModeOn=false;
 	void CheckFromEnemy()
 	{
 		Vector3 imprecision = Random.Range(-shotErrorRate, shotErrorRate) * behaviourManager.playerCamera.right;
@@ -174,8 +184,27 @@ public class ShootBehaviour : GenericBehaviour
 		{
 			if(hit.collider.tag=="Gaurd")
 			{
-				isAndroidFireon=true;
+				if(isModeOn==false)
+				{
+					isModeOn=true;
+					StartCoroutine(WaitAndSetAutoFireAim());
+				}
 			}
+			else
+			{
+				isModeOn=false;
+			}
+		}
+	}
+
+	IEnumerator WaitAndSetAutoFireAim()
+	{
+		yield return new WaitForSeconds(autofireWaitCounter);
+		
+		if(isModeOn)
+		{
+			isModeOn=false;
+			isAndroidFireon=true;
 		}
 	}
 

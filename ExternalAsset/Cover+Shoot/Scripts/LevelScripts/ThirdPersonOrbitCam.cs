@@ -62,7 +62,31 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 		if (camOffset.y > 0)
 			Debug.LogWarning("Vertical Cam Offset (Y) will be ignored during collisions!\n" +
 				"It is recommended to set all vertical offset in Pivot Offset.");
+
+        ShowLeftTouchPannel();
 	}
+
+    //--------------my functions
+
+    [Header("Touch Pannel Switch")]
+    public GameObject LeftTouchPannel;
+    public GameObject FullScreenTouchPannel;
+
+    public void ShowLeftTouchPannel()
+    {
+        TouchField = LeftTouchPannel.GetComponent<FixedTouchField>();
+        LeftTouchPannel.SetActive(true);
+        FullScreenTouchPannel.SetActive(false);
+    }
+
+    public void ShowFullScreenTouchPannel()
+    {
+        TouchField = FullScreenTouchPannel.GetComponent<FixedTouchField>();
+        LeftTouchPannel.SetActive(false);
+        FullScreenTouchPannel.SetActive(true);
+    }
+
+    //--end my functions
 
 
 	void Update()
