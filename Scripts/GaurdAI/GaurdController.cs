@@ -77,8 +77,8 @@ public class GaurdController : MonoBehaviour
     void GaurdRandomness()
     {
         
-        int randomness = Random.Range(1, 10);
-        if (randomness < 10)
+        int randomness = Random.Range(1, 100);
+        if (randomness < 60)
         {
             //spawn normal
             GaurdFBX[0].SetActive(true);
@@ -93,7 +93,7 @@ public class GaurdController : MonoBehaviour
             gdamage = GaurdsDamage[0];
             ghealth = GaurdsHealth[0];
         }
-        else if (randomness < 1)
+        else if (randomness < 70)
         {
             //spawn bomber
             GaurdFBX[1].SetActive(true);
@@ -123,7 +123,7 @@ public class GaurdController : MonoBehaviour
             gdamage = GaurdsDamage[2];
             ghealth = GaurdsHealth[2];
         }
-        else if (randomness < 1)
+        else if (randomness < 100)
         {
             //spawn melee
             GaurdFBX[3].SetActive(true);
