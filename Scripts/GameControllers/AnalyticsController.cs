@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnalyticsController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class AnalyticsController : MonoBehaviour
         CheackAccount();
         StartCoroutine(UpdateThingsAtACertainTime());
     }
+
+    
+    
 
     #region account creation
 
