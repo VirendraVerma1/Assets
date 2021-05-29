@@ -383,7 +383,7 @@ public class GaurdController : MonoBehaviour
         {
             buttlerTargetPosition = positionPlayer;
             gameObject.GetComponent<NavMeshMovementOnClick>().SettargetPosition(buttlerTargetPosition);
-            CalculateBotsDistanceFromMe();
+           // CalculateBotsDistanceFromMe();
         }
     }
 

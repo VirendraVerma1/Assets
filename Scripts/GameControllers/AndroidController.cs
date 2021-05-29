@@ -54,6 +54,30 @@ public class AndroidController : MonoBehaviour
         }
     }
 
+    bool isEagleMode = false;
+    public GameObject MainCamera;
+    public GameObject EagleCamera;
+    public GameObject AndroidControllers;
+
+    public void OnEagleCameraButtonPressed()
+    {
+        if (isEagleMode)
+        {
+            isEagleMode = false;
+            MainCamera.GetComponent<Camera>().enabled = false;
+            EagleCamera.GetComponent<Camera>().enabled = true;
+            AndroidControllers.SetActive(false);
+        }
+        else
+        {
+            isEagleMode = true;
+            MainCamera.GetComponent<Camera>().enabled = true;
+            EagleCamera.GetComponent<Camera>().enabled = false;
+            AndroidControllers.SetActive(true);
+
+        }
+    }
+
 
     
 }
