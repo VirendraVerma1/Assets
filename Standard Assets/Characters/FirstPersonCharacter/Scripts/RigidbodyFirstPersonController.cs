@@ -78,7 +78,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
         public Camera cam;
-        public FixedTouchField TouchField;
+        // public FixedTouchField TouchField;
         public MovementSettings movementSettings = new MovementSettings();
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
