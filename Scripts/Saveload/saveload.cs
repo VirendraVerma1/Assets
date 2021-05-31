@@ -98,6 +98,7 @@ public class saveload : MonoBehaviour
 
     public static float senstivity = 0.5f;
     public static float aimSenstivity = 1f;
+    public static float eaglecamSenstivity=1f;
 
     public static int currentLevel = 1;
     public static int money = 1000;
@@ -123,6 +124,7 @@ public class saveload : MonoBehaviour
         data.PlayerName = Encrypt(playerName);
         data.Senstivity = senstivity;
         data.AimSenstivity = aimSenstivity;
+        data.EagleCamSenstivity = eaglecamSenstivity;
         data.CurrentLevel = currentLevel;
         data.Money = money;
         data.IsRestartMission = isrestartMission;
@@ -184,6 +186,7 @@ public class saveload : MonoBehaviour
             playerName=Decrypt(data.PlayerName);
             senstivity = data.Senstivity;
             aimSenstivity = data.AimSenstivity;
+            eaglecamSenstivity = data.EagleCamSenstivity;
             money = data.Money;
             adsWatched=data.AdsWatched;
             currentLevel = data.CurrentLevel;
@@ -282,6 +285,7 @@ class Notebook_Data
     public  string PlayerName;
     public float Senstivity;
     public float AimSenstivity;
+    public float EagleCamSenstivity;
     public int CurrentLevel;
     public int Money;
     public bool IsRestartMission;

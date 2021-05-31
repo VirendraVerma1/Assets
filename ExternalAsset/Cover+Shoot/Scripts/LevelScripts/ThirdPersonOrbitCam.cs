@@ -3,9 +3,9 @@
 // This class corresponds to the 3rd person camera features.
 public class ThirdPersonOrbitCam : MonoBehaviour 
 {
+	public Camera SecondCam;
 	public bool isAndroid=false;
 	public FixedTouchField TouchField;
-
 
 	public Transform player;                                           // Player's reference.
 	public Vector3 pivotOffset = new Vector3(0.0f, 1.7f,  0.0f);       // Offset to repoint the camera.
@@ -41,6 +41,7 @@ public class ThirdPersonOrbitCam : MonoBehaviour
     AimBehaviour aimScript;
 	void Awake()
 	{
+		
 		// Reference to the camera transform.
 		cam = transform;
         aimScript = player.GetComponent<AimBehaviour>();
@@ -91,6 +92,7 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 
 	void Update()
 	{
+        SecondCam.fieldOfView = gameObject.GetComponent<Camera>().fieldOfView;
 		// Get mouse movement to orbit the camera.
 		// Mouse:
 		if(isAndroid==true){
