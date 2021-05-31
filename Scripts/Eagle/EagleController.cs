@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
 
 public class EagleController : MonoBehaviour
 {
@@ -15,7 +14,6 @@ public class EagleController : MonoBehaviour
     Vector3 oldPosition;
     Vector3 currentPosition;
     public FixedTouchField TouchField;
-    public FirstPersonController fps;
     void Start()
     {
         gotSpawner = false;
@@ -59,7 +57,7 @@ public class EagleController : MonoBehaviour
             }
             else
             {
-                fps.m_MouseLook.LookAxis = TouchField.TouchDist;
+                
                 MoveTo();
                 RotateTo();
                 //gameObject.transform.Translate(0, 0, speed);

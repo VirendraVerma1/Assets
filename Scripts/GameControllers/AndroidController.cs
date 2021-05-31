@@ -24,6 +24,7 @@ public class AndroidController : MonoBehaviour
         controlsTutorial.isAndroid=isAndroid;
         aimBehaviour.isAndroid=isAndroid;
         moveBehaviour.isAndroid=isAndroid;
+        OnEagleCameraButtonPressed();
     }
 
     public void OnAndroidPickButtonPressed()
@@ -57,7 +58,8 @@ public class AndroidController : MonoBehaviour
     bool isEagleMode = false;
     public GameObject MainCamera;
     public GameObject EagleCamera;
-    public GameObject AndroidControllers;
+    public GameObject[] AndroidControllers;
+    public GameObject EagleTouchField;
 
     public void OnEagleCameraButtonPressed()
     {
@@ -66,15 +68,18 @@ public class AndroidController : MonoBehaviour
             isEagleMode = false;
             MainCamera.GetComponent<Camera>().enabled = false;
             EagleCamera.GetComponent<Camera>().enabled = true;
-            AndroidControllers.SetActive(false);
+            foreach(GameObject g in AndroidControllers)
+            g.SetActive(false);
+            EagleTouchField.SetActive(true);
         }
         else
         {
             isEagleMode = true;
             MainCamera.GetComponent<Camera>().enabled = true;
             EagleCamera.GetComponent<Camera>().enabled = false;
-            AndroidControllers.SetActive(true);
-
+            foreach(GameObject g in AndroidControllers)
+            g.SetActive(true);
+            EagleTouchField.SetActive(false);
         }
     }
 

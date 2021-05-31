@@ -421,6 +421,7 @@ public class GameController : MonoBehaviour
     public GameObject SettingPannel;
     public Slider SensitiveSlider;
     public Slider AimSensitiveSlider;
+    public Slider EagleCamSensitiveSlider;
     public GameObject AimAssistButton;
     public GameObject AutoFireButton;
     
@@ -436,6 +437,10 @@ public class GameController : MonoBehaviour
         AutoFireButton.GetComponent<Image>().sprite=TickSprite;
         else
         AutoFireButton.GetComponent<Image>().sprite=UntickSprite;
+
+        SensitiveSlider.GetComponent<Slider>().value=saveload.senstivity;
+        AimSensitiveSlider.GetComponent<Slider>().value=saveload.aimSenstivity;
+        EagleCamSensitiveSlider.GetComponent<Slider>().value=saveload.eaglecamSenstivity;
     }
 
     public void OnSettingButtonPressed()
@@ -453,6 +458,12 @@ public class GameController : MonoBehaviour
     {
         float sens = AimSensitiveSlider.GetComponent<Slider>().value;
         saveload.aimSenstivity = sens;
+    }
+
+    public void OnEagleCamSliderValueChanged()
+    {
+        float sens = EagleCamSensitiveSlider.GetComponent<Slider>().value;
+        saveload.eaglecamSenstivity = sens;
     }
 
     public void OnCloseSettingsButtonPressed()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EaglePathGenerator : MonoBehaviour
 {
+    public GameObject MyEagle;
     List<Vector3> EaglePoints = new List<Vector3>();
     List<Vector3> EaglePointsNearPlayer = new List<Vector3>();
     public int AreaCover = 500;
@@ -22,10 +23,12 @@ public class EaglePathGenerator : MonoBehaviour
 
     void Start()
     {
+        MyEagle.transform.position=gameObject.transform.position;
         CurrentTerrain = GameObject.FindGameObjectWithTag("TerrainObject").transform;
         SetWaterTransform();
         SetEaglePositionSpawnerTransform();
         StartCoroutine(InitailizePlayer());
+        
     }
 
     IEnumerator InitailizePlayer()
