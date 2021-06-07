@@ -14,6 +14,8 @@ public class EagleController : MonoBehaviour
     Vector3 oldPosition;
     Vector3 currentPosition;
     public FixedTouchField TouchField;
+    public Material RedMarkerForGaurds;
+    public Camera myCamera;
     void Start()
     {
         gotSpawner = false;
@@ -35,10 +37,6 @@ public class EagleController : MonoBehaviour
     void GetNewPoint()
     {
         myNewTarget = eaglePathGenerator.GetRandomPoint(oldPosition, currentPosition);
-        //float previousRotation = gameObject.transform.eulerAngles.y;
-        //gameObject.transform.LookAt(myNewTarget);
-        //gameObject.transform.Find("Body").transform.eulerAngles = new Vector3(gameObject.transform.rotation.x,previousRotation * -1,gameObject.transform.rotation.z);
-        //StartCoroutine(ControlSmoothRotation(previousRotation));
     }
 
     void Update()
@@ -50,21 +48,33 @@ public class EagleController : MonoBehaviour
                 currentPosition=myNewTarget;
                 GetNewPoint();
                 oldPosition = currentPosition;
-                //print(gameObject.transform.eulerAngles.y);
-                //float previousRotation = gameObject.transform.eulerAngles.y;
-                //gameObject.transform.LookAt(myNewTarget);
-                //StartCoroutine(ControlSmoothRotation(previousRotation));
+                
             }
             else
             {
                 
                 MoveTo();
                 RotateTo();
-                //gameObject.transform.Translate(0, 0, speed);
-                //Quaternion currentRot = transform.rotation;
-                //Quaternion targerRot = Quaternion.Euler(myNewTarget);
-                //Quaternion smoothRot = Quaternion.Slerp(gameObject.transform.rotation, targerRot, Time.deltaTime / damping);
-                //transform.rotation = smoothRot;
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward, out hit, 100.0f))
+                {
+                    if (hit.collider.gameObject.tag == "Gaurd")
+                    {
+                        GameObject Gaurd = hit.collider.gameObject;
+                        if (Gaurd.transform.Find("TerroristMarker").gameObject != null)
+                        {
+                            Gaurd.transform.Find("TerroristMarker").gameObject.layer = LayerMask.NameToLayer("Marker");
+                            Gaurd.transform.Find("TerroristMarker").gameObject.GetComponent<Renderer>().material = RedMarkerForGaurds;
+                        }
+                        print("found gaurd");
+                    }
+                    else
+                    {
+                        print(hit.collider.gameObject.name);
+                    }
+                }
             }
         }
     }

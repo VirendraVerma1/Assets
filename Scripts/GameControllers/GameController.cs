@@ -584,12 +584,12 @@ public class GameController : MonoBehaviour
 
     bool isGameOver = false;
     public GameObject[] AllBots;
-    int botCount;
+    public int botCount;
     int maxBotCount;
 
     IEnumerator InitializeBotThings()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(15);
         isGameOver = false;
         AllBots=GameObject.FindGameObjectsWithTag("Gaurd");
         maxBotCount = AllBots.Length;
@@ -599,27 +599,31 @@ public class GameController : MonoBehaviour
 
     IEnumerator CountForBots()
     {
-        yield return new WaitForSeconds(2);
-        int counter = 0;
-        foreach (GameObject g in AllBots)
+        while (true)
         {
-            if (g != null)
+            yield return new WaitForSeconds(2);
+            int counter = 0;
+            foreach (GameObject g in AllBots)
             {
-                if (!g.GetComponent<GaurdController>().isDead)
-                counter++;
+                if (g != null)
+                {
+                    if (!g.GetComponent<GaurdController>().isDead)
+                        counter++;
 
+                }
             }
-        }
-        botCount = counter;
-        UpdateBotKilledUI();
-        if (counter > 0)
-        {
-            StartCoroutine(CountForBots());
-        }
-        else
-        {
-            isGameOver = true;
-            StartCoroutine( WonThingsHappen());
+            botCount = counter;
+            UpdateBotKilledUI();
+            if (counter > 0)
+            {
+                
+            }
+            else
+            {
+                isGameOver = true;
+                StartCoroutine(WonThingsHappen());
+                break;
+            }
         }
     }
 

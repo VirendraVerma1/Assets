@@ -638,6 +638,7 @@ public class GaurdController : MonoBehaviour
 
     public string[] DeathAnimationsNames;
     public bool isDead = false;
+    public GameObject MyMarker;
     public void SetDead()
     {
         isDead = true;
@@ -650,6 +651,7 @@ public class GaurdController : MonoBehaviour
         gameObject.GetComponent<NavMeshMovementOnClick>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.transform.Find("Sphere").gameObject.SetActive(false);
+        MyMarker.SetActive(false);
         /*
         GameObject MeshThings = gameObject.transform.Find("enemy 1").gameObject;
         MeshThings.transform.parent = null;

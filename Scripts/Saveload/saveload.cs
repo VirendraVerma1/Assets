@@ -110,6 +110,7 @@ public class saveload : MonoBehaviour
     public static int adsWatched=0;
 
     public static int timePlayed=0;
+    public static bool isTutorial = true;
 
     public static string current_filename = "info.dat";
 
@@ -134,6 +135,7 @@ public class saveload : MonoBehaviour
         data.AppOpen=appOpen;
         data.TimePlayed=timePlayed;
         data.AdsWatched=adsWatched;
+        data.IsTutorial = isTutorial;
 
         //shop things
         data.IspistolBuyed = ispistolBuyed;
@@ -196,6 +198,7 @@ public class saveload : MonoBehaviour
             isAutoFire=data.IsAutoFire;
             appOpen=data.AppOpen;
             timePlayed=data.TimePlayed;
+            isTutorial = data.IsTutorial;
 
             //shopthings
             issniperBuyed=data.IssniperBuyed;
@@ -295,6 +298,7 @@ class Notebook_Data
     public int TimePlayed;
     public int AppOpen;
     public int AdsWatched;
+    public bool IsTutorial;
 
     //shop things
     public  bool IspistolBuyed  ;

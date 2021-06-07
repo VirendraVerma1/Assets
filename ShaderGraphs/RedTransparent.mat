@@ -144,7 +144,7 @@ Material:
     - _GlossyReflections: 0
     - _METALNESS: 0
     - _Metallic: 0
-    - _OPACITY: 0.57
+    - _OPACITY: 0.72
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0

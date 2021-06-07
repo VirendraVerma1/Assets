@@ -1,0 +1,282 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class TutorialController : MonoBehaviour
+{
+    //tutorial path
+    //move player near to the enemy
+    //then give task to shoot
+    //after shot the enemy
+    //highlight radar skill
+    //move player to other position
+    //give order to kill them
+    //show freeze ability
+    //now shoot other enemy
+    //after killing show eagle vission
+    //move player to that enemy
+    //kill and end tutorial
+
+
+    //check if first time
+    void Start()
+    {
+        TutorialPannel.SetActive(false);
+        if (saveload.isTutorial)
+        {
+            gc = gameObject.GetComponent<GameController>();
+            MessageText.text = "";
+            SetUpMarker();
+        }
+    }
+
+    [Header("Marker")]
+    public GameObject TutorialPannel;
+    public Text MessageText; 
+    public GameObject MarkerPrefab;
+    public Transform[] MarkerPaths;
+    public GameObject AimButton;
+    public GameObject RadarSkill;
+    public GameObject FreezeSkill;
+    public GameObject FireButton;
+    public GameObject EagleButton;
+    public float minDistance = 5;
+
+    //second move
+    public Transform MoveToSecondPosition;
+
+    int step = 0;
+    GameObject Player=null;
+    int counter = 0;
+    int oldbotCount = 0;
+    Transform markerTransform;
+    GameController gc;
+    int firebutton = 0;
+
+    #region step1 move player near to the enemy
+
+    void SetUpMarker()
+    {
+        if (MarkerPaths.Length > counter)
+        {
+            MarkerPrefab.transform.position = MarkerPaths[counter].transform.position;
+            markerTransform = MarkerPaths[counter].transform;
+            counter++;
+            StartCoroutine(CalculateDistanceFromMarkerAndChange());
+        }
+        else
+        {
+            //UI tutorails
+            step++;
+            MarkerPrefab.SetActive(false);
+            NextStepGiveTaskToShoot();
+        }
+    }
+
+    IEnumerator CalculateDistanceFromMarkerAndChange()
+    {
+        float distance = 999999;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (Player == null)
+            {
+                Player = GameObject.FindGameObjectWithTag("Player");
+            }
+            else
+            {
+                distance = Vector3.Distance(Player.transform.position, markerTransform.position);
+                if (distance < minDistance)
+                    break;
+            }
+        }
+        SetUpMarker();
+    }
+
+    #endregion
+
+    #region Step 2 then give task to shoot
+
+    void NextStepGiveTaskToShoot()
+    {
+        DeactivateAll();
+        TutorialPannel.SetActive(true);
+        MessageText.text = "Shoot Gaurd";
+        AimButton.SetActive(true);
+        step++;
+    }
+
+    public void SecondAimButtonPressed()
+    {
+        if (step == 2)
+        {
+            TutorialPannel.SetActive(false);
+            oldbotCount = gc.botCount;
+            StartCoroutine(WaitAndCountBot());
+        }
+        else if(step==3)
+        {
+            TutorialPannel.SetActive(false);
+            StartCoroutine( NextStepHighlightRadarSkill());
+        }
+    }
+
+    IEnumerator WaitAndCountBot()
+    {
+        int newBotCount = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            newBotCount = gc.botCount;
+            if (newBotCount < oldbotCount)
+                break;
+        }
+        NextStepDeactivateAimMode();
+    }
+
+    #endregion
+
+    #region Step3 Deactivate aim mode
+
+    void NextStepDeactivateAimMode()
+    {
+        DeactivateAll();
+        TutorialPannel.SetActive(true);
+        MessageText.text = "Off Aim Button";
+        AimButton.SetActive(true);
+        step++;
+    }
+
+    #endregion
+
+    #region Step4 highlight radar skill
+
+    IEnumerator NextStepHighlightRadarSkill()
+    {
+        yield return new WaitForSeconds(1);
+        DeactivateAll();
+        TutorialPannel.SetActive(true);
+        MessageText.text = "Use Radar Skill";
+        RadarSkill.SetActive(true);
+    }
+
+    public void SecondRadarSkillButtonPressed()
+    {
+        TutorialPannel.SetActive(false);
+        MarkerPrefab.SetActive(true);
+        MarkerPrefab.transform.position = MoveToSecondPosition.position;
+        markerTransform = MoveToSecondPosition;
+        StartCoroutine(CalculateDistanceFromMarkerAndChangeSecond());
+    }
+
+    IEnumerator CalculateDistanceFromMarkerAndChangeSecond()
+    {
+        float distance = 999999;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (Player == null)
+            {
+                Player = GameObject.FindGameObjectWithTag("Player");
+            }
+            else
+            {
+                distance = Vector3.Distance(Player.transform.position, markerTransform.position);
+                if (distance < ((float)minDistance/2))
+                    break;
+            }
+        }
+        MarkerPrefab.SetActive(false);
+        ShowUseFreezeAbility();
+    }
+
+    #endregion
+
+    #region Step5 use freeze ability
+
+    void ShowUseFreezeAbility()
+    {
+        DeactivateAll();
+        TutorialPannel.SetActive(true);
+        MessageText.text = "Use Freeze Skill";
+        FreezeSkill.SetActive(true);
+        step++;
+    }
+
+    public void FreeqeAbilityButtonPressed()
+    {
+        if (firebutton == 0)
+        {
+            firebutton++;
+            DeactivateAll();
+            TutorialPannel.SetActive(false);
+            ShowUseFireButton();
+        }
+    }
+
+    #endregion
+
+    #region Step6 use fire button to shoot
+
+    void ShowUseFireButton()
+    {
+        DeactivateAll();
+        TutorialPannel.SetActive(true);
+        MessageText.text = "Use Fire Button to Kill";
+        FireButton.SetActive(true);
+    }
+
+    public void FireButtonPressed()
+    {
+        TutorialPannel.SetActive(false);
+        oldbotCount = gc.botCount;
+        StartCoroutine(WaitCountBotSecond());
+    }
+
+    IEnumerator WaitCountBotSecond()
+    {
+        int newBotCount = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.5f);
+            newBotCount = gc.botCount;
+            if (newBotCount < (oldbotCount-1))
+                break;
+        }
+        ShowEagleButton();
+    }
+
+    #endregion
+
+    #region Step7 use eagle vission
+
+    void ShowEagleButton()
+    {
+        DeactivateAll();
+        TutorialPannel.SetActive(true);
+        MessageText.text = "Use your Eagle";
+        EagleButton.SetActive(true);
+    }
+
+    public void OneagleButtonPressed()
+    {
+        TutorialPannel.SetActive(false);
+    }
+
+    #endregion
+
+    #region common functions
+
+    void DeactivateAll()
+    {
+        AimButton.SetActive(false);
+        RadarSkill.SetActive(false);
+        FreezeSkill.SetActive(false);
+        FireButton.SetActive(false);
+        EagleButton.SetActive(false);
+    }
+
+    #endregion
+
+}

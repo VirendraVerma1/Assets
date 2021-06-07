@@ -13,7 +13,7 @@ public class GaurdSpawner : MonoBehaviour
 
     IEnumerator SpawnGaurdOnDuty()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         GameObject go;
         foreach (Transform t in gameObject.transform)
         {
@@ -22,7 +22,7 @@ public class GaurdSpawner : MonoBehaviour
             {
                 go = Instantiate(gameController.GaurdAI, gameObject.transform.position, gameObject.transform.rotation);
                 go.GetComponent<GaurdController>().AssignedGaurdPoints = t;
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.1f);
                 go = Instantiate(gameController.GaurdAI, gameObject.transform.position, gameObject.transform.rotation);
                 go.GetComponent<GaurdController>().AssignedGaurdPoints = t;
                 go.GetComponent<GaurdController>().serialinversePatrol = true;
@@ -32,7 +32,7 @@ public class GaurdSpawner : MonoBehaviour
                 go = Instantiate(gameController.GaurdAI, gameObject.transform.position, gameObject.transform.rotation);
                 go.GetComponent<GaurdController>().AssignedGaurdPoints = t;
             }
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

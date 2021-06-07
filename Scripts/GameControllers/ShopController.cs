@@ -25,17 +25,15 @@ public class ShopController : MonoBehaviour
         InitializeResult();
         ShopPannel.SetActive(true);
         MoneyText.text = saveload.money.ToString();
-        GameObject[] shopContents = GameObject.FindGameObjectsWithTag("ShopContent");
-        foreach (GameObject g in shopContents)
-        {
-            Destroy(g);
-        }
-        InitializeGuns();
-        InitializeSkills();
+        
+        
         if (switchPannel == 0)
             GunsSectionButtonPressed();
         else
             SkillsSectionButtonPressed();
+
+        
+        
     }
 
     public void OnShopCloseButtonPressed()
@@ -57,6 +55,12 @@ public class ShopController : MonoBehaviour
         GunsPannel.SetActive(true);
         SkillPannel.SetActive(false);
         switchPannel = 0;
+        GameObject[] shopContents = GameObject.FindGameObjectsWithTag("ShopContent");
+        foreach (GameObject g in shopContents)
+        {
+            Destroy(g);
+        }
+        InitializeGuns();
     }
 
     public void SkillsSectionButtonPressed()
@@ -66,6 +70,12 @@ public class ShopController : MonoBehaviour
         GunsPannel.SetActive(false);
         SkillPannel.SetActive(true);
         switchPannel = 1;
+        GameObject[] shopContents = GameObject.FindGameObjectsWithTag("ShopContent");
+        foreach (GameObject g in shopContents)
+        {
+            Destroy(g);
+        }
+        InitializeSkills();
     }
 
     #region Guns

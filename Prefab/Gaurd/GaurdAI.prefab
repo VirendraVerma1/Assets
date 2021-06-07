@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1351299968}
   - component: {fileID: 1351299967}
   - component: {fileID: 1351299966}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: TerroristMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1712c2bfccc07cc43af0007325795544, type: 2}
+  - {fileID: 2100000, guid: 9fda7a5fb5b83b947b5c954aa3cb064f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -932,6 +932,7 @@ MonoBehaviour:
   - DeathFromBackHeadshot
   - FlyingBackDeath
   isDead: 0
+  MyMarker: {fileID: 1351299964}
 --- !u!136 &1498338669535832082
 CapsuleCollider:
   m_ObjectHideFlags: 0
