@@ -61,37 +61,44 @@ public class saveload : MonoBehaviour
 
     //-----------------ability things 
     //no need to save
-    public static int freezebuyprice=100;
-    public static int radarbuyprice=2000;
-    public static int shieldbuyprice=5000;
+    public static int radarbuyprice=100;
+    public static int shieldbuyprice=2000;
+    public static int freezebuyprice=5000;
+    public static int eaglebuyprice=10000;
 
-    public static int freezeupgradeWorkingprice=100;
-    public static int freezeupgradeCooldownprice=100;
-    public static int radarupgradeWorkingprice=200;
-    public static int radarupgradeCooldownprice=200;
-    public static int shieldupgradeWorkingprice=300;
-    public static int shieldupgradeCooldownprice=300;
+    public static int radarupgradeWorkingprice=100;
+    public static int radarupgradeCooldownprice=100;
+    public static int shieldupgradeWorkingprice=200;
+    public static int shieldupgradeCooldownprice=200;
+    public static int freezeupgradeWorkingprice=300;
+    public static int freezeupgradeCooldownprice=300;
+    public static int eagleupgradeWorkingprice=500;
+    public static int eagleupgradeCooddownprice=500;
 
     //save the data
     public static int radarWorkingTime = 10;
     public static int radarCooldownTime = 30;
-    public static int freezeWorkingTime = 5;
-    public static int freezeCooldownTime = 40;
     public static int shieldWorkingTime=10;
     public static int shieldCooldownTime=30;
+    public static int freezeWorkingTime = 5;
+    public static int freezeCooldownTime = 40;
+    public static int eagleCooldownTime=300;
+    public static int eagleWorkingTime=60;
     public static int doubleSprintWorkingTime=15;
     public static int doubleSprintCooldownTime=15;
 
-    public static bool isfreezebuyed=true;
-    public static bool isradarbuyed=false;
+    public static bool isfreezebuyed=false;
+    public static bool isradarbuyed=true;
     public static bool isshieldbuyed=false;
+    public static bool iseaglebuyed=false;
 
     public static int freezelevel=1;
     public static int radarlevel=1;
     public static int shieldlevel=1;
+    public static int eaglelevel=1;
+
 
     //end ability things
-
 
     public static string accountID = " ";
     public static string playerName = " ";
@@ -161,14 +168,18 @@ public class saveload : MonoBehaviour
         data.ShieldCooldownTime=shieldCooldownTime;
         data.DoubleSprintCooldownTime=doubleSprintCooldownTime;
         data.DoubleSprintWorkingTime=doubleSprintWorkingTime;
+        data.EagleCooddownTime=eagleCooldownTime;
+        data.EagleWorkingTime=eagleWorkingTime;
 
         data.IsFreezeBuyed=isfreezebuyed;
         data.IsRadarBuyed=isradarbuyed;
         data.IsShieldBuyed=isshieldbuyed;
+        data.IsEagleBuyed=iseaglebuyed;
 
         data.FreezeLevel=freezelevel;
         data.ShieldLevel=shieldlevel;
         data.RadarLevel=radarlevel;
+        data.EagleLevel=eaglelevel;
 
 
         bf.Serialize(file, data);
@@ -224,14 +235,18 @@ public class saveload : MonoBehaviour
             shieldWorkingTime=data.ShieldWorkingTime;
             doubleSprintWorkingTime=data.DoubleSprintWorkingTime;
             doubleSprintCooldownTime=data.DoubleSprintCooldownTime;
+            eagleWorkingTime=data.EagleWorkingTime;
+            eagleCooldownTime=data.EagleCooddownTime;
 
             isfreezebuyed=data.IsFreezeBuyed;
             isradarbuyed=data.IsRadarBuyed;
             isshieldbuyed=data.IsShieldBuyed;
+            iseaglebuyed=data.IsEagleBuyed;
 
             freezelevel=data.FreezeLevel;
             radarlevel=data.RadarLevel;
             shieldlevel=data.ShieldLevel;
+            eaglelevel=data.EagleLevel;
             
             file.Close();
 
@@ -323,13 +338,17 @@ class Notebook_Data
     public int ShieldCooldownTime;
     public int DoubleSprintWorkingTime;
     public int DoubleSprintCooldownTime;
+    public int EagleWorkingTime;
+    public int EagleCooddownTime;
 
     public bool IsFreezeBuyed;
     public bool IsRadarBuyed;
     public bool IsShieldBuyed;
+    public bool IsEagleBuyed;
 
     public int FreezeLevel;
     public int RadarLevel;
     public int ShieldLevel;
+    public int EagleLevel;
     
 }

@@ -2075,7 +2075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &42890407
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -4256,7 +4256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.6313726}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14567,7 +14567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cd1f5eb5a06d64a8d95c9b39d4f688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadSpecificLevelMy: 1
+  LoadSpecificLevelMy: 0
   terrainNu: 0
   GaurdAI: {fileID: 1498338669535832090, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
   MissionTerrain:
