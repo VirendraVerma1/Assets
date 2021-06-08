@@ -20,6 +20,13 @@ public class saveload : MonoBehaviour
     public static string serveradnet = "adnet.php";
     public static string serverinitialize = "initialize.php";
 
+    //stat variable not save
+    public static int totalGaurdStat;
+    public static int ammousedStat;
+    public static int knifeKilledStat;
+    public static int timetakenStat;
+    public static int accuracyStat;
+
     //Things for ------------------------ ShopMenu
     //no need to save
     public static int pistolBuyPrice = 50;

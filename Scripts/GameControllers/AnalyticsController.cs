@@ -12,9 +12,6 @@ public class AnalyticsController : MonoBehaviour
         StartCoroutine(UpdateThingsAtACertainTime());
     }
 
-    
-    
-
     #region account creation
 
     void CheackAccount()
@@ -55,6 +52,7 @@ public class AnalyticsController : MonoBehaviour
         {
             yield return new WaitForSeconds(15);
             saveload.timePlayed+=15;
+            saveload.timetakenStat+=15;
             saveload.Save();
             if(saveload.accountID!=" ")
             {

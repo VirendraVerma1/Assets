@@ -373,7 +373,7 @@ public class ShootBehaviour : GenericBehaviour
 		bool placeSparks = true, bool placeBulletHole = true)
 	{
 		Vector3 origin = gunMuzzle.position - gunMuzzle.right * 0.5f;
-
+		saveload.ammousedStat++;
 		// Draw the flash at the gun muzzle position.
 		muzzleFlash.SetActive(true);
 		muzzleFlash.transform.SetParent(gunMuzzle);

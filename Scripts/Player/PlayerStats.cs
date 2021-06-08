@@ -73,6 +73,7 @@ public class PlayerStats : MonoBehaviour
         }
         nearestGaurd.GetComponent<TargetHealth>().TakeDamageMy(200);
         KillFromKnifeButton.SetActive(false);
+        saveload.knifeKilledStat++;
     }
 
 

@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        
+        CalculationInitialize();
         InitializeMainMenu();
         ResetAllWonUI();
         isTimeFreeze = false;
@@ -594,6 +594,7 @@ public class GameController : MonoBehaviour
         AllBots=GameObject.FindGameObjectsWithTag("Gaurd");
         maxBotCount = AllBots.Length;
         botCount = maxBotCount;
+        saveload.totalGaurdStat=maxBotCount;
         StartCoroutine(CountForBots());
     }
 
@@ -636,7 +637,6 @@ public class GameController : MonoBehaviour
 
     [Header("Won")]
     public GameObject WonPannel;
-    public GameObject MissionTextGO;
     public GameObject CompleteTextGO;
     public GameObject RestartMissionButtonGO;
     public GameObject NextMissionButtonGO;
@@ -648,7 +648,6 @@ public class GameController : MonoBehaviour
     {
         WonPannel.SetActive(true);
         ControllerCanvas.SetActive(false);
-        MissionTextGO.SetActive(true);
         yield return new WaitForSeconds(1);
         CompleteTextGO.SetActive(true);
         yield return new WaitForSeconds(2);
@@ -663,11 +662,11 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         //cheack before show this button
         DoubleYourCashRewardAdButton.SetActive(true);
+        SetCalculation();
     }
 
     void ResetAllWonUI()
     {
-        MissionTextGO.SetActive(false);
         CompleteTextGO.SetActive(false);
         WonPannel.SetActive(false);
         RestartMissionButtonGO.SetActive(false);
@@ -1022,6 +1021,35 @@ public class GameController : MonoBehaviour
         RewardPannel.SetActive(false);
         saveload.money += (maxBotCount * 100);
         saveload.Save();
+    }
+
+    #endregion
+
+    #region StatCalculator
+    [Header("StatsCalculator")]
+    public Text TotalGaurdTextStat;
+    public Text AmmoUsedTextStat;
+    public Text KnifeKilledTextStat;
+    public Text TimeTakenTextStat;
+    public Text AccuracyTextStat;
+
+    void CalculationInitialize()
+    {
+        saveload.totalGaurdStat=0;
+        saveload.ammousedStat=0;
+        saveload.knifeKilledStat=0;
+        saveload.timetakenStat=0;
+        saveload.accuracyStat=0;
+    }
+
+    void SetCalculation()
+    {
+        saveload.accuracyStat=Mathf.RoundToInt((saveload.totalGaurdStat/((float)saveload.ammousedStat)))*100;
+        TotalGaurdTextStat.text="Total Gaurd : "+saveload.totalGaurdStat.ToString();
+        AmmoUsedTextStat.text="Ammo Used : "+saveload.ammousedStat.ToString();
+        KnifeKilledTextStat.text="Kife Killed : "+saveload.knifeKilledStat.ToString();
+        TimeTakenTextStat.text="Time Taken : "+saveload.timetakenStat.ToString()+" sec";
+        AccuracyTextStat.text="Accuracy : "+saveload.accuracyStat.ToString()+"%";
     }
 
     #endregion

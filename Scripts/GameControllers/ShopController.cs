@@ -32,8 +32,6 @@ public class ShopController : MonoBehaviour
         else
             SkillsSectionButtonPressed();
 
-        
-        
     }
 
     public void OnShopCloseButtonPressed()
@@ -390,17 +388,17 @@ public class ShopController : MonoBehaviour
     public GameObject SkillCard;
     public Transform ShopPannelSkillContainer;
     public string[] SkillsString;
+    public int[] skillOrder;
     public Sprite[] SkillsSprite;
     
 
     
     void InitializeSkills()
     {
+        foreach(var order in skillOrder){
+        int i=order;
         
-        int i=0;
-        foreach (var skillname in SkillsString)
-        {
-            
+            var skillname=SkillsString[i];
                 GameObject go = Instantiate(SkillCard);
                 go.transform.SetParent(ShopPannelSkillContainer);
                 go.transform.localScale = Vector3.one;
@@ -417,8 +415,8 @@ public class ShopController : MonoBehaviour
                     if (GetSkillBuyedOrNot(i))
                     {
                         go.transform.Find("SkillStats").transform.Find("SkillCost").transform.GetComponent<Text>().text = GetSkillUpgradeCooldownPrice(i).ToString();
-                        go.transform.Find("SkillStats").transform.Find("skillcooldown").gameObject.GetComponent<Text>().text=GetSkillCooldownTime(i).ToString();
-                        go.transform.Find("SkillStats").transform.Find("skillduration").gameObject.GetComponent<Text>().text=GetSkillWorkingTime(i).ToString();
+                        go.transform.Find("SkillStats").transform.Find("skillcooldown").gameObject.GetComponent<Text>().text=GetSkillCooldownTime(i).ToString()+" sec";
+                        go.transform.Find("SkillStats").transform.Find("skillduration").gameObject.GetComponent<Text>().text=GetSkillWorkingTime(i).ToString()+" sec";
                     }
                     else
                     {
@@ -450,11 +448,12 @@ public class ShopController : MonoBehaviour
                 {
                     go.transform.Find("BuySkillButton").gameObject.SetActive(false);
                     go.transform.Find("SkillStats").transform.Find("SkillCost").gameObject.SetActive(false);
-                    go.transform.Find("SkillStats").transform.Find("skillcooldown").gameObject.GetComponent<Text>().text=GetSkillCooldownTime(i).ToString();
-                    go.transform.Find("SkillStats").transform.Find("skillduration").gameObject.GetComponent<Text>().text=GetSkillWorkingTime(i).ToString();
+                    go.transform.Find("SkillStats").transform.Find("skillcooldown").gameObject.GetComponent<Text>().text=GetSkillCooldownTime(i).ToString()+" sec";
+                    go.transform.Find("SkillStats").transform.Find("skillduration").gameObject.GetComponent<Text>().text=GetSkillWorkingTime(i).ToString()+" sec";
                 }
             
-            i++;
+           
+        
         }
     }
 
@@ -518,6 +517,10 @@ public class ShopController : MonoBehaviour
         {
             saveload.isshieldbuyed = true;
         }
+        else if (n == 3)
+        {
+            saveload.iseaglebuyed = true;
+        }
         
     }
 
@@ -534,6 +537,9 @@ public class ShopController : MonoBehaviour
         else if (n == 2)
         {
             saveload.shieldCooldownTime -=1;
+        }else if (n == 3)
+        {
+            saveload.eagleCooldownTime -=1;
         }
         
     }
@@ -551,6 +557,9 @@ public class ShopController : MonoBehaviour
         else if (n == 2)
         {
             saveload.shieldWorkingTime += 1;
+        }else if (n == 3)
+        {
+            saveload.eagleWorkingTime += 1;
         }
         
     }
@@ -569,6 +578,10 @@ public class ShopController : MonoBehaviour
         {
             saveload.shieldlevel++;
         }
+        else if (n == 3)
+        {
+            saveload.eaglelevel++;
+        }
     }
 
 
@@ -581,6 +594,8 @@ public class ShopController : MonoBehaviour
         flag=saveload.isradarbuyed;
         else if(n==2)
         flag=saveload.isshieldbuyed;
+        else if(n==3)
+        flag=saveload.iseaglebuyed;
 
         return flag;
     }
@@ -594,6 +609,8 @@ public class ShopController : MonoBehaviour
         flag=saveload.radarbuyprice;
         else if(n==2)
         flag=saveload.shieldbuyprice;
+        else if(n==3)
+        flag=saveload.eaglebuyprice;
 
         return flag;
     }
@@ -607,6 +624,8 @@ public class ShopController : MonoBehaviour
         flag=saveload.radarlevel;
         else if(n==2)
         flag=saveload.shieldlevel;
+        else if(n==3)
+        flag=saveload.eaglelevel;
 
         return flag;
     }
@@ -625,6 +644,9 @@ public class ShopController : MonoBehaviour
         else if(n==2)
         {
             flag=saveload.shieldCooldownTime;
+        }else if(n==3)
+        {
+            flag=saveload.eagleCooldownTime;
         }
 
         return flag;
@@ -644,6 +666,9 @@ public class ShopController : MonoBehaviour
         else if(n==2)
         {
             flag=saveload.shieldWorkingTime;
+        }else if(n==3)
+        {
+            flag=saveload.eagleWorkingTime;
         }
 
         return flag;
@@ -662,6 +687,9 @@ public class ShopController : MonoBehaviour
         else if(n==2)
         {
             flag=saveload.shieldlevel*saveload.shieldupgradeCooldownprice;
+        }else if(n==3)
+        {
+            flag=saveload.eaglelevel*saveload.eagleupgradeCooddownprice;
         }
 
         return flag;
@@ -680,6 +708,9 @@ public class ShopController : MonoBehaviour
         else if(n==2)
         {
             flag=saveload.shieldlevel*saveload.shieldupgradeWorkingprice;
+        }else if(n==2)
+        {
+            flag=saveload.eaglelevel*saveload.eagleupgradeWorkingprice;
         }
 
         return flag;
