@@ -955,7 +955,7 @@ public class GameController : MonoBehaviour
         GameObject playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
         ControllerCanvas.SetActive(true);
         AbortMissionPannel.SetActive(false);
-       player.transform.position = playerSpawnPoint.transform.position;
+        player.transform.position = playerSpawnPoint.transform.position;
         player.transform.rotation = playerSpawnPoint.transform.rotation;
     }
 
@@ -1027,6 +1027,7 @@ public class GameController : MonoBehaviour
 
     #region StatCalculator
     [Header("StatsCalculator")]
+    public GameObject StatPannel;
     public Text TotalGaurdTextStat;
     public Text AmmoUsedTextStat;
     public Text KnifeKilledTextStat;
@@ -1035,6 +1036,7 @@ public class GameController : MonoBehaviour
 
     void CalculationInitialize()
     {
+        StatPannel.SetActive(false);
         saveload.totalGaurdStat=0;
         saveload.ammousedStat=0;
         saveload.knifeKilledStat=0;
@@ -1042,8 +1044,9 @@ public class GameController : MonoBehaviour
         saveload.accuracyStat=0;
     }
 
-    void SetCalculation()
+    public void SetCalculation()
     {
+        StatPannel.SetActive(true);
         saveload.accuracyStat=Mathf.RoundToInt((saveload.totalGaurdStat/((float)saveload.ammousedStat)))*100;
         TotalGaurdTextStat.text="Total Gaurd : "+saveload.totalGaurdStat.ToString();
         AmmoUsedTextStat.text="Ammo Used : "+saveload.ammousedStat.ToString();

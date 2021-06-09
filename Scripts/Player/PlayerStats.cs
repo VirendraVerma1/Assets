@@ -148,6 +148,7 @@ public class PlayerStats : MonoBehaviour
                 Cursor.visible = true;
                 ct.isUIOn = true;
                 GameOverPannel.SetActive(true);
+                gameController.SetCalculation();
             }
         }  
     }
