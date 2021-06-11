@@ -151,13 +151,23 @@ public class GameController : MonoBehaviour
     public bool isShieldActivateforclick = false;
     public bool isShieldActivateforclickTemp=false;
     float shieldTimer;
+    public GameObject LockedShieldAbility;
 
     void InitializeShieldAbility()
     {
-        ShieldButton.GetComponent<Image>().sprite = NormalShieldIcon;
-        FillRateForShield.fillAmount = 0;
-        isShieldActivateforclickTemp = true;
-        isShieldActivateforclick=true;
+        if(saveload.isshieldbuyed)
+        {
+            ShieldButton.GetComponent<Image>().sprite = NormalShieldIcon;
+            FillRateForShield.fillAmount = 0;
+            isShieldActivateforclickTemp = true;
+            isShieldActivateforclick=true;
+        }
+        else
+        {
+            ShieldButton.GetComponent<Image>().sprite = NormalShieldIcon;
+            FillRateForShield.fillAmount = 0;
+            LockedShieldAbility.SetActive(true);
+        }
     }
 
     public void OnShieldAbilityButtonPressed()
@@ -201,14 +211,24 @@ public class GameController : MonoBehaviour
     public Sprite WorkingRadarSprite;
     public Image FillRateForRadar;
     bool isRadarActiveForClick = false;
+    public GameObject LockedRadarAbility;
     //system
     //when tap on radar then change the radar icon to working and after certain time startrefilling it
 
     void InitializeRadarIcon()
     {
-        RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
-        FillRateForRadar.fillAmount = 0;
-        isRadarActiveForClick = true;
+        if(saveload.isradarbuyed)
+        {
+            RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
+            FillRateForRadar.fillAmount = 0;
+            isRadarActiveForClick = true;
+        }
+        else
+        {
+            RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
+            FillRateForRadar.fillAmount = 0;
+            LockedRadarAbility.SetActive(true);
+        }
     }
 
     public void OnRadarButtonPressed()
@@ -299,6 +319,7 @@ public class GameController : MonoBehaviour
     public Sprite NormalFreezeSprite;
     public Sprite WorkingFreezeSprite;
     public Image FillRateForFrezze;
+    public GameObject LockedFreezeAbility;
 
     bool isFreezeActiveForClick = false;
 
@@ -307,9 +328,18 @@ public class GameController : MonoBehaviour
 
     void InitializeFreezeIcon()
     {
-        FreezeTimeButton.GetComponent<Image>().sprite = NormalFreezeSprite;
-        FillRateForFrezze.fillAmount = 0;
-        isFreezeActiveForClick = true;
+        if(saveload.isfreezebuyed)
+        {
+            FreezeTimeButton.GetComponent<Image>().sprite = NormalFreezeSprite;
+            FillRateForFrezze.fillAmount = 0;
+            isFreezeActiveForClick = true;
+        }
+        else
+        {
+            FreezeTimeButton.GetComponent<Image>().sprite = NormalFreezeSprite;
+            FillRateForFrezze.fillAmount = 0;
+            LockedFreezeAbility.SetActive(true);
+        } 
     }
 
 
