@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -84,7 +84,10 @@ public class GaurdController : MonoBehaviour
         }
         else if(saveload.currentLevel<10)
         {
-            randomness = Random.Range(1, 60);
+            randomness = Random.Range(1, 80);
+        }else
+        {
+            randomness = Random.Range(1, 100); 
         }
 
         if (randomness < 60)
@@ -102,7 +105,7 @@ public class GaurdController : MonoBehaviour
             gdamage = GaurdsDamage[0];
             ghealth = GaurdsHealth[0];
         }
-        else if (randomness < 70)
+        else if (randomness < 80)
         {
             //spawn melee
             GaurdFBX[3].SetActive(true);
@@ -172,11 +175,23 @@ public class GaurdController : MonoBehaviour
     public Transform AssignedGaurdPoints;
 
     private int gaurdpatrolindex=0;
+    private int totalPatrolLength=0;
+    private Vector3 singlePatrolRotation=Vector3.zero;
+    private bool firstTimeFace=false;
 
     void PatrolInitialize()
     {
         CheckAndSetPatrol();
         gameObject.GetComponent<NavMeshMovementOnClick>().SettargetPosition(buttlerTargetPosition);
+        totalPatrolLength=AssignedGaurdPoints.transform.childCount;
+        firstTimeFace=false;
+        if(totalPatrolLength==1)
+        {
+            foreach (Transform item in AssignedGaurdPoints)
+            {
+                singlePatrolRotation=item.transform.eulerAngles;
+            }
+        }
     }
 
     void CheckAndSetPatrol()
@@ -287,6 +302,12 @@ public class GaurdController : MonoBehaviour
                 anim.SetBool("isRunning", false);
                 anim.SetBool("isAttacking", false);
 
+                if(firstTimeFace==false && totalPatrolLength==1)
+                {
+                    gameObject.transform.eulerAngles=singlePatrolRotation;
+                   
+                }
+
                 if (!setNewTarget)//set new Waypoint
                 {
                     setNewTarget = true;
@@ -310,7 +331,7 @@ public class GaurdController : MonoBehaviour
             //print(dis);
             if (dis > minDistanceAttack)//run
             {
-
+                firstTimeFace = true;
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 //gameObject.GetComponent<NavMeshAgent>().speed = botOnRunSpeed;
                 //gameObject.GetComponent<NavMeshAgent>().acceleration = botOnRunAcceleration;

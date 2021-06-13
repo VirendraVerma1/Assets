@@ -27,6 +27,7 @@ public class AndroidController : MonoBehaviour
         OnEagleCameraButtonPressed();
     }
 
+
     public void OnAndroidPickButtonPressed()
     {
         GameObject[] go=GameObject.FindGameObjectsWithTag("Weapons");

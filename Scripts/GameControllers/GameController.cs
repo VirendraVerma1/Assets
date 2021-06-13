@@ -1162,6 +1162,13 @@ public class GameController : MonoBehaviour
 
     #endregion
 
+    
+    public void OnMainMenuButtonPressed()
+    {
+        SettingPannel.SetActive(false);
+        StartLoadingScreen("HuntGame");
+    }
+
     public void KillAllButton()
     {
         GameObject[] go = GameObject.FindGameObjectsWithTag("Gaurd");
