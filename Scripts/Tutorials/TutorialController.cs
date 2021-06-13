@@ -354,7 +354,7 @@ public class TutorialController : MonoBehaviour
         DeactivateAll();
         TutorialPannel.SetActive(false);
         saveload.isTutorial=false;
-       // saveload.Save();
+        saveload.Save();
     }
 
     #endregion

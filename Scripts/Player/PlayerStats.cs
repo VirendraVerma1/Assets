@@ -149,6 +149,7 @@ public class PlayerStats : MonoBehaviour
                 ct.isUIOn = true;
                 GameOverPannel.SetActive(true);
                 gameController.SetCalculation();
+                FindObjectOfType<AdScript>().ShowIntertesialAdsSwitch();
             }
         }  
     }
@@ -245,4 +246,6 @@ public class PlayerStats : MonoBehaviour
     }
 
     #endregion
+
+
 }
