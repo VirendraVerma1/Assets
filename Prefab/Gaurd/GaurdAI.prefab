@@ -878,6 +878,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 1a1faf7b8c25257448ab9d77bd37f665, type: 2}
   - {fileID: 9100000, guid: 278f079f37f426d4093a28a6f62bc289, type: 2}
   - {fileID: 9100000, guid: 8a781a311b0c3c74f92550f7944ad38b, type: 2}
+  ParticleEffectForSucideBomber: {fileID: 8488504372143312977, guid: 121c05547913c0e479c56ba390a7d1ef, type: 3}
   GaurdsminDistanceOnAttack:
   - 7
   - 1.2

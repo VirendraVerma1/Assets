@@ -41,6 +41,7 @@ public class GaurdController : MonoBehaviour
     public GameObject[] GaurdFBX;
     public Avatar[] GaurdAvatar;
     public RuntimeAnimatorController[] GaurdAnimatorController;
+    public GameObject ParticleEffectForSucideBomber;
 
     [Header("Gaurd Stats")]
     public float[] GaurdsminDistanceOnAttack;
@@ -78,17 +79,17 @@ public class GaurdController : MonoBehaviour
     {
         
         int randomness = Random.Range(1, 100);
-        if(saveload.currentLevel<5)
-        {
-            randomness = Random.Range(1, 60);
-        }
-        else if(saveload.currentLevel<10)
-        {
-            randomness = Random.Range(1, 80);
-        }else
-        {
-            randomness = Random.Range(1, 100); 
-        }
+        // if(saveload.currentLevel<5)
+        // {
+        //     randomness = Random.Range(1, 60);
+        // }
+        // else if(saveload.currentLevel<10)
+        // {
+        //     randomness = Random.Range(1, 80);
+        // }else
+        // {
+        //     randomness = Random.Range(1, 100); 
+        // }
 
         if (randomness < 60)
         {
@@ -150,6 +151,7 @@ public class GaurdController : MonoBehaviour
             gfireRate = GaurdsFireRate[1];
             gdamage = GaurdsDamage[1];
             ghealth = GaurdsHealth[1];
+            
         }
     }
 
@@ -190,6 +192,8 @@ public class GaurdController : MonoBehaviour
             foreach (Transform item in AssignedGaurdPoints)
             {
                 singlePatrolRotation=item.transform.eulerAngles;
+                singlePatrolRotation.x=0;
+                singlePatrolRotation.z=0;
             }
         }
     }
@@ -269,7 +273,7 @@ public class GaurdController : MonoBehaviour
         
         if (gameObject.GetComponent<FieldOfView>().isPlayer == false || player.tag == "Untagged")
         {
-            if (Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) > 1f)
+            if (Vector3.Distance(gameObject.transform.position, buttlerTargetPosition) > 1.1f)
             {
                 //walk
                 gameObject.GetComponent<NavMeshAgent>().enabled = true;
@@ -670,6 +674,7 @@ public class GaurdController : MonoBehaviour
     public string[] DeathAnimationsNames;
     public bool isDead = false;
     public GameObject MyMarker;
+    GameObject CurrentParticleEffect;
     public void SetDead()
     {
         isDead = true;
@@ -683,6 +688,8 @@ public class GaurdController : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.transform.Find("Sphere").gameObject.SetActive(false);
         MyMarker.SetActive(false);
+        if(gaurdType=="Bomber")
+        CurrentParticleEffect=Instantiate(ParticleEffectForSucideBomber,gameObject.transform.position,gameObject.transform.rotation);
         /*
         GameObject MeshThings = gameObject.transform.Find("enemy 1").gameObject;
         MeshThings.transform.parent = null;
@@ -700,9 +707,11 @@ public class GaurdController : MonoBehaviour
 
     IEnumerator DisableBot()
     {
-        yield return new WaitForSeconds(25);
+        yield return new WaitForSeconds(15);
+        
+        if(gaurdType=="Bomber")
+        Destroy(CurrentParticleEffect);
         Destroy(gameObject);
-
     }
 
     #endregion

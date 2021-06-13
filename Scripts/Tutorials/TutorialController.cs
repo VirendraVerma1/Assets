@@ -41,10 +41,17 @@ public class TutorialController : MonoBehaviour
     public GameObject FreezeSkill;
     public GameObject FireButton;
     public GameObject EagleButton;
+    public GameObject KnifeButton;
     public float minDistance = 5;
 
     //second move
     public Transform MoveToSecondPosition;
+
+    //third move
+    public Transform MoveToThirdPosition;
+
+    //fourth move
+    public Transform MoveToFourthPosition;
 
     int step = 0;
     GameObject Player=null;
@@ -244,12 +251,12 @@ public class TutorialController : MonoBehaviour
             if (newBotCount < (oldbotCount-1))
                 break;
         }
-        ShowEagleButton();
+        ShowThirdMarker();
     }
 
     #endregion
 
-    #region Step7 use eagle vission
+    #region Step7 use eagle vission (currently not using)
 
     void ShowEagleButton()
     {
@@ -266,6 +273,92 @@ public class TutorialController : MonoBehaviour
 
     #endregion
 
+    #region Step8 use move towards Third Marker
+
+    void ShowThirdMarker()
+    {
+        MarkerPrefab.SetActive(true);
+        MarkerPrefab.transform.position = MoveToThirdPosition.position;
+        markerTransform = MoveToThirdPosition;
+        StartCoroutine(CalculateDistanceFromMarkerAndChangeThird());
+    }
+
+    IEnumerator CalculateDistanceFromMarkerAndChangeThird()
+    {
+        float distance = 999999;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (Player == null)
+            {
+                Player = GameObject.FindGameObjectWithTag("Player");
+            }
+            else
+            {
+                distance = Vector3.Distance(Player.transform.position, markerTransform.position);
+                if (distance < ((float)minDistance/2))
+                    break;
+            }
+        }
+        MarkerPrefab.SetActive(false);
+        ShowFourthMarker();
+    }
+
+    #endregion
+
+    #region Step9 use move towards Fourth Marker
+
+    void ShowFourthMarker()
+    {
+        MarkerPrefab.SetActive(true);
+        MarkerPrefab.transform.position = MoveToFourthPosition.position;
+        markerTransform = MoveToFourthPosition;
+        StartCoroutine(CalculateDistanceFromMarkerAndChangeFourth());
+    }
+
+    IEnumerator CalculateDistanceFromMarkerAndChangeFourth()
+    {
+        float distance = 999999;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (Player == null)
+            {
+                Player = GameObject.FindGameObjectWithTag("Player");
+            }
+            else
+            {
+                distance = Vector3.Distance(Player.transform.position, markerTransform.position);
+                if (distance < ((float)minDistance/4))
+                    break;
+            }
+        }
+        MarkerPrefab.SetActive(false);
+        ShowKnifeButton();
+    }
+
+    #endregion
+
+    #region Step10 Use Knife to kill last gaurd
+
+    void ShowKnifeButton()
+    {
+        DeactivateAll();
+        TutorialPannel.SetActive(true);
+        MessageText.text = "Use your Knife to kill gaurd";
+        KnifeButton.SetActive(true);
+    }
+
+    public void OnKnifeButtonPressed()
+    {
+        DeactivateAll();
+        TutorialPannel.SetActive(false);
+        saveload.isTutorial=false;
+       // saveload.Save();
+    }
+
+    #endregion
+
     #region common functions
 
     void DeactivateAll()
@@ -275,6 +368,7 @@ public class TutorialController : MonoBehaviour
         FreezeSkill.SetActive(false);
         FireButton.SetActive(false);
         EagleButton.SetActive(false);
+        KnifeButton.SetActive(false);
     }
 
     #endregion
