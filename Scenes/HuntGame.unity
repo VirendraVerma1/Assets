@@ -787,11 +787,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.9, y: -456.00003}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -62.4, y: 129.6}
   m_SizeDelta: {x: 10, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &24880935
@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAndroid: 1
-  fixedInputField: {fileID: 1217114522}
+  fixedInputField: {fileID: 0}
   movementSpeed: 10
   fastMovementSpeed: 100
   freeLookSensitivity: 0.5
@@ -1729,7 +1729,7 @@ RectTransform:
   - {fileID: 1628545121}
   - {fileID: 1612356455}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2150,7 +2150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &42890407
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -2173,10 +2173,10 @@ Terrain:
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: b1f6183d882e86c4f941a8924ea6ada2, type: 2}
   m_TreeDistance: 100
-  m_TreeBillboardDistance: 5
+  m_TreeBillboardDistance: 20
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 100
-  m_DetailObjectDistance: 20
+  m_DetailObjectDistance: 30
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -2658,7 +2658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &66790391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2666,17 +2666,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66790390}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1767296936}
-  m_Father: {fileID: 261800449}
-  m_RootOrder: 15
+  - {fileID: 1117373899}
+  - {fileID: 721274055}
+  m_Father: {fileID: 1355161410}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 178.3, y: 281}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 114.7, y: -258.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66790392
@@ -2723,9 +2725,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 478210676}
-        m_TargetAssemblyTypeName: AndroidController, Assembly-CSharp
-        m_MethodName: OnEagleCameraButtonPressed
+      - m_Target: {fileID: 478210677}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: OnAndroidEaglePetButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7191,7 +7193,6 @@ RectTransform:
   - {fileID: 591734867}
   - {fileID: 1448200417}
   - {fileID: 759758953}
-  - {fileID: 66790391}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10308,7 +10309,7 @@ RectTransform:
   m_Children:
   - {fileID: 1693164406}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -11795,11 +11796,11 @@ RectTransform:
   - {fileID: 1728327562}
   - {fileID: 359697342}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -180, y: 84}
+  m_AnchoredPosition: {x: 124.6, y: 129.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &394983811
@@ -14924,7 +14925,7 @@ MonoBehaviour:
   controlsTutorial: {fileID: 2172013059290787336}
   aimBehaviour: {fileID: 2172013060282489009}
   moveBehaviour: {fileID: 2172013060282489008}
-  isAndroid: 0
+  isAndroid: 1
   MainCamera: {fileID: 2172013060899360780}
   EagleCamera: {fileID: 25044361}
   AndroidControllers:
@@ -14953,7 +14954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadSpecificLevelMy: 1
-  terrainNu: 5
+  terrainNu: 0
   GaurdAI: {fileID: 1498338669535832090, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
   MissionTerrain:
   - {fileID: 42890406}
@@ -14996,7 +14997,12 @@ MonoBehaviour:
   NormalFreezeSprite: {fileID: 21300000, guid: b516190a444b28d43b75ffbf505e8f35, type: 3}
   WorkingFreezeSprite: {fileID: 21300000, guid: 8f8b991e36306bc41a00038b5ff99b8c, type: 3}
   FillRateForFrezze: {fileID: 1728327563}
-  LockedFreezeAbility: {fileID: 794358588}
+  LockedFreezeAbility: {fileID: 359697341}
+  EaglePetButton: {fileID: 66790390}
+  NormalEagleSprite: {fileID: 21300000, guid: 827c9cd4a3943534f909ac6473e17288, type: 3}
+  WorkingEagleSprite: {fileID: 21300000, guid: f588d850485d0ae479d73cf3bd0b7b00, type: 3}
+  FillRateForEagle: {fileID: 1117373900}
+  LockedEagleAbility: {fileID: 721274054}
   TickSprite: {fileID: 21300000, guid: 30f2e9893f9d32e48a36eb822b33610d, type: 3}
   UntickSprite: {fileID: 21300000, guid: 77f08206d07fcbb428f3514241189f29, type: 3}
   SettingPannel: {fileID: 31609395}
@@ -15090,7 +15096,7 @@ MonoBehaviour:
   SkillsSprite:
   - {fileID: 21300000, guid: 8f8b991e36306bc41a00038b5ff99b8c, type: 3}
   - {fileID: 21300000, guid: 7f52f9bdcc05ba3448c0417ccb8b1b11, type: 3}
-  - {fileID: 21300000, guid: 5485e2f56028a3c4cb54f5caa167377e, type: 3}
+  - {fileID: 21300000, guid: 8b6dff23fac14fa4abe8d8b9c380801c, type: 3}
   - {fileID: 21300000, guid: 0c6271a290ef75b4c97d58746c86c5b8, type: 3}
   MySelectedWeapon: {fileID: 2052245002}
   MainMenuSelectedWeaponImage: {fileID: 372654506}
@@ -17074,7 +17080,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -17300,11 +17306,11 @@ RectTransform:
   - {fileID: 1490336841}
   - {fileID: 794358589}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -43, y: 81}
+  m_AnchoredPosition: {x: -125.4, y: 129.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &540261480
@@ -18180,7 +18186,7 @@ RectTransform:
   m_Children:
   - {fileID: 18897641}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -21288,7 +21294,7 @@ MonoBehaviour:
   MinDistance: 3
   speed: 5
   damping: 1
-  TouchField: {fileID: 1635458721}
+  TouchField: {fileID: 0}
   RedMarkerForGaurds: {fileID: 2100000, guid: b120deb8c5fcb2f4baa01bbd33307576, type: 2}
   myCamera: {fileID: 25044369}
 --- !u!95 &688241396
@@ -22166,6 +22172,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &721274054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 721274055}
+  - component: {fileID: 721274057}
+  - component: {fileID: 721274056}
+  m_Layer: 0
+  m_Name: Locked (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &721274055
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721274054}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 66790391}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 809.89996, y: -692.10004}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &721274056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721274054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.90588236}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 84487d73ca4b791498332d8f6858417f, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &721274057
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721274054}
+  m_CullTransparentMesh: 1
 --- !u!1 &724169697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7951846873721124283, guid: 8377d749b42215248af7586860c09b86, type: 3}
@@ -24083,7 +24164,7 @@ RectTransform:
   m_Children:
   - {fileID: 674958652}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -27330,7 +27411,7 @@ RectTransform:
   - {fileID: 438739671}
   - {fileID: 2132305833}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -32179,7 +32260,7 @@ RectTransform:
   m_Children:
   - {fileID: 331258612}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -35759,6 +35840,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114602907}
   m_CullTransparentMesh: 1
+--- !u!1 &1117373898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1117373899}
+  - component: {fileID: 1117373901}
+  - component: {fileID: 1117373900}
+  m_Layer: 0
+  m_Name: Image (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1117373899
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117373898}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 66790391}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 809.89996, y: -692.10004}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1117373900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117373898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.46666667}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 84487d73ca4b791498332d8f6858417f, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 0
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1117373901
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117373898}
+  m_CullTransparentMesh: 1
 --- !u!1 &1119235600
 GameObject:
   m_ObjectHideFlags: 0
@@ -38656,7 +38812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1217114521
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38691,6 +38847,7 @@ MonoBehaviour:
   TouchDist: {x: 0, y: 0}
   PointerOld: {x: 0, y: 0}
   Pressed: 0
+  isThisFieldOn: 0
 --- !u!114 &1217114523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42425,6 +42582,7 @@ RectTransform:
   - {fileID: 288549980}
   - {fileID: 502058067}
   - {fileID: 825712573}
+  - {fileID: 66790391}
   - {fileID: 394983810}
   - {fileID: 1966480402}
   - {fileID: 540261479}
@@ -43176,10 +43334,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f710250abab6f24a954bdf3c3c1ac64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 85955
+  seed: 31756
   terrains:
-  - {fileID: 116478239}
-  treeTypes: []
+  - {fileID: 42890408}
+  treeTypes:
+  - enabled: 1
+    name: baum ld0 mobile
+    seed: 44429
+    probability: 10
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks: []
+    instanceCount: 205
+    prefabs:
+    - index: 0
+      probability: 100
+      prefab: {fileID: 100000, guid: d7ebb2b5789a2be45b7bd26b3b9d50aa, type: 3}
+    distance: 5
+    scaleRange: {x: 0.8, y: 1.2}
+    sinkAmount: 0
+  - enabled: 1
+    name: baum ld1 mobile
+    seed: 77117
+    probability: 10
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks: []
+    instanceCount: 218
+    prefabs:
+    - index: 1
+      probability: 100
+      prefab: {fileID: 100000, guid: 23062208c1e1ace4d9e5270be8b68dcb, type: 3}
+    distance: 5
+    scaleRange: {x: 0.8, y: 1.2}
+    sinkAmount: 0
+  - enabled: 1
+    name: baum ld2 mobile
+    seed: 89105
+    probability: 10
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks: []
+    instanceCount: 199
+    prefabs:
+    - index: 2
+      probability: 100
+      prefab: {fileID: 100000, guid: 78fdf95c4c2d7384a8957ee310d2b067, type: 3}
+    distance: 5
+    scaleRange: {x: 0.8, y: 1.2}
+    sinkAmount: 0
   grassPrefabs:
   - enabled: 1
     name: grass
@@ -43191,7 +43403,7 @@ MonoBehaviour:
     slopeRange: {x: 0, y: 60}
     curvatureRange: {x: 0, y: 1}
     layerMasks: []
-    instanceCount: 260508
+    instanceCount: 65536
     index: 0
     type: 1
     renderAsBillboard: 0
@@ -43208,9 +43420,9 @@ MonoBehaviour:
     perservePrefabLayer: 1
     treeLightProbes: 0
     treeDistance: 100
-    billboardStart: 5
+    billboardStart: 20
     maxMeshTrees: 100
-    grassDistance: 20
+    grassDistance: 30
     grassDensity: 1
     windStrength: 0.044
     windSpeed: 0.26
@@ -43224,8 +43436,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   autoRespawnTrees: 0
   maxTerrainHeight: 1000
-  detailResolution: 128
-  detailResolutionIndex: 0
+  detailResolution: 256
+  detailResolutionIndex: 1
   grassPatchSize: 16
   grassPatchSizeIndex: 1
   tempColliders: []
@@ -51285,6 +51497,7 @@ MonoBehaviour:
   TouchDist: {x: 0, y: 0}
   PointerOld: {x: 0, y: 0}
   Pressed: 0
+  isThisFieldOn: 0
 --- !u!114 &1635458722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55557,6 +55770,7 @@ MonoBehaviour:
   TouchDist: {x: 0, y: 0}
   PointerOld: {x: 0, y: 0}
   Pressed: 0
+  isThisFieldOn: 0
 --- !u!114 &1807742904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56872,7 +57086,7 @@ RectTransform:
   m_Children:
   - {fileID: 816783056}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -60977,11 +61191,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110.40006, y: -456.00003}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 63, y: 129.6}
   m_SizeDelta: {x: 10, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966480403
@@ -64433,11 +64647,11 @@ RectTransform:
   - {fileID: 302851357}
   - {fileID: 1120555110}
   m_Father: {fileID: 1355161410}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 93, y: 82}
+  m_AnchoredPosition: {x: 0, y: 129.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086084831
@@ -90971,11 +91185,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAndroid: 0
   walkSpeed: 0.11
-  runSpeed: 0.7
-  sprintSpeed: 2
+  runSpeed: 0.8
+  sprintSpeed: 1.5
   speedDampTime: 0.1
   jumpButton: Jump
-  jumpHeight: 1.5
+  jumpHeight: 20
   jumpIntertialForce: 10
 --- !u!114 &2172013060282489009
 MonoBehaviour:

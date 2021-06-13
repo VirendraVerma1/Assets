@@ -78,6 +78,15 @@ public class GaurdController : MonoBehaviour
     {
         
         int randomness = Random.Range(1, 100);
+        if(saveload.currentLevel<5)
+        {
+            randomness = Random.Range(1, 60);
+        }
+        else if(saveload.currentLevel<10)
+        {
+            randomness = Random.Range(1, 60);
+        }
+
         if (randomness < 60)
         {
             //spawn normal
@@ -95,18 +104,19 @@ public class GaurdController : MonoBehaviour
         }
         else if (randomness < 70)
         {
-            //spawn bomber
-            GaurdFBX[1].SetActive(true);
-            GaurdModel = GaurdFBX[1];
-            animcontroller = GaurdAnimatorController[1];
-            SelectedAvtar = GaurdAvatar[1];
-            gaurdType = GaurTypeAll[1];
-            minDistanceAttack = GaurdsminDistanceOnAttack[1];
-            walkSpeed = GaurdswalkSpeed[1];
-            runSpeed = GaurdsRunSpeed[1];
-            gfireRate = GaurdsFireRate[1];
-            gdamage = GaurdsDamage[1];
-            ghealth = GaurdsHealth[1];
+            //spawn melee
+            GaurdFBX[3].SetActive(true);
+            GaurdModel = GaurdFBX[3];
+            animcontroller = GaurdAnimatorController[3];
+            SelectedAvtar = GaurdAvatar[3];
+            gaurdType = GaurTypeAll[3];
+            minDistanceAttack = GaurdsminDistanceOnAttack[3];
+            walkSpeed = GaurdswalkSpeed[3];
+            runSpeed = GaurdsRunSpeed[3];
+            gfireRate = GaurdsFireRate[3];
+            gdamage = GaurdsDamage[3];
+            ghealth = GaurdsHealth[3];
+            
         }
         else if (randomness < 1)
         {
@@ -125,18 +135,18 @@ public class GaurdController : MonoBehaviour
         }
         else if (randomness < 100)
         {
-            //spawn melee
-            GaurdFBX[3].SetActive(true);
-            GaurdModel = GaurdFBX[3];
-            animcontroller = GaurdAnimatorController[3];
-            SelectedAvtar = GaurdAvatar[3];
-            gaurdType = GaurTypeAll[3];
-            minDistanceAttack = GaurdsminDistanceOnAttack[3];
-            walkSpeed = GaurdswalkSpeed[3];
-            runSpeed = GaurdsRunSpeed[3];
-            gfireRate = GaurdsFireRate[3];
-            gdamage = GaurdsDamage[3];
-            ghealth = GaurdsHealth[3];
+            //spawn bomber
+            GaurdFBX[1].SetActive(true);
+            GaurdModel = GaurdFBX[1];
+            animcontroller = GaurdAnimatorController[1];
+            SelectedAvtar = GaurdAvatar[1];
+            gaurdType = GaurTypeAll[1];
+            minDistanceAttack = GaurdsminDistanceOnAttack[1];
+            walkSpeed = GaurdswalkSpeed[1];
+            runSpeed = GaurdsRunSpeed[1];
+            gfireRate = GaurdsFireRate[1];
+            gdamage = GaurdsDamage[1];
+            ghealth = GaurdsHealth[1];
         }
     }
 

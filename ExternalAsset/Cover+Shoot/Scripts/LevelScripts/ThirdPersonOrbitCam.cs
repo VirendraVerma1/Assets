@@ -87,6 +87,20 @@ public class ThirdPersonOrbitCam : MonoBehaviour
         FullScreenTouchPannel.SetActive(true);
     }
 
+	// Set custom Field of View.
+	public void SetSniperFOV(float customFOV)
+	{
+		this.targetFOV = customFOV;
+		cam.GetComponent<Camera>().fieldOfView=this.targetFOV;
+	}
+
+	// Reset Field of View to default value.
+	public void ResetSniperFOV()
+	{
+		this.targetFOV = defaultFOV;
+		cam.GetComponent<Camera>().fieldOfView=this.targetFOV;
+	}
+
     //--end my functions
 
 

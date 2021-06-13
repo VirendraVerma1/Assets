@@ -35,18 +35,23 @@ public class GameController : MonoBehaviour
         InitializeMainMenu();
         ResetAllWonUI();
         isTimeFreeze = false;
+        //InitializeAfterStartMission();
+        InitializeSettings();      
+    }
+
+    void InitializeAfterStartMission()
+    {
         InitializeRadarIcon();
         InitializeFreezeIcon();
         InitializeShieldAbility();
         InitializeDoubleSpeedAbility();
-        InitializeSettings();
-        
+        InitializeEagleIcon();
     }
 
     #region Ability
 
     [Header("Ability")]
-    string[] abilityName = { "Freeze", "Radar", "Shield" };
+    string[] abilityName = { "Freeze", "Radar", "Shield","Eagle" };
     string currentAbilityName = "";
     public Material BlueTransparent;
     public Material RedTransparent;
@@ -62,6 +67,7 @@ public class GameController : MonoBehaviour
         ShieldButton.SetActive(false);
         RadarButton.SetActive(false);
         FreezeTimeButton.SetActive(false);
+        EaglePetButton.SetActive(false);
         if (currentAbilityName == abilityName[0])
         {
             FreezeTimeButton.SetActive(true);
@@ -73,12 +79,16 @@ public class GameController : MonoBehaviour
         else if (currentAbilityName == abilityName[2])
         {
             ShieldButton.SetActive(true);
+        }else if (currentAbilityName == abilityName[3])
+        {
+            EaglePetButton.SetActive(true);
         }
         else
         {
             ShieldButton.SetActive(true);
             RadarButton.SetActive(true);
             FreezeTimeButton.SetActive(true);
+            EaglePetButton.SetActive(true);
         }
     }
 
@@ -87,6 +97,7 @@ public class GameController : MonoBehaviour
         ShieldButton.SetActive(true);
         RadarButton.SetActive(true);
         FreezeTimeButton.SetActive(true);
+        EaglePetButton.SetActive(true);
     }
 
     #region DoubleSpeed Ability  //dont forget to initize this on the start
@@ -441,6 +452,71 @@ public class GameController : MonoBehaviour
 
     #endregion
 
+    #region Eagle Ability
+
+    [Header("Eagle Ability")]
+    public GameObject EaglePetButton;
+    public Sprite NormalEagleSprite;
+    public Sprite WorkingEagleSprite;
+    public Image FillRateForEagle;
+    public GameObject LockedEagleAbility;
+
+    bool isEagleActiveForClick = false;
+
+    //system
+    //when tap on radar then change the radar icon to working and after certain time startrefilling it
+
+    void InitializeEagleIcon()
+    {
+        if(saveload.iseaglebuyed)
+        {
+            EaglePetButton.GetComponent<Image>().sprite = NormalEagleSprite;
+            FillRateForEagle.fillAmount = 0;
+            isEagleActiveForClick = true;
+        }
+        else
+        {
+            EaglePetButton.GetComponent<Image>().sprite = NormalEagleSprite;
+            FillRateForEagle.fillAmount = 0;
+            LockedEagleAbility.SetActive(true);
+        } 
+    }
+
+
+    public void OnAndroidEaglePetButtonPressed()
+    {
+        if (isEagleActiveForClick)
+        {
+            currentAbilityName = abilityName[3];
+            isEagleActiveForClick = false;
+            EaglePetButton.GetComponent<Image>().sprite = WorkingEagleSprite;
+            gameObject.GetComponent<AndroidController>().OnEagleCameraButtonPressed();
+            print("lol|"+saveload.eagleWorkingTime);
+            StartCoroutine(ShowEaglePetButton());
+        }
+    }
+
+    IEnumerator ShowEaglePetButton()
+    {
+        yield return new WaitForSeconds(saveload.eagleWorkingTime);
+        EaglePetButton.GetComponent<Image>().sprite = NormalEagleSprite;
+        print("ability closed");
+        gameObject.GetComponent<AndroidController>().OnEagleCameraButtonPressed();
+        FillRateForEagle.fillAmount = 1;
+        int time = saveload.eagleCooldownTime;
+        while (time > 0)
+        {
+            yield return new WaitForSeconds(1);
+            time -= 1;
+            FillRateForEagle.fillAmount = (float)time / (float)saveload.eagleCooldownTime;
+        }
+        isEagleActiveForClick = true;
+    }
+
+
+    #endregion
+
+
     #endregion
 
     #region Settings
@@ -783,7 +859,6 @@ public class GameController : MonoBehaviour
 
     public void OnStartMissionButtonPressed()
     {
-        
         CenematicCamera.SetActive(false);
         
         foreach (GameObject g in StartingPointsOnTerrain)
@@ -803,7 +878,7 @@ public class GameController : MonoBehaviour
         SetWeaponsStat();
         UpdateAndInitialzeWeapon();
         gameObject.GetComponent<ShopController>().InitializeGun();  
-        
+        InitializeAfterStartMission();
     }
 
     IEnumerator UpdatePlayerToAllGaurds()

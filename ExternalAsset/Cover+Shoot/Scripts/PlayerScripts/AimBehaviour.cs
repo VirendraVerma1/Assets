@@ -176,7 +176,7 @@ public class AimBehaviour : GenericBehaviour
 
             if (shootscript.CurrentGunLabel == "Sniper")
             {
-                mainCam.SetFOV(20f);
+                mainCam.SetSniperFOV(15f);
                 
             }
             else
