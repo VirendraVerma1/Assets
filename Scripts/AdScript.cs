@@ -38,6 +38,11 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
         googleAdLoopTurn = 1;
         isOffline=true;
 
+        
+    }
+
+    void Start()
+    {
         StartCoroutine(GetValueFromServerForAdNetwork());
     }
 

@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     public GameObject ControlUI;
     Transform StartingPosition;
     public GameObject GameOverPannel;
+    public GameObject StatPannel;
     public Image HealthBar;
     public ControlsTutorial ct;
     public GameController gameController;
@@ -170,11 +171,13 @@ public class PlayerStats : MonoBehaviour
         FullDamageBloodUI.SetActive(false);
         //gameObject.GetComponent<CapsuleCollider>().enabled = false;
         EnableAllComponents();
+        StatPannel.SetActive(false);
         GameOverPannel.SetActive(false);
         anim.enabled = false;
         ControlUI.SetActive(true);
         gameObject.tag = "Player";
         Health = MaxHealth;
+        HealthBar.fillAmount = (float)Health / (float)MaxHealth;
     }
 
     void DisableAllComponents()

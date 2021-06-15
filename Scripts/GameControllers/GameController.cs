@@ -294,10 +294,12 @@ public class GameController : MonoBehaviour
         {
             if (g != null)
             {
-
-                tempOtherMaterials.Add(g.GetComponent<Renderer>().material);
-                tempOtherGameObject.Add(g);
-                g.GetComponent<Renderer>().material = BlueTransparent;
+                if(g.GetComponent<Renderer>()!=null)
+                {
+                    tempOtherMaterials.Add(g.GetComponent<Renderer>().material);
+                    tempOtherGameObject.Add(g);
+                    g.GetComponent<Renderer>().material = BlueTransparent;
+                }
             }
         }
 
