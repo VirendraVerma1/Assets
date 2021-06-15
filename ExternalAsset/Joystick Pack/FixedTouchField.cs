@@ -14,6 +14,11 @@ public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public bool isThisFieldOn=false;
 
+    // void Awake()
+    // {
+    //     isThisFieldOn=true;
+    // }
+
     // Use this for initialization
     void OnEnable()
     {

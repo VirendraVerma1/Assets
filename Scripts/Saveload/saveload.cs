@@ -110,9 +110,9 @@ public class saveload : MonoBehaviour
     public static string accountID = " ";
     public static string playerName = " ";
 
-    public static float senstivity = 0.5f;
-    public static float aimSenstivity = 1f;
-    public static float eaglecamSenstivity=1f;
+    public static float senstivity = 2.8f;
+    public static float aimSenstivity = 1.5f;
+    public static float eaglecamSenstivity=0.5f;
 
     public static int currentLevel = 1;
     public static int money = 1000;

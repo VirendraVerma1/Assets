@@ -166,6 +166,7 @@ public class GameController : MonoBehaviour
 
     void InitializeShieldAbility()
     {
+        ShieldEffect.SetActive(false);
         if(saveload.isshieldbuyed)
         {
             ShieldButton.GetComponent<Image>().sprite = NormalShieldIcon;
@@ -185,6 +186,7 @@ public class GameController : MonoBehaviour
     {
         if (isShieldActivateforclickTemp)
         {
+            ShieldEffect.SetActive(true);
             currentAbilityName = abilityName[2];
             isShieldActivateforclickTemp = false;
             isShieldActivateforclick=false;
@@ -198,6 +200,7 @@ public class GameController : MonoBehaviour
     IEnumerator ShieldDisable()
     {
         yield return new WaitForSeconds(saveload.shieldWorkingTime);
+        ShieldEffect.SetActive(false);
         isShieldActivateforclick=true;
         OnAllTheEffects();
         ShieldButton.GetComponent<Image>().sprite = NormalShieldIcon;
@@ -328,6 +331,7 @@ public class GameController : MonoBehaviour
     #region Freeze Ability
 
     [Header("Freeze Ability")]
+    public GameObject FreezeUIEffect;
     public GameObject FreezeTimeButton;
     public Sprite NormalFreezeSprite;
     public Sprite WorkingFreezeSprite;
@@ -341,6 +345,7 @@ public class GameController : MonoBehaviour
 
     void InitializeFreezeIcon()
     {
+        FreezeUIEffect.SetActive(false);
         if(saveload.isfreezebuyed)
         {
             FreezeTimeButton.GetComponent<Image>().sprite = NormalFreezeSprite;
@@ -360,6 +365,7 @@ public class GameController : MonoBehaviour
     {
         if (isFreezeActiveForClick)
         {
+            FreezeUIEffect.SetActive(true);
             currentAbilityName = abilityName[0];
             isFreezeActiveForClick = false;
             FreezeTimeButton.GetComponent<Image>().sprite = WorkingFreezeSprite;
@@ -379,6 +385,7 @@ public class GameController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(saveload.freezeWorkingTime);
+        FreezeUIEffect.SetActive(false);
         RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
         FreezeTimeButton.GetComponent<Image>().sprite = NormalFreezeSprite;
         UnFreezeEveryThing();
@@ -475,6 +482,8 @@ public class GameController : MonoBehaviour
             EaglePetButton.GetComponent<Image>().sprite = NormalEagleSprite;
             FillRateForEagle.fillAmount = 0;
             isEagleActiveForClick = true;
+            EaglePetButton.SetActive(false);
+            StartCoroutine(ActivateEagleButton());
         }
         else
         {
@@ -482,6 +491,12 @@ public class GameController : MonoBehaviour
             FillRateForEagle.fillAmount = 0;
             LockedEagleAbility.SetActive(true);
         } 
+    }
+
+    IEnumerator ActivateEagleButton()
+    {
+        yield return new WaitForSeconds(1);
+        EaglePetButton.SetActive(true);
     }
 
 
