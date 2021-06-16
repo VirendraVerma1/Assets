@@ -26,7 +26,7 @@ public class PlayerStats : MonoBehaviour
         HealthBar.fillAmount = (float)Health / (float)MaxHealth;
         DamageBloodUI.SetActive(false);
         FullDamageBloodUI.SetActive(false);
-        OnContinueButtonPressed();
+        StartInitilize();
         OnAimOff();
         ShopPickDownButton();
         StartCoroutine(WaitToLoadAllGaurds());
@@ -150,7 +150,16 @@ public class PlayerStats : MonoBehaviour
                 ct.isUIOn = true;
                 GameOverPannel.SetActive(true);
                 gameController.SetCalculation();
-                FindObjectOfType<AdScript>().ShowIntertesialAdsSwitch();
+                if(saveload.adsFrequency<0)
+                {
+                    FindObjectOfType<AdScript>().ShowIntertesialAdsSwitch();
+                    saveload.adsFrequency=3;
+                }
+                else
+                {
+                    saveload.adsFrequency--;   
+                }
+                saveload.Save();
             }
         }  
     }
@@ -164,8 +173,15 @@ public class PlayerStats : MonoBehaviour
         DamageBloodUI.SetActive(false);
     }
 
-
     public void OnContinueButtonPressed()
+    {
+        FindObjectOfType<AdScript>().ShowRewardVideoAdsSwitch();
+        saveload.adsFrequency +=3;
+        saveload.Save();
+        StartInitilize();
+    }
+
+     void StartInitilize()
     {
         InitializePlayerFromStarting();
         FullDamageBloodUI.SetActive(false);

@@ -2174,7 +2174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &42890407
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -3707,7 +3707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &116478238
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -15377,7 +15377,7 @@ MonoBehaviour:
   controlsTutorial: {fileID: 2172013059290787336}
   aimBehaviour: {fileID: 2172013060282489009}
   moveBehaviour: {fileID: 2172013060282489008}
-  isAndroid: 0
+  isAndroid: 1
   MainCamera: {fileID: 2172013060899360780}
   EagleCamera: {fileID: 25044361}
   AndroidControllers:
@@ -23328,7 +23328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &735944084
 Transform:
   m_ObjectHideFlags: 0
@@ -39678,7 +39678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1184733512
 Transform:
   m_ObjectHideFlags: 0
@@ -40391,7 +40391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!218 &1216995456
 Terrain:
   m_ObjectHideFlags: 0
@@ -45270,7 +45270,7 @@ MonoBehaviour:
     mainColor: {r: 0.16292305, g: 0.4528302, b: 0, a: 1}
     secondaryColor: {r: 0.088764966, g: 0.21698111, b: 0, a: 1}
     linkColors: 0
-    minMaxHeight: {x: 0.12846747, y: 1.3106797}
+    minMaxHeight: {x: 0.60350215, y: 1.7857143}
     minMaxWidth: {x: 1.8124999, y: 1.9999999}
     noiseSize: 0.1
   terrainSettings:
@@ -53281,7 +53281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1631285798
 Transform:
   m_ObjectHideFlags: 0
@@ -63100,7 +63100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1965202646
 Transform:
   m_ObjectHideFlags: 0
@@ -65664,7 +65664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2058116537
 Transform:
   m_ObjectHideFlags: 0

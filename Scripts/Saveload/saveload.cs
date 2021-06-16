@@ -124,6 +124,7 @@ public class saveload : MonoBehaviour
     public static int adsWatched=0;
 
     public static int timePlayed=0;
+    public static int adsFrequency=3;
     public static bool isTutorial = true;
 
     public static string current_filename = "info.dat";
@@ -134,6 +135,7 @@ public class saveload : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/" + current_filename);
         Notebook_Data data = new Notebook_Data();
 
+        data.AdsFrequency=adsFrequency;
 
         data.AccountID = accountID;
         data.PlayerName = Encrypt(playerName);
@@ -201,6 +203,8 @@ public class saveload : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/" + current_filename, FileMode.Open);/* */
             Notebook_Data data = (Notebook_Data)bf.Deserialize(file);
+
+            adsFrequency=data.AdsFrequency;
 
             accountID=data.AccountID;
             playerName=Decrypt(data.PlayerName);
@@ -306,8 +310,10 @@ public class saveload : MonoBehaviour
 [Serializable]
 class Notebook_Data
 {
-    public  string AccountID;
-    public  string PlayerName;
+    public int AdsFrequency;
+
+    public string AccountID;
+    public string PlayerName;
     public float Senstivity;
     public float AimSenstivity;
     public float EagleCamSenstivity;

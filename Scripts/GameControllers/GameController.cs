@@ -1142,6 +1142,7 @@ public class GameController : MonoBehaviour
     {
         RewardPannel.SetActive(false);
         saveload.money += (maxBotCount * 100);
+        saveload.adsFrequency +=3;
         saveload.Save();
     }
 
