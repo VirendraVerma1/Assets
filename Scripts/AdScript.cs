@@ -20,7 +20,7 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
     string gameId = "4084759";
     string mySurfacingId = "rewardedVideo";
     public string surfacingId = "bannerPlacement";
-    bool testMode = false;
+    bool testMode = true;
 
     //----google admob variable
     string AppId = "ca-app-pub-4773340848320054~9968233986";
