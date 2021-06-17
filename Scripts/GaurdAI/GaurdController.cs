@@ -18,6 +18,22 @@ public class GaurdController : MonoBehaviour
     void Start()
     {
         Initialization();
+        StartCoroutine(InitailizePlayer());
+    }
+
+    IEnumerator InitailizePlayer()
+    {
+        int n=1;
+        while (n > 0)
+        {
+            yield return new WaitForSeconds(1);
+            if (GameObject.FindGameObjectWithTag("Player") != null)
+            {
+                n = 0;
+                player = GameObject.FindGameObjectWithTag("Player");
+            }
+        }
+       
     }
 
     void Initialization()

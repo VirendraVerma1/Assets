@@ -16,6 +16,7 @@ public class EagleController : MonoBehaviour
     public FixedTouchField TouchField;
     public Material RedMarkerForGaurds;
     public Camera myCamera;
+    
     void Start()
     {
         gotSpawner = false;

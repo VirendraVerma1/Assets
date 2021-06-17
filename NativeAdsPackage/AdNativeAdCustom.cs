@@ -28,7 +28,7 @@ public class AdNativeAdCustom : MonoBehaviour
 	{
 		idApp = "ca-app-pub-4773340848320054~9968233986";
 		
-		idNative = "ca-app-pub-4773340848320054/6377813032";
+		idNative = "ca-app-pub-3940256099942544/2247696110";
 
 		MobileAds.Initialize (idApp);
 

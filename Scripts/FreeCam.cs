@@ -19,6 +19,7 @@ using UnityEngine;
 /// </summary>
 public class FreeCam : MonoBehaviour
 {
+    public GameController gc;
     public bool IsAndroid=false;
     public FixedTouchField fixedInputField;
     /// <summary>

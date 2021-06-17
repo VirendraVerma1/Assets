@@ -166,6 +166,7 @@ public class GameController : MonoBehaviour
 
     void InitializeShieldAbility()
     {
+        isShieldActivateforclick=true;
         ShieldEffect.SetActive(false);
         if(saveload.isshieldbuyed)
         {
@@ -469,6 +470,7 @@ public class GameController : MonoBehaviour
     public Sprite WorkingEagleSprite;
     public Image FillRateForEagle;
     public GameObject LockedEagleAbility;
+    public bool isEagleEnable=false;
 
     bool isEagleActiveForClick = false;
 
@@ -477,6 +479,7 @@ public class GameController : MonoBehaviour
 
     void InitializeEagleIcon()
     {
+        isEagleEnable=false;
         if(saveload.iseaglebuyed)
         {
             EaglePetButton.GetComponent<Image>().sprite = NormalEagleSprite;
@@ -504,6 +507,7 @@ public class GameController : MonoBehaviour
     {
         if (isEagleActiveForClick)
         {
+            isEagleEnable=true;
             currentAbilityName = abilityName[3];
             isEagleActiveForClick = false;
             EaglePetButton.GetComponent<Image>().sprite = WorkingEagleSprite;
@@ -516,6 +520,7 @@ public class GameController : MonoBehaviour
     IEnumerator ShowEaglePetButton()
     {
         yield return new WaitForSeconds(saveload.eagleWorkingTime);
+        isEagleEnable=false;
         EaglePetButton.GetComponent<Image>().sprite = NormalEagleSprite;
         print("ability closed");
         gameObject.GetComponent<AndroidController>().OnEagleCameraButtonPressed();
