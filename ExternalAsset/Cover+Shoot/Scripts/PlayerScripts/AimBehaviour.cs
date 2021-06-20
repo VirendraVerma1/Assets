@@ -11,6 +11,9 @@ public class AimBehaviour : GenericBehaviour
 	public Vector3 aimPivotOffset = new Vector3(0.5f, 1.2f,  0f);         // Offset to repoint the camera when aiming.
 	public Vector3 aimCamOffset   = new Vector3(0f, 0.4f, -0.7f);         // Offset to relocate the camera when aiming.
 
+    public Vector3 firefromaimPivotOffset = new Vector3(0.5f, 1.2f, 0f);         // Offset to repoint the camera when aiming.
+    public Vector3 firefromaimCamOffset = new Vector3(0f, 0.4f, -0.7f);         // Offset to relocate the camera when aiming.
+
 	private int aimBool;                                                  // Animator variable related to aiming.
 	private bool aim;                                                     // Boolean to determine whether or not the player is aiming.
 	private int cornerBool;                                               // Animator variable related to cover corner..
@@ -219,6 +222,10 @@ public class AimBehaviour : GenericBehaviour
 
 		if(aim&&isAndroidAim)
 			behaviourManager.GetCamScript.SetTargetOffsets (aimPivotOffset, aimCamOffset);//this need to be done
+        else if (isAndroidAimFromFire)
+        {
+            behaviourManager.GetCamScript.SetTargetOffsets(firefromaimPivotOffset, firefromaimCamOffset);//this need to be done
+        }
 	}
 
 	// LocalLateUpdate: manager is called here to set player rotation after camera rotates, avoiding flickering.

@@ -69,7 +69,7 @@ public class BasicBehaviour : MonoBehaviour
 	public Image RunImage;
 	public Sprite RunSprite;
 	public Sprite WalkSprite;
-	bool isRunning=false;
+	public bool isRunning=false;
 	public void OnAndroidRun()
 	{
 		if(isRunning)

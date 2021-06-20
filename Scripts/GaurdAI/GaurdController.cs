@@ -7,7 +7,7 @@ public class GaurdController : MonoBehaviour
 {
     //public Transform[] GaurdWayPoints;
     public Animator anim;
-    Vector3 buttlerTargetPosition;
+    public Vector3 buttlerTargetPosition=Vector3.zero;
     public GameObject GaurdModel;
     public GameObject player;
     public float botSpeed=1.2f;
@@ -19,6 +19,7 @@ public class GaurdController : MonoBehaviour
     {
         Initialization();
         StartCoroutine(InitailizePlayer());
+        
     }
 
     IEnumerator InitailizePlayer()
@@ -33,6 +34,7 @@ public class GaurdController : MonoBehaviour
                 player = GameObject.FindGameObjectWithTag("Player");
             }
         }
+        StartCoroutine(UpdateBotInfo());
        
     }
 
@@ -426,8 +428,140 @@ public class GaurdController : MonoBehaviour
         setNewTarget = false;
     }
 
+    #region PlayerAnd Bots Information Detection
+
+    [Header("Bot Inteligence")]
+    public float intelligenceFrequency = 1;
+    public int minBotLeftToFollowPlayer = 2;
+    public float minAreaPlayerRunToFollow = 5f;
+    public float minNearestBotCome = 5f;
+    float DistanceFromPlayer = 999990;
+    int totalBotsLeft = 9990;
+    public bool isBotAlert = false;
+
+    IEnumerator UpdateBotInfo()
+    {
+        isBotAlert = false;
+        while (isDead==false)
+        {
+            yield return new WaitForSeconds(intelligenceFrequency);
+            if(saveload.isTutorial==true)
+            UpdatePlayerDistance();
+            TotalBotsLeft();
+            if (totalBotsLeft < (minBotLeftToFollowPlayer+1))
+            {
+                SetPlayerAsTarget();
+            }
+            FollowIfPlayerRun();
+        }
+    }
+
+    void UpdatePlayerDistance()
+    {
+        DistanceFromPlayer = Vector3.Distance(gameObject.transform.position, player.transform.position);
+    }
+
+    void TotalBotsLeft()
+    {
+        totalBotsLeft = 0;
+        GameObject[] totalBots = GameObject.FindGameObjectsWithTag("Gaurd");
+        foreach (GameObject g in totalBots)
+        {
+            if (g.GetComponent<GaurdController>().isDead == false)
+                totalBotsLeft++;
+        }
+    }
+
+    void SetPlayerAsTarget()//enemy start follow if only one bot is left
+    {
+        buttlerTargetPosition = player.transform.position;
+        gameObject.GetComponent<NavMeshMovementOnClick>().SettargetPosition(buttlerTargetPosition);
+    }
+
+    void FollowIfPlayerRun()
+    {
+        if (DistanceFromPlayer < minAreaPlayerRunToFollow)
+        {
+            if (player.GetComponent<BasicBehaviour>().isRunning)
+            {
+                buttlerTargetPosition = player.transform.position;
+                gameObject.GetComponent<NavMeshMovementOnClick>().SettargetPosition(buttlerTargetPosition);
+                
+                if (isBotAlert == false)
+                {
+                    isBotAlert = true;
+                    StartCoroutine(RemoveBotAlert());
+                }
+            }
+            
+        }
+    }
+
+    void UpdateToMyNearestGaurdIfIAmDead()
+    {
+        GameObject nearestgaurd = null;
+        GameObject nearestgaurd1 = null;
+        GameObject nearestgaurd2 = null;
+        
+        float nearestDistance = 9999;
+        float nearestDistance1 = 9999;
+        float nearestDistance2 = 9999;
+
+        GameObject[] totalBots = GameObject.FindGameObjectsWithTag("Gaurd");
+        foreach (GameObject g in totalBots)
+        {
+            float Distance = Vector3.Distance(gameObject.transform.position, g.transform.position);
+            if (nearestDistance1 < nearestDistance2 && gameObject != g)
+            {
+                nearestDistance2 = nearestDistance1;
+                nearestgaurd2 = nearestgaurd1;
+            }
+            if (nearestDistance < nearestDistance1 && gameObject != g)
+            {
+                nearestDistance1 = nearestDistance;
+                nearestgaurd1 = nearestgaurd;
+            }
+            if (Distance < nearestDistance && gameObject != g)
+            {
+                nearestDistance = Distance;
+                nearestgaurd = g;
+            }
+        }
+
+        int random = Random.Range(0, 3);
+        if (random < 3 && nearestgaurd != null && minNearestBotCome > nearestDistance)
+        {
+            nearestgaurd.GetComponent<GaurdController>().buttlerTargetPosition = gameObject.transform.position;
+            nearestgaurd.GetComponent<NavMeshMovementOnClick>().SettargetPosition(gameObject.transform.position);
+        }
+        if (random < 2 && nearestgaurd1 != null && minNearestBotCome > nearestDistance1)
+        {
+            nearestgaurd1.GetComponent<GaurdController>().buttlerTargetPosition = gameObject.transform.position;
+            nearestgaurd1.GetComponent<NavMeshMovementOnClick>().SettargetPosition(gameObject.transform.position);
+        }
+        if (random < 1 && nearestgaurd2 != null && minNearestBotCome > nearestDistance2)
+        {
+            nearestgaurd2.GetComponent<GaurdController>().buttlerTargetPosition = gameObject.transform.position;
+            nearestgaurd2.GetComponent<NavMeshMovementOnClick>().SettargetPosition(gameObject.transform.position);
+        }
+
+        if (isBotAlert == false)
+        {
+            isBotAlert = true;
+            StartCoroutine(RemoveBotAlert());
+        }
+    }
+
+    IEnumerator RemoveBotAlert()
+    {
+        yield return new WaitForSeconds(10);
+        isBotAlert = false;
+    }
+
+    #endregion
+
     #region FollowPlayer
-    
+
     public void SetPlayerLocation(Vector3 positionPlayer)
     {
         if (player.tag == "Player")
@@ -704,6 +838,7 @@ public class GaurdController : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.transform.Find("Sphere").gameObject.SetActive(false);
         MyMarker.SetActive(false);
+        UpdateToMyNearestGaurdIfIAmDead();
         if(gaurdType=="Bomber")
         CurrentParticleEffect=Instantiate(ParticleEffectForSucideBomber,gameObject.transform.position,gameObject.transform.rotation);
         /*

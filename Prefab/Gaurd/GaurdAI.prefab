@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1498338669535832088}
+  buttlerTargetPosition: {x: 0, y: 0, z: 0}
   GaurdModel: {fileID: 113624910827308617}
   player: {fileID: 0}
   botSpeed: 0.5
@@ -915,6 +916,11 @@ MonoBehaviour:
   minwaitingTimeOnPointPatrol: 3
   maxwaitingTimeOnPointPatrol: 10
   AssignedGaurdPoints: {fileID: 0}
+  intelligenceFrequency: 1
+  minBotLeftToFollowPlayer: 2
+  minAreaPlayerRunToFollow: 10
+  minNearestBotCome: 10
+  isBotAlert: 0
   Weapon: {fileID: 1027213724072412072}
   tempFireRate: 0.5
   tempTimeFire: 0.5

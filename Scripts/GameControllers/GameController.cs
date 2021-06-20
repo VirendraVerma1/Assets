@@ -760,7 +760,7 @@ public class GameController : MonoBehaviour
     public Text BotStatus;
     void UpdateBotKilledUI()
     {
-        BotStatus.text = "Bots:"+botCount.ToString() + "/" + maxBotCount.ToString();
+        BotStatus.text = "Gaurds:"+botCount.ToString() + "/" + maxBotCount.ToString();
     }
 
     [Header("Won")]
@@ -931,6 +931,21 @@ public class GameController : MonoBehaviour
                     {
                         if (weapons[i].GetComponent<InteractiveWeapon>().label == shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().label)
                         {
+                            weapons[i].GetComponent<InteractiveWeapon>().shotSound = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().shotSound;
+                            weapons[i].GetComponent<InteractiveWeapon>().reloadSound = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().reloadSound;
+                            weapons[i].GetComponent<InteractiveWeapon>().pickSound = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().pickSound;
+                            weapons[i].GetComponent<InteractiveWeapon>().dropSound = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().dropSound;
+                            weapons[i].GetComponent<InteractiveWeapon>().noBulletSound = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().noBulletSound;
+
+                            weapons[i].GetComponent<InteractiveWeapon>().rightHandPosition = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().rightHandPosition;
+                            weapons[i].GetComponent<InteractiveWeapon>().relativeRotation = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().relativeRotation;
+                            weapons[i].GetComponent<InteractiveWeapon>().sprite = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().sprite;
+                            weapons[i].GetComponent<InteractiveWeapon>().bulletDamage = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().bulletDamage;
+                            weapons[i].GetComponent<InteractiveWeapon>().recoilAngle = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().recoilAngle;
+                            weapons[i].GetComponent<InteractiveWeapon>().type = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().type;
+                            weapons[i].GetComponent<InteractiveWeapon>().mode = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().mode;
+                            weapons[i].GetComponent<InteractiveWeapon>().burstSize = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().burstSize;
+                            
                             weapons[i].GetComponent<InteractiveWeapon>().SetBulletNu(GetAmmoNu(j));
                             weapons[i].GetComponent<InteractiveWeapon>().playerStat=MyPlayer.GetComponent<PlayerStats>();
                         }
