@@ -21,7 +21,6 @@ public class FreeCam : MonoBehaviour
 {
     public GameController gc;
     public bool IsAndroid=false;
-    public FixedTouchField fixedInputField;
     /// <summary>
     /// Normal speed of camera movement.
     /// </summary>
@@ -106,9 +105,9 @@ public class FreeCam : MonoBehaviour
 
         if(IsAndroid)
         {
-            float newRotationX = transform.localEulerAngles.y + fixedInputField.TouchDist.x * freeLookSensitivity;
-            float newRotationY = transform.localEulerAngles.x - fixedInputField.TouchDist.y * freeLookSensitivity;
-            transform.localEulerAngles = new Vector3(newRotationY, newRotationX, 0f);
+            //float newRotationX = transform.localEulerAngles.y + fixedInputField.TouchDist.x * freeLookSensitivity;
+            //float newRotationY = transform.localEulerAngles.x - fixedInputField.TouchDist.y * freeLookSensitivity;
+            //transform.localEulerAngles = new Vector3(newRotationY, newRotationX, 0f);
         }
 
         float axis = Input.GetAxis("Mouse ScrollWheel");

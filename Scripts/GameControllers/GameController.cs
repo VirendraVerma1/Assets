@@ -507,22 +507,31 @@ public class GameController : MonoBehaviour
     {
         if (isEagleActiveForClick)
         {
-            isEagleEnable=true;
+            isEagleEnable = true;
             currentAbilityName = abilityName[3];
             isEagleActiveForClick = false;
             EaglePetButton.GetComponent<Image>().sprite = WorkingEagleSprite;
             gameObject.GetComponent<AndroidController>().OnEagleCameraButtonPressed();
-            print("lol|"+saveload.eagleWorkingTime);
+            
             StartCoroutine(ShowEaglePetButton());
+        }
+        else
+        {
+            eagleTempTime = 0;
         }
     }
 
+    int eagleTempTime = 0;
     IEnumerator ShowEaglePetButton()
     {
-        yield return new WaitForSeconds(saveload.eagleWorkingTime);
+        eagleTempTime = saveload.eagleWorkingTime;
+        while (eagleTempTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            eagleTempTime -= 1;
+        }
         isEagleEnable=false;
         EaglePetButton.GetComponent<Image>().sprite = NormalEagleSprite;
-        print("ability closed");
         gameObject.GetComponent<AndroidController>().OnEagleCameraButtonPressed();
         FillRateForEagle.fillAmount = 1;
         int time = saveload.eagleCooldownTime;
@@ -534,6 +543,8 @@ public class GameController : MonoBehaviour
         }
         isEagleActiveForClick = true;
     }
+
+
 
 
     #endregion
@@ -945,7 +956,8 @@ public class GameController : MonoBehaviour
                             weapons[i].GetComponent<InteractiveWeapon>().type = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().type;
                             weapons[i].GetComponent<InteractiveWeapon>().mode = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().mode;
                             weapons[i].GetComponent<InteractiveWeapon>().burstSize = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().burstSize;
-                            
+                            weapons[i].GetComponent<InteractiveWeapon>().WeaponCameraHolder = shopController.WeaponsGO[j].GetComponent<InteractiveWeapon>().WeaponCameraHolder;
+
                             weapons[i].GetComponent<InteractiveWeapon>().SetBulletNu(GetAmmoNu(j));
                             weapons[i].GetComponent<InteractiveWeapon>().playerStat=MyPlayer.GetComponent<PlayerStats>();
                         }

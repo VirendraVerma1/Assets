@@ -88,8 +88,9 @@ public class AimBehaviour : GenericBehaviour
 
 	public void OnAndroidAimFromFireOFFButtonPressed()
 	{
+        if (isAndroidAim == false)
 		isAndroidAimFromFire=false;
-		isAndroidAim=false;
+		//isAndroidAim=false;
 	}
 
 
@@ -184,6 +185,8 @@ public class AimBehaviour : GenericBehaviour
             }
             else
             {
+                if (isAndroidAim)
+                GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitailizeWeaponCamera();
                 mainCam.SetFOV(50f);
             }
 
@@ -202,6 +205,7 @@ public class AimBehaviour : GenericBehaviour
 	// Co-rountine to end aiming mode with delay.
 	private IEnumerator ToggleAimOff()
 	{
+        GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().RemoveWeaponCamera();
 		aim = false;
         isAimMode = false;
         ScopeImage.SetActive(false);
@@ -211,7 +215,6 @@ public class AimBehaviour : GenericBehaviour
 		behaviourManager.GetCamScript.ResetMaxVerticalAngle();
 		yield return new WaitForSeconds(0.05f);
 		behaviourManager.RevokeOverridingBehaviour(this);
-        
         
 	}
 

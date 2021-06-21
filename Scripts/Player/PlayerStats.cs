@@ -63,21 +63,6 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void OnButtonKillFromMyKnife()
-    {
-        for(int i=0;i<gaurdDistance.Count;i++)
-        {
-            if(gaurdDistance[i].Gaurd==nearestGaurd)
-            {
-                gaurdDistance[i].Gaurd=null;
-            }
-        }
-        nearestGaurd.GetComponent<TargetHealth>().TakeDamageMy(200);
-        KillFromKnifeButton.SetActive(false);
-        saveload.knifeKilledStat++;
-    }
-
-
     //-----------------common function
     List<GaurdDisance> gaurdDistance=new List<GaurdDisance>();
     GameObject[] Gaurds;
@@ -266,5 +251,44 @@ public class PlayerStats : MonoBehaviour
 
     #endregion
 
+    #region kife impact
+
+    public void OnButtonKillFromMyKnife()
+    {
+        for (int i = 0; i < gaurdDistance.Count; i++)
+        {
+            if (gaurdDistance[i].Gaurd == nearestGaurd)
+            {
+                gaurdDistance[i].Gaurd = null;
+            }
+        }
+        gameObject.GetComponent<Animator>().applyRootMotion = false;
+        gameObject.GetComponent<Animator>().enabled = false;
+        DisableAllComponents();
+        gameObject.transform.LookAt(nearestGaurd.transform.position);
+        //Quaternion _lookRotation = Quaternion.LookRotation((nearestGaurd.transform.position - transform.position).normalized);
+        //transform.rotation = _lookRotation;
+        nearestGaurd.GetComponent<TargetHealth>().TakeDamageMy(200);
+        KillFromKnifeButton.SetActive(false);
+        saveload.knifeKilledStat++;
+        KnifeImpact();
+    }
+
+    void KnifeImpact()
+    {
+        anim.enabled = true;
+        anim.Play("Stabbing");
+        StartCoroutine(EnableNormalController());
+    }
+
+    IEnumerator EnableNormalController()
+    {
+        yield return new WaitForSeconds(2f);
+        gameObject.GetComponent<Animator>().enabled = true;
+        gameObject.GetComponent<Animator>().applyRootMotion = true;
+        EnableAllComponents();
+    }
+
+    #endregion
 
 }

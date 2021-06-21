@@ -40,6 +40,7 @@ public class InteractiveWeapon : MonoBehaviour
 	private WeaponUIManager weaponHud;                        // Reference to on-screen weapon HUD.
 	private bool pickable;                                    // Boolean to store whether or not the weapon is pickable (player within radius).
 	private Transform pickupHUD;                              // Reference to the weapon pickup in-game label.
+    public Vector3 WeaponCameraHolder;
 
     public void SetBulletNu(int n)
     {
@@ -62,6 +63,8 @@ public class InteractiveWeapon : MonoBehaviour
 
 	public void PickThisWeapon()
 	{
+       
+        
         // Disable weapon physics.
         rbody.isKinematic = true;
         this.col.enabled = false;
@@ -74,6 +77,7 @@ public class InteractiveWeapon : MonoBehaviour
 
         // Change active weapon HUD.
         TooglePickupHUD(false);
+       
 	}
 
 

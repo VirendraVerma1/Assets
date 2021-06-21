@@ -62,6 +62,8 @@ public class ShootBehaviour : GenericBehaviour
 	private bool isShotAlive = false;                              // Boolean to determine if there is any active shot on scene.
 
 	// Start is always called after any Awake functions.
+    GameObject mainCamera;
+    GameObject weaponCamera;
 	void Start()
 	{
 		
@@ -120,6 +122,10 @@ public class ShootBehaviour : GenericBehaviour
 		shotDecay = originalShotDecay;
 		castRelativeOrigin = neck.position - this.transform.position;
 		distToHand = (rightHand.position - neck.position).magnitude * 1.5f;
+
+
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera");
 	}
 
 //--------------------------------------my android things
@@ -166,6 +172,7 @@ public class ShootBehaviour : GenericBehaviour
 			{
 				AudioSource.PlayClipAtPoint(weapons[activeWeapon].reloadSound, gunMuzzle.position, 0.5f);
 				behaviourManager.GetAnim.SetBool(reloadBool, true);
+                GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().RemoveWeaponCamera();
 			}
 		}
 	}
@@ -176,8 +183,14 @@ public class ShootBehaviour : GenericBehaviour
 	bool isModeOn=false;
 	void CheckFromEnemy()
 	{
-		Vector3 imprecision = Random.Range(-shotErrorRate, shotErrorRate) * behaviourManager.playerCamera.right;
-		Ray ray = new Ray(behaviourManager.playerCamera.position, behaviourManager.playerCamera.forward + imprecision);
+        Camera tempCam;
+        if (mainCamera.GetComponent<Camera>().enabled)
+            tempCam = mainCamera.GetComponent<Camera>();
+        else
+            tempCam = weaponCamera.GetComponent<Camera>();
+
+       // Vector3 imprecision = Random.Range(-shotErrorRate, shotErrorRate) * tempCam.transform.right;
+        Ray ray = new Ray(tempCam.transform.position, tempCam.transform.forward);
 		RaycastHit hit = default(RaycastHit);
 		// Target was hit.
 		if (Physics.Raycast(ray, out hit, 500f, shotMask))
@@ -187,6 +200,7 @@ public class ShootBehaviour : GenericBehaviour
 				if(isModeOn==false)
 				{
 					isModeOn=true;
+                    print("gaurd hit");
 					StartCoroutine(WaitAndSetAutoFireAim());
 				}
 			}
@@ -223,7 +237,6 @@ public class ShootBehaviour : GenericBehaviour
 			// Handle shoot weapon action.
 			if ((isAndroidFireon) && !isShooting && activeWeapon > 0 && burstShotCount == 0)
 			{
-				print("Shooting");
 				isShooting = true;
 				ShootWeapon(activeWeapon);
 			}
@@ -319,6 +332,8 @@ public class ShootBehaviour : GenericBehaviour
 		// Check conditions to shoot.
 		if (!isAiming || isAimBlocked || behaviourManager.GetAnim.GetBool(reloadBool) || !weapons[weapon].Shoot(firstShot))
 		{
+            if (!weapons[weapon].Shoot(firstShot))
+                OnAndroidReloadButtonPressed();
 			return;
 		}
 		else
@@ -330,8 +345,14 @@ public class ShootBehaviour : GenericBehaviour
 			behaviourManager.GetCamScript.BounceVertical(weapons[weapon].recoilAngle);
 
 			// Cast the shot to find a target.
-			Vector3 imprecision = Random.Range(-shotErrorRate, shotErrorRate) * behaviourManager.playerCamera.right;
-			Ray ray = new Ray(behaviourManager.playerCamera.position, behaviourManager.playerCamera.forward + imprecision);
+            Camera tempCam;
+            if (mainCamera.GetComponent<Camera>().enabled)
+                tempCam = mainCamera.GetComponent<Camera>();
+            else
+                tempCam = weaponCamera.GetComponent<Camera>();
+
+            Vector3 imprecision = Random.Range(-shotErrorRate, shotErrorRate) * tempCam.transform.right;
+            Ray ray = new Ray(tempCam.transform.position, tempCam.transform.forward + imprecision);
 			RaycastHit hit = default(RaycastHit);
 			// Target was hit.
 			if (Physics.Raycast(ray, out hit, 500f, shotMask))
@@ -516,28 +537,37 @@ public class ShootBehaviour : GenericBehaviour
 	// Add a new weapon to inventory (called by weapon object).
 	public void AddWeapon(InteractiveWeapon newWeapon)
 	{
+        
 		// Position new weapon in player's hand.
 		newWeapon.gameObject.transform.SetParent(rightHand);
 		newWeapon.transform.localPosition = newWeapon.rightHandPosition;
 		newWeapon.transform.localRotation = Quaternion.Euler(newWeapon.relativeRotation);
 
+        
+
 		// Handle inventory slot conflict.
-		if (this.weapons[slotMap[newWeapon.type]])
-		{
-			// Same weapon type, recharge bullets and destroy duplicated object.
-			if (this.weapons[slotMap[newWeapon.type]].label == newWeapon.label)
-			{
-				this.weapons[slotMap[newWeapon.type]].ResetBullets();
-				ChangeWeapon(activeWeapon, slotMap[newWeapon.type]);
-				GameObject.Destroy(newWeapon.gameObject);
-				return;
-			}
-			// Different weapon type, grab the new one and drop the weapon in inventory.
-			else
-			{
-				this.weapons[slotMap[newWeapon.type]].Drop();
-			}
-		}
+        if (this.weapons[slotMap[newWeapon.type]])
+        {
+            // Same weapon type, recharge bullets and destroy duplicated object.
+            if (this.weapons[slotMap[newWeapon.type]].label == newWeapon.label)
+            {
+                this.weapons[slotMap[newWeapon.type]].ResetBullets();
+                ChangeWeapon(activeWeapon, slotMap[newWeapon.type]);
+                GameObject.Destroy(newWeapon.gameObject);
+                GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitializeCurrentWeapon(weapons[activeWeapon].gameObject);
+                return;
+            }
+            // Different weapon type, grab the new one and drop the weapon in inventory.
+            else
+            {
+                this.weapons[slotMap[newWeapon.type]].Drop();
+                GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitializeCurrentWeapon(newWeapon.gameObject);
+            }
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitializeCurrentWeapon(newWeapon.gameObject);
+        }
 
 		// Call change weapon action.
 		this.weapons[slotMap[newWeapon.type]] = newWeapon;
@@ -551,6 +581,8 @@ public class ShootBehaviour : GenericBehaviour
 	{
 		behaviourManager.GetAnim.SetBool(reloadBool, false);
 		weapons[activeWeapon].EndReload();
+        if(gameObject.GetComponent<AimBehaviour>().isAndroidAim)
+            GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitailizeWeaponCamera();
 	}
 
 	// Change HUD crosshair when aiming.

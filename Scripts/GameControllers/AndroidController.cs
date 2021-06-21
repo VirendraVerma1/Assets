@@ -14,7 +14,9 @@ public class AndroidController : MonoBehaviour
     public bool isAndroid=true;
     private float movementDivide = 1;
 
-    
+    GameObject mainCamera;
+    GameObject weaponCamera;
+    GameObject currentHoldWeapon;
 
     void Awake()
     {
@@ -25,6 +27,9 @@ public class AndroidController : MonoBehaviour
         aimBehaviour.isAndroid=isAndroid;
         moveBehaviour.isAndroid=isAndroid;
         OnEagleCameraButtonPressed();
+
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera");
     }
 
 
@@ -38,6 +43,7 @@ public class AndroidController : MonoBehaviour
         }
         StartCoroutine(HidePickUpButton());
         //StartCoroutine(DisableAllPickEvents(go));
+       
     }
 
     IEnumerator HidePickUpButton()
@@ -56,11 +62,36 @@ public class AndroidController : MonoBehaviour
         }
     }
 
+    public void InitializeCurrentWeapon(GameObject g)
+    {
+        print(g.name);
+        currentHoldWeapon = g;
+    }
+
+    public void InitailizeWeaponCamera()
+    {
+        mainCamera.GetComponent<Camera>().enabled = false;
+        weaponCamera.GetComponent<Camera>().enabled = true;
+        //g.transform.SetParent(weaponCamera.transform);
+        weaponCamera.transform.SetParent(currentHoldWeapon.transform);
+        weaponCamera.transform.localPosition=Vector3.zero;
+        weaponCamera.transform.localRotation = Quaternion.Euler( 0,-90,0);
+        weaponCamera.transform.localPosition = currentHoldWeapon.GetComponent<InteractiveWeapon>().WeaponCameraHolder;
+        
+    }
+
+    public void RemoveWeaponCamera()
+    {
+        weaponCamera.transform.parent = null;
+        mainCamera.GetComponent<Camera>().enabled = true;
+        weaponCamera.GetComponent<Camera>().enabled = false;
+   }
+
     bool isEagleMode = false;
     public GameObject MainCamera;
     public GameObject EagleCamera;
     public GameObject[] AndroidControllers;
-    public GameObject EagleTouchField;
+    
 
     public void OnEagleCameraButtonPressed()
     {
@@ -71,7 +102,7 @@ public class AndroidController : MonoBehaviour
             EagleCamera.GetComponent<Camera>().enabled = true;
             foreach(GameObject g in AndroidControllers)
             g.SetActive(false);
-            EagleTouchField.SetActive(true);
+            
         }
         else
         {
@@ -80,7 +111,7 @@ public class AndroidController : MonoBehaviour
             EagleCamera.GetComponent<Camera>().enabled = false;
             foreach(GameObject g in AndroidControllers)
             g.SetActive(true);
-            EagleTouchField.SetActive(false);
+            
         }
     }
 
