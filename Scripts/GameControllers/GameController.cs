@@ -585,30 +585,35 @@ public class GameController : MonoBehaviour
     public void OnSettingButtonPressed()
     {
         SettingPannel.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     public void OnSliderValueChanged()
     {
         float sens = SensitiveSlider.GetComponent<Slider>().value;
         saveload.senstivity = sens;
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     public void OnAimSliderValueChanged()
     {
         float sens = AimSensitiveSlider.GetComponent<Slider>().value;
         saveload.aimSenstivity = sens;
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     public void OnEagleCamSliderValueChanged()
     {
         float sens = EagleCamSensitiveSlider.GetComponent<Slider>().value;
         saveload.eaglecamSenstivity = sens;
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     public void OnCloseSettingsButtonPressed()
     {
         SettingPannel.SetActive(false);
         saveload.Save();
+        FindObjectOfType<AudioManager>().Play("Button2");
     }
 
     //------aim assist
@@ -637,6 +642,7 @@ public class GameController : MonoBehaviour
             saveload.isAutoFire=true;
         }
         InitializeSettings();
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     #endregion
@@ -843,6 +849,7 @@ public class GameController : MonoBehaviour
     {
         saveload.isrestartMission = true;
         StartLoadingScreen("HuntGame");
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     public void OnNextMissionButtonPressed()
@@ -851,6 +858,7 @@ public class GameController : MonoBehaviour
         saveload.currentLevel++;
         saveload.Save();
         StartLoadingScreen("HuntGame");
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     public void OnDoubleCashButtonPressed()
@@ -912,6 +920,7 @@ public class GameController : MonoBehaviour
         UpdateAndInitialzeWeapon();
         gameObject.GetComponent<ShopController>().InitializeGun();  
         InitializeAfterStartMission();
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     IEnumerator UpdatePlayerToAllGaurds()

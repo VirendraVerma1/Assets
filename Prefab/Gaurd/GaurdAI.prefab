@@ -602,13 +602,13 @@ GameObject:
   - component: {fileID: 1498338668235292812}
   - component: {fileID: 1498338668235292815}
   - component: {fileID: 1498338668235292814}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1498338668235292913
 Transform:
   m_ObjectHideFlags: 0

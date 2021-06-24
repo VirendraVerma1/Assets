@@ -1500,6 +1500,10 @@ PrefabInstance:
       value: wood_planck1
       objectReference: {fileID: 0}
     - target: {fileID: 6813279599732650294, guid: d7479bdc27c22724a98bfeafc12d9512, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813279599732650294, guid: d7479bdc27c22724a98bfeafc12d9512, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -2168,7 +2172,7 @@ GameObject:
   - component: {fileID: 42890408}
   - component: {fileID: 42890407}
   - component: {fileID: 42890410}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain1(important)(level wize Change)
   m_TagString: TerrainObject
   m_Icon: {fileID: 0}
@@ -2360,7 +2364,7 @@ Transform:
   - {fileID: 1583483034}
   - {fileID: 761417903}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &45038599
 PrefabInstance:
@@ -2424,6 +2428,10 @@ PrefabInstance:
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_Name
       value: things1_logs
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_TagString
@@ -2707,6 +2715,10 @@ PrefabInstance:
     - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_building_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3701,7 +3713,7 @@ GameObject:
   - component: {fileID: 116478239}
   - component: {fileID: 116478238}
   - component: {fileID: 116478241}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain6(important)(level wize Change)
   m_TagString: TerrainObject
   m_Icon: {fileID: 0}
@@ -4591,7 +4603,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &151776701
 GameObject:
@@ -5328,6 +5340,10 @@ PrefabInstance:
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_Name
       value: things1_logs (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7014,6 +7030,10 @@ PrefabInstance:
       value: tent (5)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -7642,7 +7662,7 @@ RectTransform:
   - {fileID: 1448200417}
   - {fileID: 759758953}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8662,6 +8682,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 4fc721bb145a13b409728eea63a0b8c8, type: 3}
     - target: {fileID: 1698509182143296425, guid: e758bf02213974d488669df40a520d5c, type: 3}
+      propertyPath: shotSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bdfa77de039dd6345bf1622789fb2edb, type: 3}
+    - target: {fileID: 1698509182143296425, guid: e758bf02213974d488669df40a520d5c, type: 3}
       propertyPath: relativeRotation.x
       value: 2.37
       objectReference: {fileID: 0}
@@ -9333,6 +9357,10 @@ PrefabInstance:
     - target: {fileID: 3599487156599125682, guid: cb4234ad19ef60841b78b6048938e2fc, type: 3}
       propertyPath: m_Name
       value: house_yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599487156599125682, guid: cb4234ad19ef60841b78b6048938e2fc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3599487156599125682, guid: cb4234ad19ef60841b78b6048938e2fc, type: 3}
       propertyPath: m_TagString
@@ -13067,6 +13095,10 @@ PrefabInstance:
       value: rpgpp_lt_building_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -15154,6 +15186,10 @@ PrefabInstance:
       value: things1_water_hut
       objectReference: {fileID: 0}
     - target: {fileID: 8138360381329885102, guid: ed14d2a8479d4d9419de27816d726425, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138360381329885102, guid: ed14d2a8479d4d9419de27816d726425, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -15484,7 +15520,7 @@ Transform:
   m_Children:
   - {fileID: 1355161410}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &478210676
 MonoBehaviour:
@@ -16445,6 +16481,116 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!1 &493732746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 493732748}
+  - component: {fileID: 493732747}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &493732747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493732746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c3d207250e70c4c8eaf7339429d104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Button
+    clip: {fileID: 8300000, guid: c13e561b6b8e49d4db7129fdd8c00e20, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambidient1
+    clip: {fileID: 8300000, guid: efd567188343ed9479864e9699707d23, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambidient2
+    clip: {fileID: 8300000, guid: 0a3282964de1e7645ae91a15c8278d14, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Button1
+    clip: {fileID: 8300000, guid: 52dd12dfdf9d56941a22a9e30090d450, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Button2
+    clip: {fileID: 8300000, guid: 65f99113deef956469ad0c029a3eda4c, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Button3
+    clip: {fileID: 8300000, guid: 7492c17e047bb3541b6f3154f3a51519, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Yell1
+    clip: {fileID: 8300000, guid: f7f5a8cda733de145ba9bea50ee587ce, type: 3}
+    volume: 0.464
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Yell2
+    clip: {fileID: 8300000, guid: 9e492dfa4024d0c4fa541baad4047e39, type: 3}
+    volume: 0.472
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Yell3
+    clip: {fileID: 8300000, guid: e2e25566cc2a63e4aae9ed58ff73a652, type: 3}
+    volume: 0.472
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Yell4
+    clip: {fileID: 8300000, guid: 5ebaed1b820c36b4ca1facb1996616e7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Yell5
+    clip: {fileID: 8300000, guid: d160d177eec9d584a84e3aa49f2278b6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &493732748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493732746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 416.1202, y: 49.215115, z: -178.83481}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501825891
 GameObject:
   m_ObjectHideFlags: 0
@@ -17637,6 +17783,10 @@ PrefabInstance:
     - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
       propertyPath: m_Name
       value: things1_door_open
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
       propertyPath: m_TagString
@@ -18989,8 +19139,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -200, y: -200}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchoredPosition: {x: -175, y: -175}
+  m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568672295
 MonoBehaviour:
@@ -19005,7 +19155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.1764706}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5529412}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -19749,7 +19899,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598977032 stripped
 GameObject:
@@ -21138,6 +21288,10 @@ PrefabInstance:
       value: rpgpp_lt_building_05 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1121113006719782, guid: 386f40ad68cdd3c4fbcb471ef2d93772, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121113006719782, guid: 386f40ad68cdd3c4fbcb471ef2d93772, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -22148,7 +22302,7 @@ Transform:
   - {fileID: 1022737979}
   - {fileID: 25044370}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: -53.042, z: 0}
 --- !u!114 &688241395
 MonoBehaviour:
@@ -23456,7 +23610,7 @@ GameObject:
   - component: {fileID: 735944088}
   - component: {fileID: 735944087}
   - component: {fileID: 735944086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain2(important)(level wize Change)
   m_TagString: TerrainObject
   m_Icon: {fileID: 0}
@@ -25739,7 +25893,7 @@ RectTransform:
   m_GameObject: {fileID: 800963362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 18897641}
   m_RootOrder: 0
@@ -26063,7 +26217,7 @@ RectTransform:
   m_GameObject: {fileID: 812171388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 18897641}
   m_RootOrder: 1
@@ -26086,7 +26240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.54509807}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -32545,6 +32699,7 @@ MonoBehaviour:
   maxPoint: 300
   revolvePlayerArea: 70
   WaterGO: {fileID: 599778129}
+  RadarCameraGO: {fileID: 2017206682}
   TestPrefab: {fileID: 5753973367284068919, guid: 3a452e76ea231294987e619a8248075d, type: 3}
 --- !u!1 &968182189 stripped
 GameObject:
@@ -34660,7 +34815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1012399329}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Villages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34757,6 +34912,10 @@ PrefabInstance:
     - target: {fileID: 8138360381329885102, guid: ed14d2a8479d4d9419de27816d726425, type: 3}
       propertyPath: m_Name
       value: things1_water_hut (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138360381329885102, guid: ed14d2a8479d4d9419de27816d726425, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8138360381329885102, guid: ed14d2a8479d4d9419de27816d726425, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -35824,7 +35983,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1055730505
 GameObject:
@@ -38524,7 +38683,7 @@ Transform:
   - {fileID: 247766849}
   - {fileID: 501825893}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1156988896
 GameObject:
@@ -39748,7 +39907,7 @@ GameObject:
   - component: {fileID: 1184733514}
   - component: {fileID: 1184733513}
   - component: {fileID: 1184733515}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain4(important)(level wize Change)
   m_TagString: TerrainObject
   m_Icon: {fileID: 0}
@@ -40461,7 +40620,7 @@ GameObject:
   - component: {fileID: 1216995456}
   - component: {fileID: 1216995458}
   - component: {fileID: 1216995457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain5(important)(level wize Change)
   m_TagString: TerrainObject
   m_Icon: {fileID: 0}
@@ -41782,6 +41941,10 @@ PrefabInstance:
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_Name
       value: things1_logs (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_TagString
@@ -43225,7 +43388,7 @@ Transform:
   m_Children:
   - {fileID: 2081064913}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1317979600 stripped
 GameObject:
@@ -45275,7 +45438,7 @@ Transform:
   - {fileID: 2058116537}
   - {fileID: 1965202646}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1384608441
 MonoBehaviour:
@@ -49240,6 +49403,10 @@ PrefabInstance:
       value: things1_door_open (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -51425,6 +51592,10 @@ PrefabInstance:
       value: house_red
       objectReference: {fileID: 0}
     - target: {fileID: 2811327174275373469, guid: 699f3eb3f53c86e4d953d18e779370e0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811327174275373469, guid: 699f3eb3f53c86e4d953d18e779370e0, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -51865,7 +52036,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.9999998, z: 0.9999998}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -10.991, y: 174.667, z: -98.479}
 --- !u!1 &1577427472
 GameObject:
@@ -52057,6 +52228,10 @@ PrefabInstance:
       value: things1_logs (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -52119,6 +52294,10 @@ PrefabInstance:
     - target: {fileID: 1121113006719782, guid: 386f40ad68cdd3c4fbcb471ef2d93772, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_building_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121113006719782, guid: 386f40ad68cdd3c4fbcb471ef2d93772, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1121113006719782, guid: 386f40ad68cdd3c4fbcb471ef2d93772, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -53383,7 +53562,7 @@ GameObject:
   - component: {fileID: 1631285800}
   - component: {fileID: 1631285799}
   - component: {fileID: 1631285801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain3(important)(level wize Change)
   m_TagString: TerrainObject
   m_Icon: {fileID: 0}
@@ -53945,6 +54124,10 @@ PrefabInstance:
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_Name
       value: things1_logs (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -55537,6 +55720,10 @@ PrefabInstance:
       value: rpgpp_lt_building_01
       objectReference: {fileID: 0}
     - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -56161,7 +56348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1731964938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Villages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56353,19 +56540,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1507636620937791777, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1507636620937791777, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1507636620937791777, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -239
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 1507636620937791777, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 39.11
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 1507636620937791777, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56943,7 +57130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1766764967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Villages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57375,6 +57562,10 @@ PrefabInstance:
       value: rpgpp_lt_building_01
       objectReference: {fileID: 0}
     - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -57675,6 +57866,7 @@ GameObject:
   - component: {fileID: 1801517508}
   - component: {fileID: 1801517506}
   - component: {fileID: 1801517505}
+  - component: {fileID: 1801517507}
   m_Layer: 0
   m_Name: CenematicCamera
   m_TagString: Untagged
@@ -57733,6 +57925,14 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!81 &1801517507
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801517504}
+  m_Enabled: 1
 --- !u!20 &1801517508
 Camera:
   m_ObjectHideFlags: 0
@@ -57788,7 +57988,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1804975736
 GameObject:
@@ -58230,6 +58430,10 @@ PrefabInstance:
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_Name
       value: things1_logs
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8265034190084247343, guid: 4a0aa0ca5ed99384a919e2ae2bc38470, type: 3}
       propertyPath: m_TagString
@@ -59438,7 +59642,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1865684681
 MonoBehaviour:
@@ -61758,6 +61962,10 @@ PrefabInstance:
       value: rpgpp_lt_building_01 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640908652775104, guid: cd87e5026d1695148aabe96121c526ef, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -61944,6 +62152,10 @@ PrefabInstance:
     - target: {fileID: 1121113006719782, guid: 386f40ad68cdd3c4fbcb471ef2d93772, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_building_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121113006719782, guid: 386f40ad68cdd3c4fbcb471ef2d93772, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1121113006719782, guid: 386f40ad68cdd3c4fbcb471ef2d93772, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -63206,7 +63418,7 @@ GameObject:
   - component: {fileID: 1965202649}
   - component: {fileID: 1965202648}
   - component: {fileID: 1965202647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain8(important)(level wize Change)
   m_TagString: TerrainObject
   m_Icon: {fileID: 0}
@@ -64405,6 +64617,10 @@ PrefabInstance:
       value: tent (9)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -64521,11 +64737,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017206682}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 150, z: 0}
+  m_LocalPosition: {x: 9.747, y: 250, z: -180.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2172013060899360769}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &2017206684
 MonoBehaviour:
@@ -64583,14 +64799,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 100
+  far clip plane: 300
   field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 280
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: c6d157fde335d794fa7fab66963c00c4, type: 2}
   m_TargetDisplay: 0
@@ -65798,7 +66014,7 @@ GameObject:
   - component: {fileID: 2058116540}
   - component: {fileID: 2058116539}
   - component: {fileID: 2058116538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain7(important)(level wize Change)
   m_TagString: TerrainObject
   m_Icon: {fileID: 0}
@@ -67226,7 +67442,7 @@ GameObject:
   - component: {fileID: 2097953742}
   - component: {fileID: 2097953741}
   - component: {fileID: 2097953740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: house_hut (1)
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -68228,7 +68444,7 @@ GameObject:
   - component: {fileID: 7430074781571418647}
   - component: {fileID: 6991332619557454453}
   - component: {fileID: 355876188580813307}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: house_hut
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -68261,7 +68477,7 @@ GameObject:
   - component: {fileID: 7430074781550245863}
   - component: {fileID: 6991332619528322949}
   - component: {fileID: 355876188618875915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: house_hut
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -68327,7 +68543,7 @@ GameObject:
   - component: {fileID: 7430074782249527182}
   - component: {fileID: 6991332620238319596}
   - component: {fileID: 355876189259445348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: house_hut
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -68393,7 +68609,7 @@ GameObject:
   - component: {fileID: 7430074781299641197}
   - component: {fileID: 6991332619241767695}
   - component: {fileID: 355876190515501185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: house_hut
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -69148,7 +69364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5548643402539460032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: yellow camp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69595,6 +69811,10 @@ PrefabInstance:
       value: things1_door_open
       objectReference: {fileID: 0}
     - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -69673,6 +69893,10 @@ PrefabInstance:
       value: things1_normal_barricade
       objectReference: {fileID: 0}
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -69749,6 +69973,10 @@ PrefabInstance:
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_Name
       value: damage_barricade1_damage_barricadegroup1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -70067,6 +70295,10 @@ PrefabInstance:
       value: tent
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -70304,6 +70536,10 @@ PrefabInstance:
       value: tent (4)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -70375,6 +70611,10 @@ PrefabInstance:
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_Name
       value: tent (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -70450,6 +70690,10 @@ PrefabInstance:
       value: tent (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -70523,6 +70767,10 @@ PrefabInstance:
       value: tent (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -70538,6 +70786,10 @@ PrefabInstance:
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_Name
       value: damage_barricade1_damage_barricadegroup1 1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -70646,7 +70898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838179725666286288}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70737,6 +70989,10 @@ PrefabInstance:
       value: tent (6)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -70819,6 +71075,10 @@ PrefabInstance:
       value: tent (8)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -70842,7 +71102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1743760870271459479}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'Hut camp '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70944,6 +71204,10 @@ PrefabInstance:
       value: tent (5)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -71024,6 +71288,10 @@ PrefabInstance:
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_Name
       value: tent (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_TagString
@@ -71206,7 +71474,7 @@ Transform:
   - {fileID: 2172013059290787351}
   - {fileID: 2109050508}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2003599736476838339
 Transform:
@@ -94496,7 +94764,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 884701133}
-  - {fileID: 2017206683}
   m_Father: {fileID: 1884841114047355637}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -94892,6 +95159,10 @@ PrefabInstance:
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_Name
       value: things1_normal_barricade (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -96873,7 +97144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7220187185274738931}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tent Camp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97274,6 +97545,10 @@ PrefabInstance:
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_Name
       value: damage_barricade1_damage_barricadegroup1 1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -97731,7 +98006,7 @@ GameObject:
   - component: {fileID: 5632306628180819348}
   - component: {fileID: 4678060554975052731}
   - component: {fileID: 3776126203640906918}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tent
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -97764,7 +98039,7 @@ GameObject:
   - component: {fileID: 5632306628074023391}
   - component: {fileID: 4678060555086043120}
   - component: {fileID: 3776126203684589807}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tent
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -97797,7 +98072,7 @@ GameObject:
   - component: {fileID: 5632306627659172948}
   - component: {fileID: 4678060555501679227}
   - component: {fileID: 3776126204167337318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tent
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -97896,7 +98171,7 @@ GameObject:
   - component: {fileID: 5632306626491255000}
   - component: {fileID: 4678060556665665271}
   - component: {fileID: 3776126205331452394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tent
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -97929,7 +98204,7 @@ GameObject:
   - component: {fileID: 5632306626388685224}
   - component: {fileID: 4678060556773248903}
   - component: {fileID: 3776126205439101082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tent
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -97962,7 +98237,7 @@ GameObject:
   - component: {fileID: 5632306626279066553}
   - component: {fileID: 4678060556344948118}
   - component: {fileID: 3776126205480497801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tent
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -97995,7 +98270,7 @@ GameObject:
   - component: {fileID: 5632306626082743200}
   - component: {fileID: 4678060556542287247}
   - component: {fileID: 3776126205677902482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tent
   m_TagString: BuildingObject
   m_Icon: {fileID: 0}
@@ -98025,7 +98300,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1498338669535832089, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1498338669535832089, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -98125,6 +98400,10 @@ PrefabInstance:
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_Name
       value: things1_normal_barricade (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -98514,6 +98793,10 @@ PrefabInstance:
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_Name
       value: things1_normal_barricade (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -99048,6 +99331,10 @@ PrefabInstance:
       value: things1_normal_barricade (3)
       objectReference: {fileID: 0}
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -99217,6 +99504,10 @@ PrefabInstance:
       value: damage_barricade1_damage_barricadegroup1 1
       objectReference: {fileID: 0}
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -99293,6 +99584,10 @@ PrefabInstance:
     - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
       propertyPath: m_Name
       value: things1_door_open
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4682509065784061852, guid: f5df5fd5d3cdf304c98417c8e65a4b9e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -99539,7 +99834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4877578310065055679}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99644,6 +99939,10 @@ PrefabInstance:
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_Name
       value: damage_barricade1_damage_barricadegroup1 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224204873921155944, guid: 6e77eb80631e4a948895a479442e91ae, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -100832,6 +101131,10 @@ PrefabInstance:
       value: house_hut (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2557413811377646579, guid: df85625795e17224ea4d4b5571d666bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557413811377646579, guid: df85625795e17224ea4d4b5571d666bc, type: 3}
       propertyPath: m_TagString
       value: BuildingObject
       objectReference: {fileID: 0}
@@ -100912,6 +101215,10 @@ PrefabInstance:
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_Name
       value: things1_normal_barricade (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -101033,6 +101340,14 @@ PrefabInstance:
     - target: {fileID: 7401440955994101144, guid: cea2e3068e95a2a4bb3d90c886123bd2, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401440955994101144, guid: cea2e3068e95a2a4bb3d90c886123bd2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401440955994101144, guid: cea2e3068e95a2a4bb3d90c886123bd2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7401440955994101144, guid: cea2e3068e95a2a4bb3d90c886123bd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -101349,6 +101664,10 @@ PrefabInstance:
       value: things1_normal_barricade (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693014832250074884, guid: f02e6488f3d7b734b8a1269c40f2becc, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -101609,6 +101928,10 @@ PrefabInstance:
       value: house_yellow
       objectReference: {fileID: 0}
     - target: {fileID: 3599487156599125682, guid: cb4234ad19ef60841b78b6048938e2fc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599487156599125682, guid: cb4234ad19ef60841b78b6048938e2fc, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -101743,6 +102066,10 @@ PrefabInstance:
       value: tent (5)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -101819,6 +102146,10 @@ PrefabInstance:
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_Name
       value: tent (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -101899,6 +102230,10 @@ PrefabInstance:
       value: tent (6)
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -101975,6 +102310,10 @@ PrefabInstance:
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_Name
       value: tent (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8532553125892219022, guid: f6fbc05efa49a1840ac74349876d1be9, type: 3}
       propertyPath: m_StaticEditorFlags

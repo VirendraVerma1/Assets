@@ -79,6 +79,10 @@ public class TargetHealth : HealthManager
         //show death animationn of this bot
         if (gameObject.GetComponent<GaurdController>())
         gameObject.GetComponent<GaurdController>().SetDead();
+
+		int random=Random.Range(1,6);
+		string temp="Yell"+random;
+		FindObjectOfType<AudioManager>().Play(temp);
 	}
 
 	public void Revive()

@@ -15,6 +15,7 @@ public class EaglePathGenerator : MonoBehaviour
   
 
     public GameObject WaterGO;
+    public GameObject RadarCameraGO;
 
     public GameObject TestPrefab;
     GameObject PlayerPrefab;
@@ -25,7 +26,8 @@ public class EaglePathGenerator : MonoBehaviour
     {
         MyEagle.transform.position=gameObject.transform.position;
         CurrentTerrain = GameObject.FindGameObjectWithTag("TerrainObject").transform;
-        SetWaterTransform();
+        //SetWaterTransform();
+        SetRadarCameraTransform();
         SetEaglePositionSpawnerTransform();
         StartCoroutine(InitailizePlayer());
         
@@ -50,6 +52,12 @@ public class EaglePathGenerator : MonoBehaviour
     {
         float y=WaterGO.transform.position.y;
         WaterGO.transform.position = new Vector3(CurrentTerrain.position.x+150, y, CurrentTerrain.position.z+150);
+    }
+
+    void SetRadarCameraTransform()
+    {
+        float y=RadarCameraGO.transform.position.y;
+        RadarCameraGO.transform.position = new Vector3(CurrentTerrain.position.x+150, y, CurrentTerrain.position.z+150);
     }
 
     void SetEaglePositionSpawnerTransform()

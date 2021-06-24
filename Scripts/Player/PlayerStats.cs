@@ -145,6 +145,9 @@ public class PlayerStats : MonoBehaviour
                     saveload.adsFrequency--;   
                 }
                 saveload.Save();
+                int random=Random.Range(1,6);
+                string temp="Yell"+random;
+                FindObjectOfType<AudioManager>().Play(temp);
             }
         }  
     }

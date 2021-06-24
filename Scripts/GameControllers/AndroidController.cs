@@ -30,6 +30,7 @@ public class AndroidController : MonoBehaviour
 
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera");
+        InitializeSounds();
     }
 
 
@@ -115,6 +116,27 @@ public class AndroidController : MonoBehaviour
         }
     }
 
+
+    #region background sounds
+
+    void InitializeSounds()
+    {
+        StartCoroutine(WaitAndChangeBackgroundSound());
+    }
+
+    IEnumerator WaitAndChangeBackgroundSound()
+    {
+        while(true)
+        {
+            int random=Random.Range(1,3);
+            string temp="Ambidient"+random;
+            FindObjectOfType<AudioManager>().Play(temp);
+            
+            yield return new WaitForSeconds(300);
+        }
+    }
+
+    #endregion
 
     
 }
