@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Advertisements;
 using GoogleMobileAds.Api;
 using System;
 
-public class AdScript : MonoBehaviour, IUnityAdsListener 
+public class AdScript : MonoBehaviour
 {
     //server values
     private string serverurl = "http://kreasaard.atwebpages.com/OneManArmy/adnet.php";
@@ -63,14 +62,15 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
         }
         else if (adnetValue == "1"&&!isOffline)//means unity ads
         {
-            if (Advertisement.IsReady(mySurfacingId))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            /* if (Advertisement.IsReady(mySurfacingId))
+             {
+                 return true;
+             }
+             else
+             {
+                 return false;
+             }*/
+            return false;
         }
         else
         {
@@ -93,14 +93,15 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
         }
         else if (adnetValue == "1"&&!isOffline)//means unity ads
         {
-            if (Advertisement.IsReady())
+            /*if (Advertisement.IsReady())
             {
                 return true;
             }
             else
             {
                 return false;
-            }
+            }*/
+            return false;
         }
         else
         {
@@ -117,7 +118,7 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
         }
         else if (adnetValue == "1"&&!isOffline)//means google ads inter to show
         {
-            Advertisement.Show();
+            //Advertisement.Show();
         }
     }
 
@@ -130,7 +131,7 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
         }
         else if (adnetValue == "1"&&!isOffline)//means unity ads reward to show
         {
-            ShowRewardedVideo();
+            //ShowRewardedVideo();
         }
     }
 
@@ -183,7 +184,7 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
         }
         else if (adnetValue == "1")//means initialize unity ads
         {
-            InitializeUnityAds();
+            //InitializeUnityAds();
         }
 
         
@@ -191,6 +192,8 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
 
 
     //---------------Unity Ads---------------
+
+    /*
 
     #region unity ads initialization
 
@@ -302,6 +305,7 @@ public class AdScript : MonoBehaviour, IUnityAdsListener
 
     #endregion
 
+    */
     //---------------Google Admob---------------
 
     #region google ads initialze
