@@ -490,11 +490,6 @@ public class GaurdController : MonoBehaviour
                 if (isBotAlert == false)
                 {
                     isBotAlert = true;
-                    int rand=Random.Range(0,2);
-                    if (rand == 1)
-                        anim.Play("FirstAlert");
-                    else
-                        anim.Play("SecondAlert");
                     StartCoroutine(RemoveBotAlert());
                 }
             }

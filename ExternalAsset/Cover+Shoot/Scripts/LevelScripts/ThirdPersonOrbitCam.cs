@@ -65,6 +65,7 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 				"It is recommended to set all vertical offset in Pivot Offset.");
 
         ShowLeftTouchPannel();
+		TouchField = LeftTouchPannel.GetComponent<FixedTouchField>();
 	}
 
     //--------------my functions
@@ -75,16 +76,16 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 
     public void ShowLeftTouchPannel()
     {
-        TouchField = LeftTouchPannel.GetComponent<FixedTouchField>();
-        LeftTouchPannel.SetActive(true);
-        FullScreenTouchPannel.SetActive(false);
+        // TouchField = LeftTouchPannel.GetComponent<FixedTouchField>();
+        // LeftTouchPannel.SetActive(true);
+        // FullScreenTouchPannel.SetActive(false);
     }
 
     public void ShowFullScreenTouchPannel()
     {
-        TouchField = FullScreenTouchPannel.GetComponent<FixedTouchField>();
-        LeftTouchPannel.SetActive(false);
-        FullScreenTouchPannel.SetActive(true);
+        // TouchField = FullScreenTouchPannel.GetComponent<FixedTouchField>();
+        // LeftTouchPannel.SetActive(false);
+        // FullScreenTouchPannel.SetActive(true);
     }
 
 	// Set custom Field of View.
@@ -111,7 +112,7 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 		// Mouse:
 		if(isAndroid==true){
 			//print(TouchField.TouchDist);
-            if (aimScript.isAimMode)
+            if (aimScript.isAndroidAim)
             {
                 angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.aimSenstivity;
                 angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.aimSenstivity;

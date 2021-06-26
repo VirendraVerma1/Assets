@@ -82,6 +82,13 @@ public class CoverBehaviour : GenericBehaviour
 		behaviourManager.SubscribeBehaviour (this);
 	}
 
+	bool isAndroid=true;
+	bool isAndroidCoverOn=false;
+	public void OnCoverButtonPressed()
+	{
+		isAndroidCoverOn=true;
+	}
+
 	// Update is used to set features regardless the active behaviour.
 	void Update ()
 	{
@@ -109,8 +116,10 @@ public class CoverBehaviour : GenericBehaviour
 			}
 
 			// Handle enter/exit/covering special actions when cover button is pressed.
-			if (Input.GetButtonUp (coverButton))
+			// if (Input.GetButtonUp (coverButton))
+			if (isAndroid && isAndroidCoverOn)
 			{
+				isAndroidCoverOn=false;
 				HandleCoverActions();
 
 				takeCover = !takeCover || (currentAction != CoverActions.NONE);

@@ -54,7 +54,10 @@ public class PlayerStats : MonoBehaviour
             nearestGaurd=MyNearstGaurd();
             if(nearestGaurd!=null)
             {
+                if(gameObject.GetComponent<AimBehaviour>().isAndroidAim==false)
                 KillFromKnifeButton.SetActive(true);
+                else
+                KillFromKnifeButton.SetActive(false);
             }
             else
             {
@@ -229,7 +232,10 @@ public class PlayerStats : MonoBehaviour
 
     public void ShopPickUpButton()
     {
+        if(gameObject.GetComponent<AimBehaviour>().isAndroidAim==false)
         PickUpButton.SetActive(true);
+        else
+        PickUpButton.SetActive(false);
     }
 
     public void ShopPickDownButton()
@@ -271,10 +277,12 @@ public class PlayerStats : MonoBehaviour
         gameObject.transform.LookAt(nearestGaurd.transform.position);
         //Quaternion _lookRotation = Quaternion.LookRotation((nearestGaurd.transform.position - transform.position).normalized);
         //transform.rotation = _lookRotation;
+
         nearestGaurd.GetComponent<TargetHealth>().TakeDamageMy(200);
         KillFromKnifeButton.SetActive(false);
         saveload.knifeKilledStat++;
         KnifeImpact();
+
     }
 
     void KnifeImpact()
@@ -290,6 +298,7 @@ public class PlayerStats : MonoBehaviour
         gameObject.GetComponent<Animator>().enabled = true;
         gameObject.GetComponent<Animator>().applyRootMotion = true;
         EnableAllComponents();
+
     }
 
     #endregion

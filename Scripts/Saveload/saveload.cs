@@ -126,6 +126,7 @@ public class saveload : MonoBehaviour
     public static int timePlayed=0;
     public static int adsFrequency=3;
     public static bool isTutorial = true;
+    public static int targetframe=30;
 
     public static string current_filename = "info.dat";
 
@@ -136,6 +137,7 @@ public class saveload : MonoBehaviour
         Notebook_Data data = new Notebook_Data();
 
         data.AdsFrequency=adsFrequency;
+        data.Targetframe=targetframe;
 
         data.AccountID = accountID;
         data.PlayerName = Encrypt(playerName);
@@ -205,6 +207,7 @@ public class saveload : MonoBehaviour
             Notebook_Data data = (Notebook_Data)bf.Deserialize(file);
 
             adsFrequency=data.AdsFrequency;
+            targetframe=data.Targetframe;
 
             accountID=data.AccountID;
             playerName=Decrypt(data.PlayerName);
@@ -311,6 +314,7 @@ public class saveload : MonoBehaviour
 class Notebook_Data
 {
     public int AdsFrequency;
+    public int Targetframe;
 
     public string AccountID;
     public string PlayerName;

@@ -100,7 +100,9 @@ public class AndroidController : MonoBehaviour
         {
             isEagleMode = false;
             MainCamera.GetComponent<Camera>().enabled = false;
+            MainCamera.GetComponent<ThirdPersonOrbitCam>().enabled = false;
             EagleCamera.GetComponent<Camera>().enabled = true;
+            EagleCamera.GetComponent<FreeCam>().enabled = true;
             foreach(GameObject g in AndroidControllers)
             g.SetActive(false);
             
@@ -109,7 +111,9 @@ public class AndroidController : MonoBehaviour
         {
             isEagleMode = true;
             MainCamera.GetComponent<Camera>().enabled = true;
+            MainCamera.GetComponent<ThirdPersonOrbitCam>().enabled = true;
             EagleCamera.GetComponent<Camera>().enabled = false;
+            EagleCamera.GetComponent<FreeCam>().enabled = false;
             foreach(GameObject g in AndroidControllers)
             g.SetActive(true);
             

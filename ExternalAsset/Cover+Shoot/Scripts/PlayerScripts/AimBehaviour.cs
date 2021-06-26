@@ -180,8 +180,9 @@ public class AimBehaviour : GenericBehaviour
 
             if (shootscript.CurrentGunLabel == "Sniper")
             {
-                mainCam.SetSniperFOV(15f);
-                
+				if (isAndroidAim)
+                GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitailizeWeaponCamera();
+                mainCam.SetSniperFOV(50f);
             }
             else
             {

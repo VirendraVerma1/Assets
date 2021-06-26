@@ -64,6 +64,7 @@ public class ShootBehaviour : GenericBehaviour
 	// Start is always called after any Awake functions.
     GameObject mainCamera;
     GameObject weaponCamera;
+	
 	void Start()
 	{
 		
@@ -126,15 +127,20 @@ public class ShootBehaviour : GenericBehaviour
 
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera");
+		isReloadOn=false;
 	}
 
 //--------------------------------------my android things
 	bool isAndroidFireon=false;
+	bool isReloadOn=false;
 	public void OnAndroidFireButtonPressed()
 	{
-		isAndroidFireon=true;
-		gameObject.GetComponent<AimBehaviour>().OnAndroidAimFromFireOnButtonPressed();
-        StartFireCounter();
+		if(!isReloadOn)
+		{
+			isAndroidFireon=true;
+			gameObject.GetComponent<AimBehaviour>().OnAndroidAimFromFireOnButtonPressed();
+        	StartFireCounter();
+		}
 	}
 
 	float counterisOnTime=2;
@@ -333,7 +339,10 @@ public class ShootBehaviour : GenericBehaviour
 		if (!isAiming || isAimBlocked || behaviourManager.GetAnim.GetBool(reloadBool) || !weapons[weapon].Shoot(firstShot))
 		{
             if (!weapons[weapon].Shoot(firstShot))
-                OnAndroidReloadButtonPressed();
+			{
+				isReloadOn=true;
+				OnAndroidReloadButtonPressed();
+			}
 			return;
 		}
 		else
@@ -581,6 +590,7 @@ public class ShootBehaviour : GenericBehaviour
 	{
 		behaviourManager.GetAnim.SetBool(reloadBool, false);
 		weapons[activeWeapon].EndReload();
+		isReloadOn=false;
         if(gameObject.GetComponent<AimBehaviour>().isAndroidAim)
             GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitailizeWeaponCamera();
 	}

@@ -263,7 +263,7 @@ public class GameController : MonoBehaviour
     IEnumerator RadarDisable()
     {
         yield return new WaitForSeconds(saveload.radarWorkingTime);
-        RadarSystemPannel.SetActive(false);
+        // RadarSystemPannel.SetActive(false);
         RevertAllEnemyMaterial();
         OnAllTheEffects();
         RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
@@ -563,6 +563,9 @@ public class GameController : MonoBehaviour
     public Slider EagleCamSensitiveSlider;
     public GameObject AimAssistButton;
     public GameObject AutoFireButton;
+    //fps
+    public GameObject TargetFrameCheckbox30FPS;
+    public GameObject TargetFrameCheckbox60FPS;
     
     void InitializeSettings()
     {
@@ -580,6 +583,8 @@ public class GameController : MonoBehaviour
         SensitiveSlider.GetComponent<Slider>().value=saveload.senstivity;
         AimSensitiveSlider.GetComponent<Slider>().value=saveload.aimSenstivity;
         EagleCamSensitiveSlider.GetComponent<Slider>().value=saveload.eaglecamSenstivity;
+
+        OnInitalizeTargetFrameCheckBox(saveload.targetframe);
     }
 
     public void OnSettingButtonPressed()
@@ -643,6 +648,29 @@ public class GameController : MonoBehaviour
         }
         InitializeSettings();
         FindObjectOfType<AudioManager>().Play("Button");
+    }
+
+    //FPS
+    public void OnInitalizeTargetFrameCheckBox(int code)
+    {
+        TargetFrameCheckbox30FPS.GetComponent<Image>().sprite = UntickSprite;
+        TargetFrameCheckbox60FPS.GetComponent<Image>().sprite = UntickSprite;
+
+        if (code == 30)
+        {
+            Application.targetFrameRate = 30;
+            TargetFrameCheckbox30FPS.GetComponent<Image>().sprite = TickSprite;
+            saveload.targetframe = 30;
+        }
+        else
+        {
+
+            Application.targetFrameRate = 60;
+            TargetFrameCheckbox60FPS.GetComponent<Image>().sprite = TickSprite;
+            saveload.targetframe = 60;
+
+        }
+        saveload.Save();
     }
 
     #endregion
@@ -1091,6 +1119,11 @@ public class GameController : MonoBehaviour
         gameObject.GetComponent<ShopController>().OnShopButtonPressed();
     }
 
+    public void OnPrivacyPolicyButtonPressed()
+    {
+        Application.OpenURL("https://kreasarstudio.wixsite.com/home/rudra");
+    }
+
     #endregion
 
     #region AbortMission
@@ -1214,7 +1247,7 @@ public class GameController : MonoBehaviour
         saveload.accuracyStat=Mathf.RoundToInt((saveload.totalGaurdStat/((float)saveload.ammousedStat)))*100;
         TotalGaurdTextStat.text="Total Gaurd : "+saveload.totalGaurdStat.ToString();
         AmmoUsedTextStat.text="Ammo Used : "+saveload.ammousedStat.ToString();
-        KnifeKilledTextStat.text="Kife Killed : "+saveload.knifeKilledStat.ToString();
+        KnifeKilledTextStat.text="Knife Killed : "+saveload.knifeKilledStat.ToString();
         TimeTakenTextStat.text="Time Taken : "+saveload.timetakenStat.ToString()+" sec";
         AccuracyTextStat.text="Accuracy : "+saveload.accuracyStat.ToString()+"%";
     }
