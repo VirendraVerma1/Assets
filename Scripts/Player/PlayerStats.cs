@@ -18,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     public Image HealthBar;
     public ControlsTutorial ct;
     public GameController gameController;
+    public GameObject GameCharacter;
     void Start()
     {
        
@@ -213,6 +214,8 @@ public class PlayerStats : MonoBehaviour
     {
         gameObject.transform.position = StartingPosition.transform.position;
         gameObject.transform.rotation = StartingPosition.transform.rotation;
+        GameCharacter.transform.localPosition=Vector3.zero;
+        GameCharacter.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     public void OnRestartButtonPressed()

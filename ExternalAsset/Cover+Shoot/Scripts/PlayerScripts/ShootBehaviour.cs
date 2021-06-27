@@ -64,6 +64,7 @@ public class ShootBehaviour : GenericBehaviour
 	// Start is always called after any Awake functions.
     GameObject mainCamera;
     GameObject weaponCamera;
+	public GameObject SniperScope;
 	
 	void Start()
 	{
@@ -206,9 +207,10 @@ public class ShootBehaviour : GenericBehaviour
 				if(isModeOn==false)
 				{
 					isModeOn=true;
-                    print("gaurd hit");
+                    
 					StartCoroutine(WaitAndSetAutoFireAim());
 				}
+				// gameObject.transform.LookAt(hit.collider.gameObject.transform);
 			}
 			else
 			{
@@ -341,6 +343,8 @@ public class ShootBehaviour : GenericBehaviour
             if (!weapons[weapon].Shoot(firstShot))
 			{
 				isReloadOn=true;
+				if(CurrentGunLabel=="Sniper")
+					SniperScope.SetActive(false);
 				OnAndroidReloadButtonPressed();
 			}
 			return;
@@ -591,9 +595,14 @@ public class ShootBehaviour : GenericBehaviour
 		behaviourManager.GetAnim.SetBool(reloadBool, false);
 		weapons[activeWeapon].EndReload();
 		isReloadOn=false;
+		
         if(gameObject.GetComponent<AimBehaviour>().isAndroidAim)
-            GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitailizeWeaponCamera();
-	}
+		{
+			if(CurrentGunLabel=="Sniper")
+				SniperScope.SetActive(true);
+    		GameObject.FindGameObjectWithTag("MainController").gameObject.GetComponent<AndroidController>().InitailizeWeaponCamera();
+		}
+    }
 
 	// Change HUD crosshair when aiming.
 	private void SetWeaponCrosshair(bool armed)

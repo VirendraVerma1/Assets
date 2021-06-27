@@ -110,8 +110,8 @@ public class saveload : MonoBehaviour
     public static string accountID = " ";
     public static string playerName = " ";
 
-    public static float senstivity = 2.8f;
-    public static float aimSenstivity = 1.5f;
+    public static float senstivity = 3.5f;
+    public static float aimSenstivity = 1.3f;
     public static float eaglecamSenstivity=0.5f;
 
     public static int currentLevel = 1;
@@ -127,6 +127,7 @@ public class saveload : MonoBehaviour
     public static int adsFrequency=3;
     public static bool isTutorial = true;
     public static int targetframe=30;
+    public static string qualityName = "Medium";
 
     public static string current_filename = "info.dat";
 
@@ -138,6 +139,7 @@ public class saveload : MonoBehaviour
 
         data.AdsFrequency=adsFrequency;
         data.Targetframe=targetframe;
+        data.QualityName = qualityName;
 
         data.AccountID = accountID;
         data.PlayerName = Encrypt(playerName);
@@ -208,6 +210,7 @@ public class saveload : MonoBehaviour
 
             adsFrequency=data.AdsFrequency;
             targetframe=data.Targetframe;
+            qualityName = data.QualityName;
 
             accountID=data.AccountID;
             playerName=Decrypt(data.PlayerName);
@@ -315,6 +318,7 @@ class Notebook_Data
 {
     public int AdsFrequency;
     public int Targetframe;
+    public string QualityName;
 
     public string AccountID;
     public string PlayerName;

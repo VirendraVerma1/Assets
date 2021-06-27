@@ -17,7 +17,8 @@ public class AndroidController : MonoBehaviour
     GameObject mainCamera;
     GameObject weaponCamera;
     GameObject currentHoldWeapon;
-
+    
+        
     void Awake()
     {
         basicBehaviour.isAndroid=isAndroid;
@@ -31,8 +32,8 @@ public class AndroidController : MonoBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera");
         InitializeSounds();
+        
     }
-
 
     public void OnAndroidPickButtonPressed()
     {
@@ -119,7 +120,6 @@ public class AndroidController : MonoBehaviour
             
         }
     }
-
 
     #region background sounds
 

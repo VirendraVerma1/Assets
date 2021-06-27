@@ -585,6 +585,7 @@ public class GameController : MonoBehaviour
         EagleCamSensitiveSlider.GetComponent<Slider>().value=saveload.eaglecamSenstivity;
 
         OnInitalizeTargetFrameCheckBox(saveload.targetframe);
+        InitializeGraphics();
     }
 
     public void OnSettingButtonPressed()
@@ -672,6 +673,83 @@ public class GameController : MonoBehaviour
         }
         saveload.Save();
     }
+
+    #region Graphics Quality
+
+    public GameObject LowQualityButton;
+    public GameObject MediumQualityButton;
+    public GameObject HighQualityButton;
+
+    GameObject currentTerrain;
+
+    void InitializeGraphics()
+    {
+        currentTerrain = GameObject.FindGameObjectWithTag("TerrainObject");
+        OnGraphicsQualitySet(saveload.qualityName);
+    }
+
+    public void OnGraphicsQualitySet(string name)
+    {
+        LowQualityButton.GetComponent<Image>().sprite = UntickSprite;
+        MediumQualityButton.GetComponent<Image>().sprite = UntickSprite;
+        HighQualityButton.GetComponent<Image>().sprite = UntickSprite;
+
+        if (name == "Low")
+        {
+            ForLowQuality();
+            LowQualityButton.GetComponent<Image>().sprite = TickSprite;
+            saveload.qualityName = "Low";
+        }
+        else if(name == "Medium")
+        {
+            ForMediumQuality();
+            MediumQualityButton.GetComponent<Image>().sprite = TickSprite;
+            saveload.qualityName = "Medium";
+        }
+        else if (name == "High")
+        {
+            ForHighQuality();
+            HighQualityButton.GetComponent<Image>().sprite = TickSprite;
+            saveload.qualityName = "High";
+        }
+        saveload.Save();
+    }
+
+    #region terrain Graphics Settings
+
+    void ForLowQuality()
+    {
+        QualitySettings.masterTextureLimit = 4;
+        currentTerrain.GetComponent<Terrain>().detailObjectDensity = 0;
+        currentTerrain.GetComponent<Terrain>().detailObjectDistance = 7;
+        currentTerrain.GetComponent<Terrain>().treeDistance = 50;
+        currentTerrain.GetComponent<Terrain>().treeBillboardDistance = 10;
+        currentTerrain.GetComponent<Terrain>().basemapDistance = 10;
+    }
+
+    void ForMediumQuality()
+    {
+        QualitySettings.masterTextureLimit = 2;
+        currentTerrain.GetComponent<Terrain>().detailObjectDensity = 0.5f;
+        currentTerrain.GetComponent<Terrain>().detailObjectDistance = 30;
+        currentTerrain.GetComponent<Terrain>().treeDistance = 100;
+        currentTerrain.GetComponent<Terrain>().treeBillboardDistance = 20;
+        currentTerrain.GetComponent<Terrain>().basemapDistance = 50;
+    }
+
+    void ForHighQuality()
+    {
+        QualitySettings.masterTextureLimit = 0;
+        currentTerrain.GetComponent<Terrain>().detailObjectDensity = 1;
+        currentTerrain.GetComponent<Terrain>().detailObjectDistance = 100;
+        currentTerrain.GetComponent<Terrain>().treeDistance = 200;
+        currentTerrain.GetComponent<Terrain>().treeBillboardDistance = 70;
+        currentTerrain.GetComponent<Terrain>().basemapDistance = 150;
+    }
+
+    #endregion
+
+    #endregion
 
     #endregion
 
