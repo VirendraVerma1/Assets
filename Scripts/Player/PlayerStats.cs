@@ -301,7 +301,9 @@ public class PlayerStats : MonoBehaviour
         gameObject.GetComponent<Animator>().enabled = true;
         gameObject.GetComponent<Animator>().applyRootMotion = true;
         EnableAllComponents();
-
+	
+        GameCharacter.transform.localPosition=Vector3.zero;
+        GameCharacter.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     #endregion

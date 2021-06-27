@@ -498,7 +498,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator ActivateEagleButton()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(100);
         EaglePetButton.SetActive(true);
     }
 

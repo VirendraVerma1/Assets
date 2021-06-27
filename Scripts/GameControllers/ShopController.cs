@@ -21,7 +21,7 @@ public class ShopController : MonoBehaviour
 
     public void OnShopButtonPressed()
     {
-        saveload.money=10000;
+        //saveload.money=10000;
         InitializeResult();
         ShopPannel.SetActive(true);
         MoneyText.text = saveload.money.ToString();

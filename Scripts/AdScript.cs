@@ -23,7 +23,7 @@ public class AdScript : MonoBehaviour
 
     //----google admob variable
     string AppId = "ca-app-pub-4773340848320054~9968233986";
-    string RewardAdd ="ca-app-pub-3940256099942544/5224354917";// "ca-app-pub-4773340848320054/8463580626";
+    string RewardAdd = "ca-app-pub-3940256099942544/5224354917";//"ca-app-pub-4773340848320054/8463580626";
     string interstitialAdd = "ca-app-pub-3940256099942544/1033173712";//"ca-app-pub-4773340848320054/4715907307";
 
     public static AdScript Instance { get; private set; } // static singleton
