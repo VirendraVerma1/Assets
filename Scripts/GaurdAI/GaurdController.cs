@@ -34,6 +34,8 @@ public class GaurdController : MonoBehaviour
                 player = GameObject.FindGameObjectWithTag("Player");
             }
         }
+
+        if (saveload.isTutorial ==false)
         StartCoroutine(UpdateBotInfo());
        
     }
@@ -97,17 +99,17 @@ public class GaurdController : MonoBehaviour
     {
         
         int randomness = Random.Range(1, 100);
-        // if(saveload.currentLevel<5)
-        // {
-        //     randomness = Random.Range(1, 60);
-        // }
-        // else if(saveload.currentLevel<10)
-        // {
-        //     randomness = Random.Range(1, 80);
-        // }else
-        // {
-        //     randomness = Random.Range(1, 100); 
-        // }
+         if(saveload.currentLevel<5)
+         {
+             randomness = Random.Range(1, 60);
+         }
+         else if(saveload.currentLevel<10)
+         {
+             randomness = Random.Range(1, 80);
+         }else
+         {
+             randomness = Random.Range(1, 100); 
+         }
 
         if (randomness < 60)
         {

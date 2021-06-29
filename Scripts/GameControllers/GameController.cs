@@ -411,7 +411,7 @@ public class GameController : MonoBehaviour
             g.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             g.GetComponent<NavMeshAgent>().speed = 0.005f;
             g.GetComponent<NavMeshAgent>().angularSpeed = 0.005f;
-            g.GetComponent<Animator>().speed = 0.01f;
+            g.GetComponent<Animator>().speed = 0.1f;
             g.GetComponent<GaurdController>().tempFireRate = 9999;
           //  g.GetComponent<GaurdController>().enabled = false;
         }

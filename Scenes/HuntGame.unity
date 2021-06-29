@@ -8900,7 +8900,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: bdfa77de039dd6345bf1622789fb2edb, type: 3}
     - target: {fileID: 1698509182143296425, guid: e758bf02213974d488669df40a520d5c, type: 3}
       propertyPath: recoilAngle
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1698509182143296425, guid: e758bf02213974d488669df40a520d5c, type: 3}
       propertyPath: relativeRotation.x
@@ -15272,7 +15272,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: cb235766b0d70014caceea4230cbdc65, type: 3}
     - target: {fileID: 3179448733664027866, guid: 96997431241834541b92ef838ad73189, type: 3}
       propertyPath: recoilAngle
-      value: 1.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3179448733664027866, guid: 96997431241834541b92ef838ad73189, type: 3}
       propertyPath: relativeRotation.x
@@ -16949,13 +16949,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Ambidient1
     clip: {fileID: 8300000, guid: efd567188343ed9479864e9699707d23, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
   - name: Ambidient2
     clip: {fileID: 8300000, guid: 0a3282964de1e7645ae91a15c8278d14, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
@@ -16979,31 +16979,31 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Yell1
     clip: {fileID: 8300000, guid: f7f5a8cda733de145ba9bea50ee587ce, type: 3}
-    volume: 0.464
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Yell2
     clip: {fileID: 8300000, guid: 9e492dfa4024d0c4fa541baad4047e39, type: 3}
-    volume: 0.472
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Yell3
     clip: {fileID: 8300000, guid: e2e25566cc2a63e4aae9ed58ff73a652, type: 3}
-    volume: 0.472
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Yell4
     clip: {fileID: 8300000, guid: 5ebaed1b820c36b4ca1facb1996616e7, type: 3}
-    volume: 1
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Yell5
     clip: {fileID: 8300000, guid: d160d177eec9d584a84e3aa49f2278b6, type: 3}
-    volume: 1
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -22437,7 +22437,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 522201cba6de7824dab6632580819664, type: 3}
     - target: {fileID: 6083658529531424541, guid: 14e7025eaa34afa4daf58b8e4e214c13, type: 3}
       propertyPath: recoilAngle
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6083658529531424541, guid: 14e7025eaa34afa4daf58b8e4e214c13, type: 3}
       propertyPath: relativeRotation.x
@@ -35552,7 +35552,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2574049be900eb947a91cbab6b1b9747, type: 3}
     - target: {fileID: 7098990454570670734, guid: df2786124a10a9646b24fbccb79dea6e, type: 3}
       propertyPath: recoilAngle
-      value: 3
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7098990454570670734, guid: df2786124a10a9646b24fbccb79dea6e, type: 3}
       propertyPath: relativeRotation.x
@@ -68444,7 +68444,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 675eba8627d613140a2a157d1fe6e2aa, type: 3}
     - target: {fileID: 2610501122893499195, guid: 0f09b823686695144bf9f71361e7882d, type: 3}
       propertyPath: recoilAngle
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2610501122893499195, guid: 0f09b823686695144bf9f71361e7882d, type: 3}
       propertyPath: relativeRotation.x

@@ -83,8 +83,11 @@ public class PlayerStats : MonoBehaviour
     {
         for(int i=0;i<gaurdDistance.Count;i++)
         {
-            if(gaurdDistance[i].Gaurd!=null)
-            gaurdDistance[i].Distance=Vector3.Distance(gameObject.transform.position,gaurdDistance[i].Gaurd.transform.position);
+            if(gaurdDistance[i].Gaurd!=null&& gaurdDistance[i].Gaurd.gameObject.GetComponent<GaurdController>().isDead==false)
+            {
+                gaurdDistance[i].Distance = Vector3.Distance(gameObject.transform.position, gaurdDistance[i].Gaurd.transform.position);
+            }
+            
         }
     }
 
@@ -150,7 +153,7 @@ public class PlayerStats : MonoBehaviour
                 }
                 saveload.Save();
                 int random=Random.Range(1,6);
-                string temp="Yell"+random;
+                string temp="Yell"+4;
                 FindObjectOfType<AudioManager>().Play(temp);
             }
         }  

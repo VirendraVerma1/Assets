@@ -55,10 +55,10 @@ public class saveload : MonoBehaviour
     public static bool isshotgunBuyed = false;
     public static bool issniperBuyed = false;
 
-    public static int pistolAmmo = 100;
-    public static int rifleAmmo = 200;
-    public static int akAmmo = 200;
-    public static int shotgunAmmo = 50;
+    public static int pistolAmmo = 300;
+    public static int rifleAmmo = 500;
+    public static int akAmmo = 300;
+    public static int shotgunAmmo = 100;
     public static int sniperAmmo = 50;
 
     public static int currentEquipedWeapon=0;
@@ -111,7 +111,7 @@ public class saveload : MonoBehaviour
     public static string playerName = " ";
 
     public static float senstivity = 3.5f;
-    public static float aimSenstivity = 1.3f;
+    public static float aimSenstivity = 1f;
     public static float eaglecamSenstivity=0.5f;
 
     public static int currentLevel = 1;
