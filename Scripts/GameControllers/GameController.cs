@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class GameController : MonoBehaviour
     public int terrainNu=0;
 
     [Header("CommonThings")]
+    public GameObject GlobalVolume;
     bool isTimeFreeze = false;
     public GameObject GaurdAI;
     public GameObject[] MissionTerrain;
@@ -366,12 +369,25 @@ public class GameController : MonoBehaviour
     {
         if (isFreezeActiveForClick)
         {
-            FreezeUIEffect.SetActive(true);
+            //FreezeUIEffect.SetActive(true);
             currentAbilityName = abilityName[0];
             isFreezeActiveForClick = false;
             FreezeTimeButton.GetComponent<Image>().sprite = WorkingFreezeSprite;
             isTimeFreeze = true;
-            ChangeEnemyMaterialsOnFreeze();
+            ChromaticAberration co;
+            if(GlobalVolume.GetComponent<Volume>().profile.TryGet<ChromaticAberration>(out ChromaticAberration ca))
+            {
+                co = ca;
+                co.active = true;
+            }
+
+            ColorCurves cc;
+            if (GlobalVolume.GetComponent<Volume>().profile.TryGet<ColorCurves>(out ColorCurves ccc))
+            {
+                cc = ccc;
+                cc.active = true;
+            }
+            //ChangeEnemyMaterialsOnFreeze();
             StartCoroutine(ShowFreezeTimeButton());
             FreezeEveryThing();
             OffOtherEffects();
@@ -386,12 +402,25 @@ public class GameController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(saveload.freezeWorkingTime);
-        FreezeUIEffect.SetActive(false);
+        ChromaticAberration co;
+        if (GlobalVolume.GetComponent<Volume>().profile.TryGet<ChromaticAberration>(out ChromaticAberration ca))
+        {
+            co = ca;
+            co.active = false;
+        }
+
+        ColorCurves cc;
+        if (GlobalVolume.GetComponent<Volume>().profile.TryGet<ColorCurves>(out ColorCurves ccc))
+        {
+            cc = ccc;
+            cc.active = false;
+        }
+        //FreezeUIEffect.SetActive(false);
         RadarButton.GetComponent<Image>().sprite = NormalRadarSprite;
         FreezeTimeButton.GetComponent<Image>().sprite = NormalFreezeSprite;
         UnFreezeEveryThing();
         OnAllTheEffects();
-        RevertAllEnemyMaterialOnFreeze();
+        //RevertAllEnemyMaterialOnFreeze();
         FillRateForFrezze.fillAmount = 1;
         int time = saveload.freezeCooldownTime;
         while (time > 0)
@@ -1248,6 +1277,7 @@ public class GameController : MonoBehaviour
     public void StartLoadingScreen(string sceneName)
     {
         SetrandomBackground();
+        ControllerCanvas.SetActive(false);
         StartCoroutine(WaitForFlashDelay(sceneName));
     }
 
