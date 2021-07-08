@@ -65,6 +65,7 @@ public class ShootBehaviour : GenericBehaviour
     GameObject mainCamera;
     GameObject weaponCamera;
 	public GameObject SniperScope;
+	GameObject currentPlayer;
 	
 	void Start()
 	{
@@ -129,6 +130,7 @@ public class ShootBehaviour : GenericBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera");
 		isReloadOn=false;
+		currentPlayer = gameObject.GetComponent<PlayerStats>().GameCharacter;
 	}
 
 //--------------------------------------my android things
@@ -188,6 +190,7 @@ public class ShootBehaviour : GenericBehaviour
 	//------------auto fire system
 	float autofireWaitCounter=0.4f;
 	bool isModeOn=false;
+	private GameObject aimedGaurd=null;
 	void CheckFromEnemy()
 	{
         Camera tempCam;
@@ -210,11 +213,17 @@ public class ShootBehaviour : GenericBehaviour
                     
 					StartCoroutine(WaitAndSetAutoFireAim());
 				}
-				// gameObject.transform.LookAt(hit.collider.gameObject.transform);
+				if (aimBehaviour.isAndroidAim)
+					aimedGaurd = hit.collider.gameObject;
+				else
+					aimedGaurd = null;
+
+
 			}
 			else
 			{
 				isModeOn=false;
+				aimedGaurd = null;
 			}
 		}
 	}
@@ -232,9 +241,16 @@ public class ShootBehaviour : GenericBehaviour
 
 
 
-//-----------------------------------------end
+    //-----------------------------------------end
 
-	private void Update()
+    private void FixedUpdate()
+    {
+		if (aimedGaurd != null)
+			currentPlayer.gameObject.transform.LookAt(aimedGaurd.transform);
+		
+	}
+
+    private void Update()
 	{
 		if(isAndroid)
 		{

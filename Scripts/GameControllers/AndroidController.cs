@@ -142,5 +142,17 @@ public class AndroidController : MonoBehaviour
 
     #endregion
 
-    
+
+    #region new fire mechanism
+
+    public RectTransform HandleFire;
+    public Joystick joystick;
+    public void OnResetFireTouchButtonPressed()
+    {
+        HandleFire.localPosition = Vector3.zero;
+        joystick.ResetInput();
+    }
+
+    #endregion
+
 }

@@ -4,6 +4,7 @@
 public class ThirdPersonOrbitCam : MonoBehaviour 
 {
 	public Camera SecondCam;
+	public Joystick joystick;
 	public bool isAndroid=false;
 	public FixedTouchField TouchField;
 
@@ -102,9 +103,14 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 		cam.GetComponent<Camera>().fieldOfView=this.targetFOV;
 	}
 
-    //--end my functions
+	//--end my functions
 
-
+	float angleanotherV;
+	float angleanotherH;
+	float angleaimanotherV;
+	float angleaimanotherH;
+	Vector3 anotherbullet;
+	public GameObject MyCharacter;
 	void Update()
 	{
         SecondCam.fieldOfView = gameObject.GetComponent<Camera>().fieldOfView;
@@ -114,15 +120,43 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 			//print(TouchField.TouchDist);
             if (aimScript.isAndroidAim)
             {
-                angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.aimSenstivity;
-                angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.aimSenstivity;
-            }
+				angleanotherV = Mathf.Clamp(joystick.Vertical, -1, 1) * saveload.senstivity / 4;
+				angleanotherH = Mathf.Clamp(joystick.Horizontal, -1, 1) * saveload.senstivity / 4;
+
+				anotherbullet = new Vector3(-angleanotherV, angleanotherH, 0);
+				if (anotherbullet != Vector3.zero)
+				{
+					angleaimanotherH += angleanotherH;
+					angleaimanotherV += angleanotherV;
+					print(Quaternion.Euler(-angleaimanotherV, angleaimanotherH, 0));
+					//MyCharacter.transform.localRotation= Quaternion.Euler(-angleaimanotherV, angleaimanotherH, 0);
+				}
+				else
+                {
+					angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.aimSenstivity;
+					angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.aimSenstivity;
+				}
+				
+			}
             else
             {
-                angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.senstivity;
-                angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.senstivity;
-            }
-		}else{
+                angleanotherV = Mathf.Clamp(joystick.Vertical, -1, 1) * saveload.senstivity/4;
+				angleanotherH = Mathf.Clamp(joystick.Horizontal, -1, 1) * saveload.senstivity/4;
+
+				anotherbullet = new Vector3(-angleanotherV, angleanotherH, 0);
+				if (anotherbullet!=Vector3.zero)
+                {
+					angleH += angleanotherH;
+					angleV += angleanotherV;
+				}
+                else
+                {
+					angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.senstivity;
+					angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.senstivity;
+				}
+			}
+		}
+		else{
 		angleH += Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1) * horizontalAimingSpeed;
 		angleV += Mathf.Clamp(Input.GetAxis("Mouse Y"), -1, 1) * verticalAimingSpeed;
 		angleH += Mathf.Clamp(Input.GetAxis(XAxis), -1, 1) * 60 * horizontalAimingSpeed * Time.deltaTime;
@@ -154,6 +188,7 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 		// Set camera orientation.
 		Quaternion camYRotation = Quaternion.Euler(0, angleH, 0);
 		Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
+
 		cam.rotation = aimRotation;
 
 		// Set FOV.

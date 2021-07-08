@@ -32,6 +32,7 @@ public class AimBehaviour : GenericBehaviour
 	// Start is always called after any Awake functions.
     Vector3 FPSPivotoffset = new Vector3(-0.15f, 1.38f, 0f);
     Vector3 FPSCamoffset = new Vector3(0f, 0.4f, -0.34f);
+	public AndroidController androidController;
 
 	void Start ()
 	{
@@ -71,6 +72,8 @@ public class AimBehaviour : GenericBehaviour
 		{
 			isAndroidAim=false;
 			gameObject.GetComponent<PlayerStats>().OnAimOff();
+			gameObject.GetComponent<PlayerStats>().GameCharacter.transform.localPosition = Vector3.zero;
+			gameObject.GetComponent<PlayerStats>().GameCharacter.transform.localRotation = Quaternion.Euler( Vector3.zero);
 		}
 		else{
 			isAndroidAim=true;
@@ -91,6 +94,7 @@ public class AimBehaviour : GenericBehaviour
         if (isAndroidAim == false)
 		isAndroidAimFromFire=false;
 		//isAndroidAim=false;
+		androidController.OnResetFireTouchButtonPressed();
 	}
 
 
