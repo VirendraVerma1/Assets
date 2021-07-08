@@ -2475,7 +2475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &42890407
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -18284,9 +18284,12 @@ MonoBehaviour:
   EagleButton: {fileID: 2132305832}
   KnifeButton: {fileID: 972540633}
   minDistance: 3
+  FirstGaurdpoint: {fileID: 1805335659}
   MoveToSecondPosition: {fileID: 488874179}
   MoveToThirdPosition: {fileID: 178076716}
   MoveToFourthPosition: {fileID: 1079882905}
+  GaurdMarkerYellow: {fileID: 2100000, guid: 9fda7a5fb5b83b947b5c954aa3cb064f, type: 2}
+  GaurdMarkerRed: {fileID: 2100000, guid: b120deb8c5fcb2f4baa01bbd33307576, type: 2}
 --- !u!114 &478210682
 MonoBehaviour:
   m_ObjectHideFlags: 0

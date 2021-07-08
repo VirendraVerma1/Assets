@@ -43,6 +43,7 @@ public class TutorialController : MonoBehaviour
     public GameObject EagleButton;
     public GameObject KnifeButton;
     public float minDistance = 5;
+    public Transform FirstGaurdpoint;
 
     //second move
     public Transform MoveToSecondPosition;
@@ -52,6 +53,9 @@ public class TutorialController : MonoBehaviour
 
     //fourth move
     public Transform MoveToFourthPosition;
+
+    public Material GaurdMarkerYellow;
+    public Material GaurdMarkerRed;
 
     int step = 0;
     GameObject Player=null;
@@ -109,7 +113,7 @@ public class TutorialController : MonoBehaviour
     {
         DeactivateAll();
         TutorialPannel.SetActive(true);
-        MessageText.text = "Shoot Gaurd";
+        MessageText.text = "Aim on Gaurd";
         AimButton.SetActive(true);
         step++;
     }
@@ -120,6 +124,21 @@ public class TutorialController : MonoBehaviour
         {
             TutorialPannel.SetActive(false);
             oldbotCount = gc.botCount;
+            //box ke nearby jo bhi gaurd hoga uska markey higlight ho jayega
+            GameObject[] Allgaurds = GameObject.FindGameObjectsWithTag("Gaurd");
+            GameObject NearestGaurd=null;
+            float minDistance = 999999;
+            foreach(GameObject g in Allgaurds)
+            {
+                float distance=Vector3.Distance(FirstGaurdpoint.position, g.transform.position);
+                if(distance>minDistance)
+                {
+                    minDistance = distance;
+                    NearestGaurd = g;
+                }
+            }
+            //set market
+            NearestGaurd.transform.Find("TerroristMarker").GetComponent<Renderer>().material = GaurdMarkerRed;
             StartCoroutine(WaitAndCountBot());
         }
         else if(step==3)
