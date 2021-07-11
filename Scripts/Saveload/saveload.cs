@@ -111,7 +111,7 @@ public class saveload : MonoBehaviour
     public static string playerName = " ";
 
     public static float senstivity = 4.5f;
-    public static float aimSenstivity = 1f;
+    public static float aimSenstivity = 1.5f;
     public static float eaglecamSenstivity=0.5f;
 
     public static int currentLevel = 1;

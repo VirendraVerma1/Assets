@@ -125,13 +125,14 @@ public class TutorialController : MonoBehaviour
             TutorialPannel.SetActive(false);
             oldbotCount = gc.botCount;
             //box ke nearby jo bhi gaurd hoga uska markey higlight ho jayega
+            
             GameObject[] Allgaurds = GameObject.FindGameObjectsWithTag("Gaurd");
             GameObject NearestGaurd=null;
             float minDistance = 999999;
             foreach(GameObject g in Allgaurds)
             {
                 float distance=Vector3.Distance(FirstGaurdpoint.position, g.transform.position);
-                if(distance>minDistance)
+                if(distance<minDistance)
                 {
                     minDistance = distance;
                     NearestGaurd = g;
@@ -139,6 +140,7 @@ public class TutorialController : MonoBehaviour
             }
             //set market
             NearestGaurd.transform.Find("TerroristMarker").GetComponent<Renderer>().material = GaurdMarkerRed;
+            NearestGaurd.transform.Find("TerroristMarker").gameObject.layer = LayerMask.NameToLayer("OldMarker");
             StartCoroutine(WaitAndCountBot());
         }
         else if(step==3)
@@ -155,7 +157,7 @@ public class TutorialController : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             newBotCount = gc.botCount;
-            if (newBotCount < oldbotCount)
+            if (newBotCount < 4)
                 break;
         }
         NextStepDeactivateAimMode();
@@ -267,7 +269,7 @@ public class TutorialController : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             newBotCount = gc.botCount;
-            if (newBotCount < (oldbotCount-1))
+            if (newBotCount < 2)
                 break;
         }
         ShowThirdMarker();

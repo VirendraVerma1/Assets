@@ -39,6 +39,7 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 
 	// Get the camera horizontal angle.
 	public float GetH { get { return angleH; } }
+	public AndroidController androidController;
     AimBehaviour aimScript;
 	void Awake()
 	{
@@ -128,14 +129,18 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 				{
 					angleaimanotherH += angleanotherH;
 					angleaimanotherV += angleanotherV;
-					print(Quaternion.Euler(-angleaimanotherV, angleaimanotherH, 0));
+					//print(Quaternion.Euler(-angleaimanotherV, angleaimanotherH, 0));
+					//player.GetComponent<ShootBehaviour>().OnAndroidFireButtonPressed();
 					//MyCharacter.transform.localRotation= Quaternion.Euler(-angleaimanotherV, angleaimanotherH, 0);
 				}
 				else
                 {
 					angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.aimSenstivity;
 					angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.aimSenstivity;
+					
 				}
+
+				
 				
 			}
             else
@@ -153,6 +158,12 @@ public class ThirdPersonOrbitCam : MonoBehaviour
                 {
 					angleH += Mathf.Clamp(TouchField.TouchDist.x, -1, 1) * saveload.senstivity;
 					angleV += Mathf.Clamp(TouchField.TouchDist.y, -1, 1) * saveload.senstivity;
+					
+				}
+				Vector3 test = new Vector3(Mathf.Clamp(TouchField.TouchDist.x, -1, 1), Mathf.Clamp(TouchField.TouchDist.y, -1, 1), 0);
+				if (test != Vector3.zero)
+				{
+					androidController.OnResetFireTouchButtonPressed();
 				}
 			}
 		}

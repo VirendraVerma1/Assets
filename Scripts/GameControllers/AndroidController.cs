@@ -142,15 +142,33 @@ public class AndroidController : MonoBehaviour
 
     #endregion
 
+    [Header("Fire Button UI")]
+    public GameObject FixedJoystickFireButton;
+    public GameObject NormalFireButton;
+    public void enableFirstPersonFireButton()
+    {
+        NormalFireButton.SetActive(true);
+        FixedJoystickFireButton.SetActive(false);
+    }
+
+    public void enableThirdPersonFireButton()
+    {
+        NormalFireButton.SetActive(false);
+        FixedJoystickFireButton.SetActive(true);
+    }
 
     #region new fire mechanism
 
     public RectTransform HandleFire;
     public Joystick joystick;
+    bool isnotReset = false;
     public void OnResetFireTouchButtonPressed()
     {
-        HandleFire.localPosition = Vector3.zero;
-        joystick.ResetInput();
+        if(HandleFire.localPosition!=Vector3.zero)
+        {
+            HandleFire.localPosition = Vector3.zero;
+            joystick.ResetInput();
+        }
     }
 
     #endregion

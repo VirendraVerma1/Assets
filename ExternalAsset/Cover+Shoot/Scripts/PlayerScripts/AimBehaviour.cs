@@ -70,23 +70,28 @@ public class AimBehaviour : GenericBehaviour
 	{
 		if(isAndroidAim)
 		{
-			isAndroidAim=false;
+			androidController.enableThirdPersonFireButton();
+			isAndroidAim =false;
 			gameObject.GetComponent<PlayerStats>().OnAimOff();
 			gameObject.GetComponent<PlayerStats>().GameCharacter.transform.localPosition = Vector3.zero;
 			gameObject.GetComponent<PlayerStats>().GameCharacter.transform.localRotation = Quaternion.Euler( Vector3.zero);
 		}
 		else{
 			isAndroidAim=true;
+			
 			gameObject.GetComponent<PlayerStats>().OnAimHappen();
+			androidController.enableFirstPersonFireButton();
 		}
-        
+		androidController.OnResetFireTouchButtonPressed();
 	}
 
 	public bool isAndroidAimFromFire=false;
 	public void OnAndroidAimFromFireOnButtonPressed()
 	{
 		if(isAndroidAim==false)
-		isAndroidAimFromFire=true;
+        {
+			isAndroidAimFromFire = true;
+		}
 	}
 
 	public void OnAndroidAimFromFireOFFButtonPressed()
