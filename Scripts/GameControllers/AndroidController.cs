@@ -153,8 +153,8 @@ public class AndroidController : MonoBehaviour
 
     public void enableThirdPersonFireButton()
     {
-        NormalFireButton.SetActive(false);
-        FixedJoystickFireButton.SetActive(true);
+        NormalFireButton.SetActive(true);
+        FixedJoystickFireButton.SetActive(false);//this should be true if using floating joystick for fire button
     }
 
     #region new fire mechanism
