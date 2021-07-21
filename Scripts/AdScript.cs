@@ -16,7 +16,7 @@ public class AdScript : MonoBehaviour
     bool isOffline=true;
 
     //---unity ads variables
-    string gameId = "4084759";
+    string gameId = "4227023";
     string mySurfacingId = "rewardedVideo";
     public string surfacingId = "bannerPlacement";
     bool testMode = true;
