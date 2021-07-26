@@ -97,9 +97,8 @@ public class GaurdController : MonoBehaviour
 
     void GaurdRandomness()
     {
-        
         int randomness = Random.Range(1, 100);
-         if(saveload.currentLevel<5)
+         if(saveload.currentLevel<3)
          {
              randomness = Random.Range(1, 60);
          }
@@ -447,7 +446,7 @@ public class GaurdController : MonoBehaviour
         while (isDead==false)
         {
             yield return new WaitForSeconds(intelligenceFrequency);
-            if(saveload.isTutorial==true)
+            
             UpdatePlayerDistance();
             TotalBotsLeft();
             if (totalBotsLeft < (minBotLeftToFollowPlayer+1))
@@ -472,6 +471,7 @@ public class GaurdController : MonoBehaviour
             if (g.GetComponent<GaurdController>().isDead == false)
                 totalBotsLeft++;
         }
+        print("Total Bot Left"+totalBotsLeft);
     }
 
     void SetPlayerAsTarget()//enemy start follow if only one bot is left
