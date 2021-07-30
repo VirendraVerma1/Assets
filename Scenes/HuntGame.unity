@@ -18267,8 +18267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cd1f5eb5a06d64a8d95c9b39d4f688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadSpecificLevelMy: 0
-  terrainNu: 1
+  LoadSpecificLevelMy: 1
+  terrainNu: 7
   GlobalVolume: {fileID: 501825891}
   GaurdAI: {fileID: 1498338669535832090, guid: 91cd0ce929f6d0e4a8e8c1c21a61ffa5, type: 3}
   MissionTerrain:
@@ -75066,7 +75066,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 80
+    m_Bits: 336
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: c6d157fde335d794fa7fab66963c00c4, type: 2}
   m_TargetDisplay: 0
@@ -109992,7 +109992,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1882135099, guid: cea2e3068e95a2a4bb3d90c886123bd2, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1882135100, guid: cea2e3068e95a2a4bb3d90c886123bd2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -110060,7 +110060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7401440955994101147, guid: cea2e3068e95a2a4bb3d90c886123bd2, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7401440955994101147, guid: cea2e3068e95a2a4bb3d90c886123bd2, type: 3}
       propertyPath: m_IsActive
