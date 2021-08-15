@@ -98,17 +98,18 @@ public class GaurdController : MonoBehaviour
     void GaurdRandomness()
     {
         int randomness = Random.Range(1, 100);
-         //if(saveload.currentLevel<3)
-         //{
-         //    randomness = Random.Range(1, 60);
-         //}
-         //else if(saveload.currentLevel<10)
-         //{
-         //    randomness = Random.Range(1, 80);
-         //}else
-         //{
-         //    randomness = Random.Range(1, 100); 
-         //}
+        if (saveload.currentLevel < 3)
+        {
+            randomness = Random.Range(1, 60);
+        }
+        else if (saveload.currentLevel < 6)
+        {
+            randomness = Random.Range(1, 80);
+        }
+        else
+        {
+            randomness = Random.Range(1, 100);
+        }
 
         if (randomness < 60)
         {
