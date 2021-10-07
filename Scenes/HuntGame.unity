@@ -18432,7 +18432,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478210674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4d28b12f02192d48a8964124aaa3d40, type: 3}
   m_Name: 
@@ -40642,7 +40642,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053811030}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f806876f85f1c246bb0bef2f756e46f, type: 3}
   m_Name: 
@@ -68651,7 +68651,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865684679}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84e45ed845e4e6d4da0657e95767caf9, type: 3}
   m_Name: 
@@ -104186,7 +104186,7 @@ MonoBehaviour:
   aimButton: Aim
   shoulderButton: Aim Shoulder
   crosshair: {fileID: 2800000, guid: fdd205b7cd4f9bc49a0acb651bafaa41, type: 3}
-  aimTurnSmoothing: 20
+  aimTurnSmoothing: 1000
   aimPivotOffset: {x: -0.12, y: 1.36, z: -0.06}
   aimCamOffset: {x: 0, y: 0.4, z: 0.34}
   firefromaimPivotOffset: {x: 0.5, y: 1.2, z: 0}

@@ -230,7 +230,7 @@ public class ShootBehaviour : GenericBehaviour
 
 	IEnumerator WaitAndSetAutoFireAim()
 	{
-		yield return new WaitForSeconds(autofireWaitCounter);
+		yield return new WaitForSeconds(autofireWaitCounter*0);
 		
 		if(isModeOn)
 		{
